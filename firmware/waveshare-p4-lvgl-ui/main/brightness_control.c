@@ -34,6 +34,12 @@ static esp_err_t write_percent(int percent)
     esp_err_t err = i2c_master_transmit(backlight, command, sizeof(command), BACKLIGHT_TIMEOUT_MS);
     if (err == ESP_OK) {
         applied_percent = percent;
+        /* Temporary diagnostics: successful transmit, not brightness readback. */
+        ESP_LOGI(TAG, "Backlight I2C write OK: requested=%d%%, 7-bit address=0x%02X, register=0x%02X, byte=0x%02X (%u)",
+                 percent, BACKLIGHT_ADDRESS, BACKLIGHT_REGISTER, (unsigned)command[1], (unsigned)command[1]);
+    } else {
+        ESP_LOGE(TAG, "Backlight I2C write FAILED: requested=%d%%, 7-bit address=0x%02X, register=0x%02X, byte=0x%02X (%u): %s",
+                 percent, BACKLIGHT_ADDRESS, BACKLIGHT_REGISTER, (unsigned)command[1], (unsigned)command[1], esp_err_to_name(err));
     }
     return err;
 }
@@ -89,7 +95,6 @@ static void update_brightness(lv_timer_t *timer)
     }
     backlight_error = write_percent(requested);
     if (backlight_error != ESP_OK) {
-        ESP_LOGW(TAG, "Brightness write failed: %s", esp_err_to_name(backlight_error));
         show_failure();
         lv_timer_pause(update_timer); /* No retry storm on a shared bus. */
     }
