@@ -1,0 +1,9 @@
+menu "Backlight diagnostic"
+    config BACKLIGHT_DIAGNOSTIC
+        bool "Enable temporary standalone backlight diagnostic"
+        default n
+        help
+            Run three 100%/10% cycles with 3 seconds at each level, then
+            attempt to restore 75%. Disables slider writes until rebuilt
+            with this option disabled. No readback or panel init writes.
+endmenu

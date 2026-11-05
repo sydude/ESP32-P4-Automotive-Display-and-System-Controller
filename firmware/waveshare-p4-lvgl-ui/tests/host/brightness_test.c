@@ -8,6 +8,7 @@
 
 static const char *mode;
 static int attempts;
+static uint8_t bytes[16];
 static uint8_t last_byte;
 static bool fail_writes;
 _Alignas(64) static uint8_t framebuffer[1920 * 480 * 3];
@@ -29,9 +30,10 @@ esp_err_t i2c_master_bus_add_device(i2c_master_bus_handle_t bus, const i2c_devic
 esp_err_t i2c_master_transmit(i2c_master_dev_handle_t dev, const uint8_t *data, size_t size, int timeout)
 {
     assert(dev == (void *)2 && size == 2 && data[0] == 0x96 && timeout == 20);
+    bytes[attempts] = data[1];
     ++attempts;
     last_byte = data[1];
-    return fail_writes ? ESP_FAIL : ESP_OK;
+    return fail_writes || (strcmp(mode, "diagnostic_mid_failure") == 0 && attempts == 4) ? ESP_FAIL : ESP_OK;
 }
 static void flush(lv_display_t *display, const lv_area_t *area, uint8_t *pixels)
 {
@@ -52,6 +54,28 @@ static void run_ms(unsigned ms)
         lv_timer_handler();
     }
 }
+#ifdef CONFIG_BACKLIGHT_DIAGNOSTIC
+static void (*worker)(void *);
+static int delays, deletes;
+int xTaskCreate(void (*task)(void *), const char *name, unsigned stack, void *arg, unsigned priority, void *handle)
+{
+    (void)name; (void)stack; (void)arg; (void)priority; (void)handle;
+    if (strcmp(mode, "task_failure") == 0) return 0;
+    assert(!worker);
+    worker = task;
+    return 1;
+}
+void vTaskDelay(unsigned ms)
+{
+    assert(ms == 3000);
+    ++delays;
+    int before = attempts;
+    lv_subject_set_int(brightness_subject(), 42);
+    run_ms(ms);
+    assert(attempts == before); /* Slider subject cannot introduce writes. */
+}
+void vTaskDelete(void *task) { assert(!task); ++deletes; }
+#endif
 int main(int argc, char **argv)
 {
     assert(argc >= 2);
@@ -81,6 +105,36 @@ int main(int argc, char **argv)
     assert(flushes > 0);
     assert(lv_obj_get_width(slider) == 600 && lv_obj_get_height(slider) == 32);
     assert(lv_slider_get_min_value(slider) == 10 && lv_slider_get_max_value(slider) == 100);
+#ifdef CONFIG_BACKLIGHT_DIAGNOSTIC
+    assert(lv_obj_has_state(slider, LV_STATE_DISABLED));
+    assert(attempts == 0);
+    if (strcmp(mode, "probe_failure") == 0 || strcmp(mode, "task_failure") == 0) {
+        assert(!worker);
+        return 0;
+    }
+    assert(worker);
+    fail_writes = strcmp(mode, "diagnostic_failure") == 0;
+    worker(NULL);
+    assert(deletes == 1);
+    if (fail_writes) {
+        assert(attempts == 2 && delays == 0 && bytes[0] == 255 && bytes[1] == 191);
+    } else if (strcmp(mode, "diagnostic_mid_failure") == 0) {
+        const uint8_t expected[] = {255, 25, 255, 25, 191};
+        assert(attempts == 5 && delays == 3);
+        assert(memcmp(bytes, expected, sizeof(expected)) == 0);
+    } else {
+        const uint8_t expected[] = {255, 25, 255, 25, 255, 25, 191};
+        assert(attempts == 7 && delays == 6);
+        assert(memcmp(bytes, expected, sizeof(expected)) == 0);
+    }
+    int diagnostic_before = attempts;
+    run_ms(10000);
+    brightness_control_attach(screen);
+    run_ms(10000);
+    assert(attempts == diagnostic_before && deletes == 1);
+    puts("Diagnostic payloads, holds, bounded failure, slider isolation and single run passed");
+    return 0;
+#endif
     if (strcmp(mode, "probe_failure") == 0 || fail_writes) {
         assert(lv_obj_has_state(slider, LV_STATE_DISABLED));
         assert(strcmp(lv_label_get_text(percent), "Unavailable") == 0);
