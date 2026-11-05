@@ -4650,7 +4650,7 @@ CONFIG_LV_INDEV_DEF_ROTARY_SENSITIVITY=256
 # default:
 CONFIG_LV_OBJ_STYLE_CACHE=y
 # default:
-# CONFIG_LV_USE_OBJ_NAME is not set
+CONFIG_LV_USE_OBJ_NAME=y
 # default:
 # CONFIG_LV_USE_OBJ_ID is not set
 # default:
