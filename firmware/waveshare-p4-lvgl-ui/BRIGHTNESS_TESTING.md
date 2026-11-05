@@ -60,11 +60,13 @@ Reboot retries initialization. Values are not saved to flash.
 
 ## Regeneration contract
 
-For this draft, the user explicitly approved manually matching the C export to
-the XML. **LVGL Pro validation, editor generation, and editor screenshot are
-still pending**. The installed editor could not be operated through the available
-UI connection, and no usable `lvglpro` CLI was found. An ESP-IDF build and a real
-LVGL desktop test do not certify the XML generator path.
+The user confirmed LVGL Pro Build/Preview works and the slider updates.
+The fresh editor export declares `lv_subject_t * subject_brightness`, creates
+it with `lv_subject_create(LV_SUBJECT_TYPE_INT)`, and initializes it with
+`lv_subject_set_int(subject_brightness, 75)`. Keep that generated API intact.
+`brightness_subject.h` returns the pointer for firmware and host tests, while
+also supporting the older value-based draft export still tracked here.
+The user's freshly generated files are not yet present in this checkout.
 
 1. Open the tracked `lvgl-project/basicrace1920x480v1/project.xml` in LVGL Pro.
 2. Validate and preview `screen_main`, then Generate C (Ctrl+E in the editor).
@@ -79,7 +81,8 @@ LVGL desktop test do not certify the XML generator path.
    ```
 
 The sync script rejects stale exports missing the brightness contract before
-removing firmware resources. `--check` compares all exported C/H bytes with
+removing firmware resources. It checks matching C/H subject types, default 75,
+XML registration, and slider/percent bindings for both generator APIs. `--check` compares all exported C/H bytes with
 `main/ui/` without writing. Copies receive fresh timestamps so even an older
 export recompiles. Never edit only `main/ui/`; synchronization replaces it.
 Review the generated diff and repeat tests before merging.
@@ -120,7 +123,18 @@ build-host/brightness_test success /tmp/brightness-preview.ppm
   background, card, percent, slider, and status fit without clipping.
 - Generated-style C produces LVGL deprecation warnings; the build succeeds.
 - No firmware was flashed. Electrical behavior, visible dimming, GT9271
-  interaction, and LVGL Pro editor validation/regeneration remain pending.
+  interaction remain pending. Editor Build/Preview and slider updates were
+  subsequently confirmed by the user; fresh C export sync/build is still required.
+
+## Subject API follow-up validation
+
+- Sync regression passed for both value and pointer exports, including rejection
+  without destination changes for mixed C/H types, wrong subject type/default,
+  mismatched bindings, and missing brightness widgets.
+- All four real-LVGL host scenarios passed with the tracked value export and
+  again with a temporary fixture matching the reported pointer export.
+- Tracked generated C/H files were not modified. These fixture checks do not
+  replace syncing and building the user's actual freshly generated files.
 
 ## Local hardware acceptance — user action required
 

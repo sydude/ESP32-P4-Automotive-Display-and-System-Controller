@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "brightness_control.h"
-#include "ui/basicrace1920x480v1.h"
+#include "brightness_subject.h"
 
 static const char *mode;
 static int attempts;
@@ -92,10 +92,10 @@ int main(int argc, char **argv)
     assert(strcmp(lv_label_get_text(percent), "75%") == 0);
     if (strcmp(mode, "update_failure") == 0) {
         fail_writes = true;
-        lv_subject_set_int(&subject_brightness, 50);
+        lv_subject_set_int(brightness_subject(), 50);
         run_ms(100);
         assert(attempts == 2 && lv_obj_has_state(slider, LV_STATE_DISABLED));
-        assert(lv_subject_get_int(&subject_brightness) == 75);
+        assert(lv_subject_get_int(brightness_subject()) == 75);
         assert(strstr(lv_label_get_text(status), "Write failed"));
         run_ms(500);
         assert(attempts == 2);
@@ -110,33 +110,33 @@ int main(int argc, char **argv)
     run_ms(100);
     pointer.x = coords.x1;
     run_ms(100);
-    assert(lv_subject_get_int(&subject_brightness) == 10 && last_byte == 25);
+    assert(lv_subject_get_int(brightness_subject()) == 10 && last_byte == 25);
     pointer.x = coords.x2;
     run_ms(100);
     pointer_down = false;
     run_ms(100);
-    assert(lv_subject_get_int(&subject_brightness) == 100 && last_byte == 255);
+    assert(lv_subject_get_int(brightness_subject()) == 100 && last_byte == 255);
     assert(strcmp(lv_label_get_text(percent), "100%") == 0);
     pointer.x = coords.x1 + (coords.x2 - coords.x1) * 40 / 90;
     pointer_down = true;
     run_ms(100);
     pointer_down = false;
     run_ms(100);
-    assert(lv_subject_get_int(&subject_brightness) >= 49 && lv_subject_get_int(&subject_brightness) <= 51);
+    assert(lv_subject_get_int(brightness_subject()) >= 49 && lv_subject_get_int(brightness_subject()) <= 51);
     int before = attempts;
     run_ms(250);
     assert(attempts == before); /* No redundant writes. */
-    lv_subject_set_int(&subject_brightness, -100);
+    lv_subject_set_int(brightness_subject(), -100);
     run_ms(100);
-    assert(lv_subject_get_int(&subject_brightness) == 10 && last_byte == 25);
-    lv_subject_set_int(&subject_brightness, 1000);
+    assert(lv_subject_get_int(brightness_subject()) == 10 && last_byte == 25);
+    lv_subject_set_int(brightness_subject(), 1000);
     run_ms(100);
-    assert(lv_subject_get_int(&subject_brightness) == 100 && last_byte == 255);
+    assert(lv_subject_get_int(brightness_subject()) == 100 && last_byte == 255);
     /* Latest value wins within a timer period. */
     before = attempts;
-    lv_subject_set_int(&subject_brightness, 20);
-    lv_subject_set_int(&subject_brightness, 40);
-    lv_subject_set_int(&subject_brightness, 75);
+    lv_subject_set_int(brightness_subject(), 20);
+    lv_subject_set_int(brightness_subject(), 40);
+    lv_subject_set_int(brightness_subject(), 75);
     run_ms(100);
     assert(attempts == before + 1 && last_byte == 191);
     if (argc > 2) {
@@ -158,7 +158,7 @@ int main(int argc, char **argv)
     lv_screen_load(empty);
     lv_obj_delete(screen);
     before = attempts;
-    lv_subject_set_int(&subject_brightness, 50);
+    lv_subject_set_int(brightness_subject(), 50);
     run_ms(100);
     assert(attempts == before); /* Timer is gone with its screen. */
     puts("Pointer drag, bounds, label binding, coalescing, and lifecycle passed");

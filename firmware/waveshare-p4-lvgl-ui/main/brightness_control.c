@@ -1,5 +1,5 @@
 #include "brightness_control.h"
-#include "ui/basicrace1920x480v1.h"
+#include "brightness_subject.h"
 #include "esp_log.h"
 
 /* Verified against waveshare/esp_lcd_dsi 2.0.0 and the Waveshare WIFI6-DB BSP.
@@ -65,7 +65,7 @@ static void show_failure(void)
 {
     lv_obj_add_state(slider, LV_STATE_DISABLED);
     if (applied_percent >= 10) {
-        lv_subject_set_int(&subject_brightness, applied_percent);
+        lv_subject_set_int(brightness_subject(), applied_percent);
         lv_label_set_text(status_label, "Write failed | Last sent value shown | Reboot to retry");
     } else {
         lv_label_set_text(percent_label, "Unavailable");
@@ -80,9 +80,9 @@ static void update_brightness(lv_timer_t *timer)
      * can interrupt GT9271's status/point/clear transaction sequence.
      * The synchronous I2C master API also serializes bus transactions.
      */
-    int requested = clamp_percent(lv_subject_get_int(&subject_brightness));
-    if (requested != lv_subject_get_int(&subject_brightness)) {
-        lv_subject_set_int(&subject_brightness, requested);
+    int requested = clamp_percent(lv_subject_get_int(brightness_subject()));
+    if (requested != lv_subject_get_int(brightness_subject())) {
+        lv_subject_set_int(brightness_subject(), requested);
     }
     if (requested == applied_percent) {
         return;
@@ -120,7 +120,7 @@ void brightness_control_attach(lv_obj_t *screen)
         show_failure();
         return;
     }
-    lv_subject_set_int(&subject_brightness, applied_percent);
+    lv_subject_set_int(brightness_subject(), applied_percent);
     update_timer = lv_timer_create(update_brightness, BRIGHTNESS_UPDATE_MS, NULL);
     if (!update_timer) {
         lv_obj_add_state(slider, LV_STATE_DISABLED);

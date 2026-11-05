@@ -53,10 +53,11 @@ It preserves vendor initialization and display/touch code, batches updates at
 50 ms, and disables the slider with a visible message if brightness control fails.
 The percent is not persisted across power cycles.
 
-The XML and matching C export were updated together with the user's approval;
-**editor validation/regeneration remains pending**. Run
-`python3 sync_lvgl_pro_ui.py --check` to confirm all 17 C/H exports match the
-firmware copy. Hardware code stays outside generated files.
+The user confirmed LVGL Pro Build/Preview and slider updates. Fresh editor
+exports use a pointer-based `subject_brightness`; firmware also accepts the
+older draft value-based export without changing generated files. Generate C,
+then run `python3 sync_lvgl_pro_ui.py` and `python3 sync_lvgl_pro_ui.py --check`
+before building. Hardware brightness testing remains pending.
 
 See [BRIGHTNESS_TESTING.md](BRIGHTNESS_TESTING.md) for pinned vendor evidence,
 regeneration instructions, desktop tests, local flash/acceptance steps, and

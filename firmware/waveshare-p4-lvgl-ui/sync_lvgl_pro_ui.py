@@ -6,6 +6,7 @@ The source project must already have run LVGL Pro's Generate command.
 """
 from pathlib import Path
 import argparse
+import re
 import shutil
 import sys
 
@@ -30,7 +31,7 @@ def main():
     # Reject an old export before deleting any working firmware resources.
     contracts = {
         "basicrace1920x480v1_gen.h": ("subject_brightness",),
-        "basicrace1920x480v1_gen.c": ("lv_subject_init_int", "subject_brightness"),
+        "basicrace1920x480v1_gen.c": ("subject_brightness",),
         "screens/screen_main/screen_main_gen.c": (
             '"brightness_slider"', '"brightness_percent"', '"brightness_status"',
             "lv_slider_bind_value", "subject_brightness"),
@@ -39,6 +40,27 @@ def main():
         text = (source / name).read_text()
         if any(token not in text for token in tokens):
             parser.error("Stale brightness export: regenerate the updated XML project first: " + name)
+    # Accept complete, internally consistent exports from either generator API.
+    header = (source / "basicrace1920x480v1_gen.h").read_text()
+    generated = (source / "basicrace1920x480v1_gen.c").read_text()
+    screen = (source / "screens/screen_main/screen_main_gen.c").read_text()
+    def matches(pattern, text):
+        return re.search(pattern, text) is not None
+
+    pointer = matches(r"extern\s+lv_subject_t\s*\*\s*subject_brightness\s*;", header)
+    ref = r"subject_brightness" if pointer else r"&\s*subject_brightness"
+    declaration = r"lv_subject_t\s*" + (r"\*\s*" if pointer else r"\s+") + r"subject_brightness\s*;"
+    initialization = (
+        matches(r"subject_brightness\s*=\s*lv_subject_create\s*\(\s*LV_SUBJECT_TYPE_INT\s*\)\s*;", generated)
+        and matches(r"lv_subject_set_int\s*\(\s*subject_brightness\s*,\s*75\s*\)", generated)
+        if pointer else matches(r"lv_subject_init_int\s*\(\s*&\s*subject_brightness\s*,\s*75\s*\)", generated)
+    )
+    if not (matches(r"extern\s+" + declaration, header)
+            and matches(declaration, generated) and initialization
+            and matches(r'lv_xml_register_subject\s*\(\s*NULL\s*,\s*"subject_brightness"\s*,\s*' + ref + r"\s*\)", generated)
+            and matches(r"lv_slider_bind_value\s*\([^,]+,\s*" + ref + r"\s*\)", screen)
+            and matches(r'lv_label_bind_text\s*\([^,]+,\s*' + ref + r'\s*,\s*"%d%%"\s*\)', screen)):
+        parser.error("Stale or inconsistent brightness subject API: regenerate the complete XML project (default 75 and slider/percent bindings required)")
     if args.check:
         expected = {f.relative_to(source) for f in files}
         actual = {f.relative_to(dest) for f in dest.rglob("*") if f.is_file() and f.suffix in (".c", ".h")}
