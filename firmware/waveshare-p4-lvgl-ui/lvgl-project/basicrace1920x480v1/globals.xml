@@ -1,0 +1,83 @@
+<globals>
+	<api>
+		<!-- Add <enumdefs> here -->
+	</api>
+
+	<consts>
+		<!-- Add <px>, <int>, <color> etc here -->
+	</consts>
+
+	<subjects>
+		<!-- Add <int>, <string>, or <float> subjects here -->
+	</subjects>
+
+	<images>
+		<!-- Add <file> or <data> tags here -->
+		<data
+			name="race_background_1"
+			src_path="images/basicrace1920x480.png"
+			color_format="rgb565"
+		/>
+	</images>
+
+	<fonts>
+		<!-- Add <bin> , <tiny_ttf>, <freetype> tags here -->
+		<!-- FontAwesome glyphs for the LV_SYMBOLs used by lv_keyboard (left,
+		     right, OK, close, backspace, new-line, keyboard) plus up/down.
+		     lv_fallback=font_body so Latin keys still render from one font. -->
+
+		<bin
+			name="font_default"
+			src_path="fonts/Montserrat-Regular.ttf"
+			size="20"
+			bpp="4"
+			range="0x20-0x7E"
+			symbols="°—•±×µΩ"
+			as_file="false"
+		/>
+		<bin
+			name="font_bold_20"
+			src_path="fonts/Montserrat-Bold.ttf"
+			size="20"
+			bpp="4"
+			as_file="false"
+		/>
+		<bin
+			name="font_bold_36"
+			src_path="fonts/Montserrat-Bold.ttf"
+			size="36"
+			bpp="4"
+			as_file="false"
+		/>
+		<bin
+			name="font_body_symbols"
+			size="16"
+			src_path="fonts/FontAwesome5.ttf"
+			bpp="4"
+			range="0xF00C,0xF00D,0xF053-0xF054,0xF077-0xF078,0xF11C,0xF55A,0xF8A2"
+			as_file="false"
+		/>
+		<bin
+			name="font_body"
+			size="16"
+			src_path="fonts/Montserrat-Regular.ttf"
+			bpp="4"
+			range="0x20-0x7E"
+			symbols="°—•±×µΩ"
+			as_file="false"
+			lv_fallback="font_body_symbols_data"
+		/>
+	</fonts>
+
+	<styles>
+		<!-- Add <style> tags here -->
+		<style name="style_background_1" bg_image_src="race_background_1" />
+		<style
+			name="style_text_default"
+			text_color="FFFFFF"
+			text_font="font_default"
+			text_letter_space="0"
+			text_line_space="2"
+		/>
+	</styles>
+</globals>

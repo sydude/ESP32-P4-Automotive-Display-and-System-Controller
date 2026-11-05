@@ -1,0 +1,12 @@
+list(
+  APPEND
+  LV_EDITOR_PROJECT_SOURCES
+  ${CMAKE_CURRENT_LIST_DIR}/basicrace1920x480v1_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/basicrace1920x480v1.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/font_body_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/font_body_symbols_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/font_bold_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/font_bold_36_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/font_default_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/race_background_1_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/screen_main/screen_main_gen.c)
