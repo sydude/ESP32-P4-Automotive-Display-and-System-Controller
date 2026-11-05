@@ -23,9 +23,25 @@ No flashing is performed by a build. Flashing requires the user's explicit appro
 
 ## Current behavior
 
-The app initializes the original two-lane DSI configuration, LDO channel 3 at 2500 mV, RGB888 and the driver's 8.8-inch panel preset. It shows vertical hardware color bars, probes the existing I2C bus 1, reads the touch product ID at address `0x14`, and logs up to five raw touch points every 50 ms. It preserves the working controller register protocol; coordinates are not transformed into an LVGL input device. The LCD driver creates the shared I2C bus during initialization.
+A minimal LVGL smoke test shows a title, a large central **Tap me** button with a tap counter, and a live touch/release coordinate label. The GUI is **1920 × 480 landscape**. The original two-lane DSI preset, LDO channel 3 at 2500 mV, native **480 × 1920 RGB888** framebuffer, I2C bus 1 and GT9271 address `0x14` are retained. The driver creates the shared I2C bus; the application reads the product ID and polls the first touch point through the verified register protocol. Fresh reports are acknowledged, including release reports; a not-ready status retains the previous touch state.
 
-Unity test registration, test-suite memory checks, unused teardown/rotation/software-pattern tests and the commented uniformity demo were removed from the executable. Runtime checks now use `ESP_ERROR_CHECK` and an allocation assertion. The active display/touch sequence is preserved. No LVGL, PlatformIO configuration, or Wi-Fi application integration is included yet; those can be added as separate changes.
+Touch mapping is `gui_x = raw_y`, `gui_y = 479 - raw_x`. The drawing flush uses the inverse mapping, `native_x = 479 - gui_y`, `native_y = gui_x`. Out-of-range touch points are rejected. No panel axis swapping or LVGL display rotation is requested.
+
+The ESP LVGL port supplies the task, tick and mutex. The app creates a custom LVGL RGB888 partial display and pointer input under that mutex; input and UI callbacks run in the port task. Two **46,080-byte PSRAM buffers** (draw and rotated transfer, 92,160 bytes total) supplement the driver's existing single 2,764,800-byte native framebuffer. The draw buffer holds eight full landscape rows; the flush respects LVGL source row stride and packs the rotated destination tightly.
+
+The Waveshare IDF 6 driver enables asynchronous DMA2D by default. This test explicitly disables that copy hook using the installed IDF API. `esp_lcd_panel_draw_bitmap()` then copies synchronously by CPU and writes back framebuffer cache before returning; only then does the app signal `lv_display_flush_ready()`. No transfer ISR/semaphore is needed. This avoids PPA rotation restrictions and extra full-screen buffers. The single framebuffer can show tearing during updates; this is a functional smoke test, not a tear-free animation demo.
+
+## Test on the device
+
+After explicitly choosing to flash, activate the ESP-IDF environment, change into this project, then run:
+
+```sh
+idf.py -p /dev/tty.usbmodem5C931261821 flash monitor
+```
+
+Use your current serial port if it differs. This command writes firmware; `idf.py build` alone does not. Exit monitor with Ctrl+].
+
+Check that the title is upright in landscape, then tap and release the central button repeatedly: its count should increase once per click. Touch near each corner: top-left should approach `(0, 0)`, top-right `(1919, 0)`, bottom-left `(0, 479)` and bottom-right `(1919, 479)`. Moving right should increase x; moving down should increase y. Releasing should show **Released**. Serial output should identify the GT9271 and report LVGL ready. Hardware behavior needs verification after flashing.
 
 ## Dependencies and provenance
 
@@ -33,6 +49,8 @@ Unity test registration, test-suite memory checks, unused teardown/rotation/soft
 - `espressif/i2c_bus`: **1.5.2**, preserved.
 - `espressif/cmake_utilities`: **0.5.3**, preserved.
 - ESP-IDF: **6.1.0**, preserved and pinned in the manifest.
+- `lvgl/lvgl`: **^9.6.0**, installed **9.6.0~1**.
+- `espressif/esp_lvgl_port`: **^2.9.0**, installed **2.9.0**.
 
 Source: `~/Documents/GitHub/Libraries/Waveshare-ESP32-components/display/lcd/esp_lcd_dsi/test_apps`, branch `esp32p4-display-touch-baseline`, commit `7011ae908c04bedb7e3d035b537c6f894c4b8957`.
 
@@ -42,4 +60,4 @@ The downloaded registry driver's `esp_lcd_dsi.c` and entire `include/` directory
 
 ## Validation
 
-Built successfully on 2026-10-21 with ESP-IDF 6.1.0 for `esp32p4`. Application image: `build/waveshare_8p8_display_touch.bin`, 0x424e0 bytes (271,584 bytes); 74% of the existing 1 MB app partition remains free. Generated flash arguments specify 32 MB flash. The active `sdkconfig` remained byte-for-byte identical to the original baseline. The source Waveshare repository remained clean at its baseline commit. No board was flashed or runtime-tested during extraction.
+The original extraction build was verified on 2026-10-21. The LVGL smoke test build produced a 665,360-byte (`0xa2710`) application, with 37% of the existing 1 MiB app partition free. It was built with ESP-IDF 6.1.0 for `esp32p4`; generated flash arguments retain DIO, 80 MHz and **32 MB** flash. Existing dependency, editor and sdkconfig changes from the user's successful LVGL installation are retained. No board was flashed, and nothing was committed or pushed.

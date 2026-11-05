@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+set(IDF_TARGET esp32p4 CACHE STRING "Target board MCU")
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(waveshare_8p8_display_touch VERSION 0.1.0)
+if(NOT IDF_VERSION_MAJOR EQUAL 6 OR NOT IDF_VERSION_MINOR EQUAL 1)
+    message(FATAL_ERROR "This baseline requires ESP-IDF 6.1.x")
+endif()

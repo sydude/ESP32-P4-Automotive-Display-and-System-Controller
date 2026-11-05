@@ -4,6 +4,8 @@
 
 #include <inttypes.h>
 #include <assert.h>
+#include <string.h>
+#include "esp_lvgl_port.h"
 #include "esp_check.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
@@ -48,18 +50,6 @@ static esp_ldo_channel_handle_t ldo_mipi_phy = NULL;
 static esp_lcd_panel_handle_t panel_handle = NULL;
 static esp_lcd_dsi_bus_handle_t mipi_dsi_bus = NULL;
 static esp_lcd_panel_io_handle_t mipi_dbi_io = NULL;
-static SemaphoreHandle_t refresh_finish = NULL;
-
-IRAM_ATTR static bool test_notify_refresh_ready(esp_lcd_panel_handle_t panel, esp_lcd_dpi_panel_event_data_t *edata, void *user_ctx)
-{
-    SemaphoreHandle_t refresh_finish = (SemaphoreHandle_t)user_ctx;
-    BaseType_t need_yield = pdFALSE;
-
-    xSemaphoreGiveFromISR(refresh_finish, &need_yield);
-
-    return (need_yield == pdTRUE);
-}
-
 static void test_init_lcd(void)
 {
 #if TEST_PIN_NUM_BK_LIGHT >= 0
@@ -106,93 +96,150 @@ static void test_init_lcd(void)
     ESP_ERROR_CHECK(esp_lcd_new_panel_dsi(mipi_dbi_io, &panel_config, &panel_handle));
     ESP_ERROR_CHECK(esp_lcd_panel_init(panel_handle));
 
-    refresh_finish = xSemaphoreCreateBinary();
-    assert(refresh_finish != NULL);
-    esp_lcd_dpi_panel_event_callbacks_t cbs = {
-        .on_color_trans_done = test_notify_refresh_ready,
-    };
-    ESP_ERROR_CHECK(esp_lcd_dpi_panel_register_event_callbacks(panel_handle, &cbs, refresh_finish));
+    // The Waveshare IDF 6 driver enables async DMA2D. Small CPU copies make
+    // draw_bitmap synchronous, including framebuffer cache writeback.
+    ESP_ERROR_CHECK(esp_lcd_dpi_panel_disable_dma2d(panel_handle));
+}
+
+#define GUI_WIDTH 1920
+#define GUI_HEIGHT 480
+#define DRAW_PIXELS (GUI_WIDTH * 8)
+#define DRAW_BYTES (DRAW_PIXELS * 3)
+
+static i2c_master_dev_handle_t gt;
+static uint8_t *rotated_pixels;
+static lv_obj_t *coordinates;
+static lv_obj_t *button_label;
+static unsigned click_count;
+
+static void flush_landscape(lv_display_t *display, const lv_area_t *area, uint8_t *pixels)
+{
+    const int width = lv_area_get_width(area);
+    const int height = lv_area_get_height(area);
+    const uint32_t stride = lv_draw_buf_width_to_stride(width, LV_COLOR_FORMAT_RGB888);
+    assert((size_t)width * height <= DRAW_PIXELS);
+    // Inverse of touch mapping: native_x = 479 - gui_y, native_y = gui_x.
+    // Pack a native rectangle of width=height and height=width, no row padding.
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            memcpy(rotated_pixels + ((size_t)x * height + height - 1 - y) * 3,
+                   pixels + (size_t)y * stride + x * 3, 3);
+        }
+    }
+    ESP_ERROR_CHECK(esp_lcd_panel_draw_bitmap(panel_handle,
+        GUI_HEIGHT - 1 - area->y2, area->x1,
+        GUI_HEIGHT - area->y1, area->x2 + 1, rotated_pixels));
+    // No asynchronous hook or ISR callback: the CPU copy is complete on return.
+    lv_display_flush_ready(display);
+}
+
+static void read_touch(lv_indev_t *indev, lv_indev_data_t *data)
+{
+    static lv_point_t last_point;
+    static bool pressed;
+    const uint8_t status_reg[] = {0x81, 0x4e};
+    uint8_t status = 0;
+    esp_err_t err = i2c_master_transmit_receive(gt, status_reg, 2, &status, 1, 100);
+    if (err != ESP_OK) {
+        pressed = false;
+    } else if (status & 0x80) {
+        const unsigned count = status & 0x0f;
+        pressed = false;
+        if (count > 0 && count <= 5) {
+            const uint8_t point_reg[] = {0x81, 0x4f};
+            uint8_t point[8];
+            err = i2c_master_transmit_receive(gt, point_reg, 2, point, sizeof(point), 100);
+            if (err == ESP_OK) {
+                unsigned raw_x = point[1] | (point[2] << 8);
+                unsigned raw_y = point[3] | (point[4] << 8);
+                if (raw_x < GUI_HEIGHT && raw_y < GUI_WIDTH) {
+                    last_point.x = raw_y;
+                    last_point.y = GUI_HEIGHT - 1 - raw_x;
+                    pressed = true;
+                }
+            }
+        }
+        const uint8_t clear[] = {0x81, 0x4e, 0};
+        if (i2c_master_transmit(gt, clear, sizeof(clear), 100) != ESP_OK) {
+            pressed = false;
+        }
+    }
+    // A not-ready status is not a release; retain state until a fresh report.
+    data->point = last_point;
+    data->state = pressed ? LV_INDEV_STATE_PRESSED : LV_INDEV_STATE_RELEASED;
+    static int previous_x = -1, previous_y = -1;
+    static bool previous_pressed;
+    if (pressed != previous_pressed || last_point.x != previous_x || last_point.y != previous_y) {
+        lv_label_set_text_fmt(coordinates, "%s  x=%ld  y=%ld",
+            pressed ? "Touch" : "Released", (long)last_point.x, (long)last_point.y);
+        previous_x = last_point.x;
+        previous_y = last_point.y;
+        previous_pressed = pressed;
+    }
+}
+
+static void button_clicked(lv_event_t *event)
+{
+    lv_label_set_text_fmt(button_label, "Tapped %u times", ++click_count);
+}
+
+static void start_gui(void)
+{
+    lvgl_port_cfg_t port_cfg = ESP_LVGL_PORT_INIT_CONFIG();
+    port_cfg.task_max_sleep_ms = 20;
+    ESP_ERROR_CHECK(lvgl_port_init(&port_cfg));
+    assert(lvgl_port_lock(0));
+    // Use the port for task/tick/mutex only. Its display helper uses PPA for
+    // rotation on P4; this explicit partial flush avoids those constraints.
+    uint8_t *draw_pixels = heap_caps_aligned_alloc(CONFIG_LV_DRAW_BUF_ALIGN,
+        DRAW_BYTES, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+    rotated_pixels = heap_caps_malloc(DRAW_BYTES, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+    assert(draw_pixels && rotated_pixels);
+    lv_display_t *display = lv_display_create(GUI_WIDTH, GUI_HEIGHT);
+    assert(display);
+    lv_display_set_color_format(display, LV_COLOR_FORMAT_RGB888);
+    lv_display_set_buffers(display, draw_pixels, NULL, DRAW_BYTES, LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_display_set_flush_cb(display, flush_landscape);
+    lv_obj_t *screen = lv_display_get_screen_active(display);
+    lv_obj_set_style_bg_color(screen, lv_color_hex(0x152536), 0);
+    lv_obj_set_style_text_color(screen, lv_color_white(), 0);
+    lv_obj_t *title = lv_label_create(screen);
+    lv_label_set_text(title, "ESP32-P4 / Waveshare 8.8 / LVGL touch test");
+    lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 45);
+    lv_obj_t *button = lv_button_create(screen);
+    lv_obj_set_size(button, 420, 140);
+    lv_obj_center(button);
+    button_label = lv_label_create(button);
+    lv_label_set_text(button_label, "Tap me");
+    lv_obj_center(button_label);
+    lv_obj_add_event_cb(button, button_clicked, LV_EVENT_CLICKED, NULL);
+    coordinates = lv_label_create(screen);
+    lv_label_set_text(coordinates, "Touch anywhere: x=0..1919, y=0..479");
+    lv_obj_align(coordinates, LV_ALIGN_BOTTOM_MID, 0, -45);
+    lv_indev_t *input = lv_indev_create();
+    assert(input);
+    lv_indev_set_type(input, LV_INDEV_TYPE_POINTER);
+    lv_indev_set_display(input, display);
+    lv_indev_set_read_cb(input, read_touch);
+    lvgl_port_unlock();
+    ESP_LOGI(TAG, "LVGL ready: landscape 1920x480; two 46080-byte partial buffers");
 }
 
 void app_main(void)
 {
-    ESP_LOGI(TAG, "Initialize LCD device");
     test_init_lcd();
-
-    // Check for touch controller on the existing I2C bus
-    i2c_master_bus_handle_t touch_bus = NULL;
-    esp_err_t err = i2c_master_get_bus_handle(I2C_NUM_1, &touch_bus);
-
-    if (err == ESP_OK) {
-        const uint8_t addresses[] = {0x14, 0x5D, 0x41, 0x45};
-
-        for (size_t i = 0; i < sizeof(addresses); i++) {
-            err = i2c_master_probe(touch_bus, addresses[i], 100);
-            ESP_LOGI(TAG, "I2C address 0x%02X: %s",
-                    addresses[i], err == ESP_OK ? "FOUND" : "Not detected");
-        }
-    } else {
-        ESP_LOGE(TAG, "Unable to access I2C bus: %s", esp_err_to_name(err));
-    }
-    ESP_LOGI(TAG, "Show color bar pattern drawn by hardware");
-    ESP_ERROR_CHECK(esp_lcd_dpi_panel_set_pattern(panel_handle, MIPI_DSI_PATTERN_BAR_VERTICAL));
-
-    // Connect to the GT9271 using the existing I2C bus
     i2c_master_bus_handle_t gt_bus;
     ESP_ERROR_CHECK(i2c_master_get_bus_handle(I2C_NUM_1, &gt_bus));
-
-    i2c_device_config_t gt_cfg = {
+    const i2c_device_config_t gt_cfg = {
         .dev_addr_length = I2C_ADDR_BIT_LEN_7,
         .device_address = 0x14,
         .scl_speed_hz = 100000,
     };
-    i2c_master_dev_handle_t gt;
     ESP_ERROR_CHECK(i2c_master_bus_add_device(gt_bus, &gt_cfg, &gt));
-
-    // Read the four-byte product ID
-    uint8_t id_reg[] = {0x81, 0x40};
+    const uint8_t id_reg[] = {0x81, 0x40};
     char product_id[5] = {0};
-    ESP_ERROR_CHECK(i2c_master_transmit_receive(
-        gt, id_reg, 2, (uint8_t *)product_id, 4, 100));
+    ESP_ERROR_CHECK(i2c_master_transmit_receive(gt, id_reg, 2, (uint8_t *)product_id, 4, 100));
     ESP_LOGI(TAG, "Touch controller product ID: %s", product_id);
-
-    // Poll the GT9271 for touch events
-    uint8_t status_reg[] = {0x81, 0x4E};
-    uint8_t points_reg[] = {0x81, 0x4F};
-
-    while (true) {
-        uint8_t status = 0;
-        esp_err_t result = i2c_master_transmit_receive(
-            gt, status_reg, 2, &status, 1, 100);
-
-        if (result == ESP_OK && (status & 0x80)) {
-            uint8_t count = status & 0x0F;
-
-            if (count > 0 && count <= 5) {
-                uint8_t points[5 * 8];
-                result = i2c_master_transmit_receive(
-                    gt, points_reg, 2, points, count * 8, 100);
-
-                if (result == ESP_OK) {
-                    for (int i = 0; i < count; i++) {
-                        uint8_t *p = &points[i * 8];
-                        uint16_t x = p[1] | (p[2] << 8);
-                        uint16_t y = p[3] | (p[4] << 8);
-
-                        ESP_LOGI(TAG, "Finger %d: ID=%u X=%u Y=%u",
-                                 i + 1, p[0], x, y);
-                    }
-                }
-            }
-
-            // Acknowledge the data so the controller can report new touches
-            uint8_t clear[] = {0x81, 0x4E, 0x00};
-            ESP_ERROR_CHECK(i2c_master_transmit(gt, clear, 3, 100));
-        } else if (result != ESP_OK) {
-            ESP_LOGW(TAG, "Touch read failed: %s", esp_err_to_name(result));
-        }
-
-        vTaskDelay(pdMS_TO_TICKS(50));
-    }
+    start_gui();
 }
 #endif
