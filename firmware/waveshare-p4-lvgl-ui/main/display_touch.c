@@ -1,4 +1,5 @@
 #include "ui/basicrace1920x480v1.h"
+#include "brightness_control.h"
 #include "soc/soc_caps.h"
 
 #if SOC_MIPI_DSI_SUPPORTED
@@ -190,6 +191,7 @@ static void start_gui(void)
     basicrace1920x480v1_init(NULL);
     lv_obj_t *screen = screen_main_create();
     assert(screen);
+    brightness_control_attach(screen);
     lv_screen_load(screen);
     lv_indev_t *input = lv_indev_create();
     assert(input);
@@ -215,6 +217,7 @@ void app_main(void)
     char product_id[5] = {0};
     ESP_ERROR_CHECK(i2c_master_transmit_receive(gt, id_reg, 2, (uint8_t *)product_id, 4, 100));
     ESP_LOGI(TAG, "Touch controller product ID: %s", product_id);
+    brightness_control_init(gt_bus);
     start_gui();
 }
 #endif

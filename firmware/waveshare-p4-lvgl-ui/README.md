@@ -26,7 +26,7 @@ The ESP-IDF project is named `waveshare_p4_lvgl_ui`, targets `esp32p4`, and reta
 
 ## Current UI and hardware
 
-The initial screen displays the embedded `race_background_1` image and the centered `Hello P4!` label. It retains the native DSI panel configuration, RGB888 rendering, custom 90-degree partial flush, GT9271 I2C polling, and landscape touch coordinate mapping from the baseline. The LVGL port manages task, tick, and locking.
+The screen displays the embedded `race_background_1` image and a centered **Display brightness** card with a **10–100%** touch slider and percent label (startup **75%**). It retains the native DSI panel configuration, RGB888 rendering, custom 90-degree partial flush, GT9271 I2C polling, and landscape touch coordinate mapping from the baseline. The LVGL port manages task, tick, and locking.
 
 The two allocated 46,080-byte PSRAM buffers are a draw buffer and a rotation buffer, not double buffering. The Waveshare driver owns its native display framebuffer. No hardware rendering behavior has been changed for this integration.
 
@@ -44,3 +44,21 @@ These results were confirmed by the user on hardware; they are not an automated 
 ## Notes
 
 `sdkconfig` and `sdkconfig.defaults` preserve ESP-IDF 6.1 and board settings. Translation support is enabled because LVGL Pro generates translation registration calls. The 8 MiB app partition is intended to provide space for the embedded full-screen background and fonts; it does not change the board's 32 MB physical flash size.
+
+## Brightness feature (draft; hardware test pending)
+
+`main/brightness_control.c` controls the verified Waveshare I2C backlight
+(7-bit `0x45`, register `0x96`) on the existing bus shared with GT9271.
+It preserves vendor initialization and display/touch code, batches updates at
+50 ms, and disables the slider with a visible message if brightness control fails.
+The percent is not persisted across power cycles.
+
+The XML and matching C export were updated together with the user's approval;
+**editor validation/regeneration remains pending**. Run
+`python3 sync_lvgl_pro_ui.py --check` to confirm all 17 C/H exports match the
+firmware copy. Hardware code stays outside generated files.
+
+See [BRIGHTNESS_TESTING.md](BRIGHTNESS_TESTING.md) for pinned vendor evidence,
+regeneration instructions, desktop tests, local flash/acceptance steps, and
+baseline recovery. Do not treat the existing display validation above as
+validation of this new brightness feature.
