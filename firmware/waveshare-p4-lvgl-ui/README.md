@@ -32,7 +32,14 @@ The two allocated 46,080-byte PSRAM buffers are a draw buffer and a rotation buf
 
 ## Validation status
 
-**Not yet built or flashed with the generated UI.** Run the synchronization script and build first. Inspect any compilation errors before flashing. Do not merge the draft integration pull request until a successful build is confirmed. Flashing to hardware is a separate explicit step.
+User-confirmed hardware validation on **2026-11-05**, with the generated LVGL Pro sources committed on `integration/lvgl-pro-1920x480` (baseline commit `1350a80d4c6ba6b447b859a31811a4eeb09b26d2`):
+
+- The ESP-IDF build completed successfully.
+- The firmware flashed successfully to the ESP32-P4.
+- The LVGL Pro screen rendered correctly in **1920 × 480 landscape** on the **Waveshare 8.8-inch DSI** display.
+- The GT9271 touch controller initialized successfully, but **UI interaction has not been tested**.
+
+These results were confirmed by the user on hardware; they are not an automated or independently repeated validation. The integration pull request remains unmerged.
 
 ## Notes
 
