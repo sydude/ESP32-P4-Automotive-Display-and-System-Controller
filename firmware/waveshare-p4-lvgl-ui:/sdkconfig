@@ -4662,7 +4662,7 @@ CONFIG_LV_OBJ_STYLE_CACHE=y
 # default:
 CONFIG_LV_USE_OBSERVER=y
 # default:
-# CONFIG_LV_USE_TRANSLATION is not set
+CONFIG_LV_USE_TRANSLATION=y
 # default:
 # CONFIG_LV_USE_COLOR_FILTER is not set
 # end of Core
