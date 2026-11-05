@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Copy generated C/H files from an LVGL Pro XML project into this ESP-IDF app.
 
-Usage: python3 sync_lvgl_pro_ui.py /path/to/basicrace1920x480v1
+Usage: python3 sync_lvgl_pro_ui.py [optional/path/to/basicrace1920x480v1]
 The source project must already have run LVGL Pro's Generate command.
 """
 from pathlib import Path
@@ -11,7 +11,7 @@ import sys
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("source", type=Path, help="LVGL Pro project containing generated C/H files")
+    parser.add_argument("source", nargs="?", type=Path, default=Path(__file__).resolve().parent / "lvgl-project" / "basicrace1920x480v1", help="LVGL Pro project containing generated C/H files (defaults to the adjacent tracked project)")
     args = parser.parse_args()
     source = args.source.expanduser().resolve()
     dest = Path(__file__).resolve().parent / "main" / "ui"
