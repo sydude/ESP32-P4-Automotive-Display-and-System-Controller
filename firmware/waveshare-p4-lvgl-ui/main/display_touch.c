@@ -109,9 +109,6 @@ static void test_init_lcd(void)
 
 static i2c_master_dev_handle_t gt;
 static uint8_t *rotated_pixels;
-static lv_obj_t *coordinates;
-static lv_obj_t *button_label;
-static unsigned click_count;
 
 static void flush_landscape(lv_display_t *display, const lv_area_t *area, uint8_t *pixels)
 {
@@ -168,20 +165,6 @@ static void read_touch(lv_indev_t *indev, lv_indev_data_t *data)
     // A not-ready status is not a release; retain state until a fresh report.
     data->point = last_point;
     data->state = pressed ? LV_INDEV_STATE_PRESSED : LV_INDEV_STATE_RELEASED;
-    static int previous_x = -1, previous_y = -1;
-    static bool previous_pressed;
-    if (pressed != previous_pressed || last_point.x != previous_x || last_point.y != previous_y) {
-        lv_label_set_text_fmt(coordinates, "%s  x=%ld  y=%ld",
-            pressed ? "Touch" : "Released", (long)last_point.x, (long)last_point.y);
-        previous_x = last_point.x;
-        previous_y = last_point.y;
-        previous_pressed = pressed;
-    }
-}
-
-static void button_clicked(lv_event_t *event)
-{
-    lv_label_set_text_fmt(button_label, "Tapped %u times", ++click_count);
 }
 
 static void start_gui(void)
@@ -201,29 +184,20 @@ static void start_gui(void)
     lv_display_set_color_format(display, LV_COLOR_FORMAT_RGB888);
     lv_display_set_buffers(display, draw_pixels, NULL, DRAW_BYTES, LV_DISPLAY_RENDER_MODE_PARTIAL);
     lv_display_set_flush_cb(display, flush_landscape);
-    lv_obj_t *screen = lv_display_get_screen_active(display);
-    lv_obj_set_style_bg_color(screen, lv_color_hex(0x152536), 0);
-    lv_obj_set_style_text_color(screen, lv_color_white(), 0);
-    lv_obj_t *title = lv_label_create(screen);
-    lv_label_set_text(title, "ESP32-P4 / Waveshare 8.8 / LVGL touch test");
-    lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 45);
-    lv_obj_t *button = lv_button_create(screen);
-    lv_obj_set_size(button, 420, 140);
-    lv_obj_center(button);
-    button_label = lv_label_create(button);
-    lv_label_set_text(button_label, "Tap me");
-    lv_obj_center(button_label);
-    lv_obj_add_event_cb(button, button_clicked, LV_EVENT_CLICKED, NULL);
-    coordinates = lv_label_create(screen);
-    lv_label_set_text(coordinates, "Touch anywhere: x=0..1919, y=0..479");
-    lv_obj_align(coordinates, LV_ALIGN_BOTTOM_MID, 0, -45);
+    // The generated UI owns the screen and its graphics resources.
+    // The display driver, rotation, and touch handling remain unchanged.
+    lv_display_set_default(display);
+    basicrace1920x480v1_init(NULL);
+    lv_obj_t *screen = screen_main_create();
+    assert(screen);
+    lv_screen_load(screen);
     lv_indev_t *input = lv_indev_create();
     assert(input);
     lv_indev_set_type(input, LV_INDEV_TYPE_POINTER);
     lv_indev_set_display(input, display);
     lv_indev_set_read_cb(input, read_touch);
     lvgl_port_unlock();
-    ESP_LOGI(TAG, "LVGL ready: landscape 1920x480; two 46080-byte partial buffers");
+    ESP_LOGI(TAG, "LVGL Pro screen loaded: landscape 1920x480; 46080-byte draw and rotation buffers");
 }
 
 void app_main(void)

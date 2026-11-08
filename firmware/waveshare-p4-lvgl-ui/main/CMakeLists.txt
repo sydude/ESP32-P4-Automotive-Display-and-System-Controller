@@ -1,4 +1,4 @@
-file(GLOB_RECURSE UI_SOURCES CONFIGURE_DEPENDS
+file(GLOB_RECURSE UI_SOURCES
     "ui/*.c"
 )
 
@@ -17,3 +17,5 @@ idf_component_register(
         lvgl__lvgl
         espressif__esp_lvgl_port
 )
+# LVGL Pro generated headers support a simple LVGL include when this is defined.
+target_compile_definitions(${COMPONENT_LIB} PRIVATE LV_LVGL_H_INCLUDE_SIMPLE=1)

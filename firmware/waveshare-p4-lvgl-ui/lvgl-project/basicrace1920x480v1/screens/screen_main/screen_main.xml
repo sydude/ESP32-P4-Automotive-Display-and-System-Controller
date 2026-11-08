@@ -1,0 +1,11 @@
+<screen>
+	<view extends="lv_obj">
+		<style name="style_background_1" />
+		<style name="style_text_default" />
+		<lv_label
+			text="Hello P4!"
+			align="center"
+			style_text_font="font_bold_36"
+		/>
+	</view>
+</screen>
