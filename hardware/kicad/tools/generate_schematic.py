@@ -616,7 +616,7 @@ def write_root(sheets: list[Sheet]):
     root_uuid = uid()
     sheet_ids = {sh.filename: uid() for sh in sheets}
     out = ["(kicad_sch (version 20230121) (generator eeschema)", f"  (uuid {root_uuid})", '  (paper "A3")',
-           '  (title_block (title "ESP32-P4 Displayman Development Daughterboard") (date "2026-09-16") (rev "Phase 2 / v0.1") (company "sydude/ESP32-P4-Display-Development-Daughterboard"))',
+           '  (title_block (title "ESP32-P4 Displayman Development Daughterboard") (date "2026-09-16") (rev "Phase 2 / v0.1") (company "sydude/ESP32-P4-Automotive-Display-and-System-Controller"))',
            "  (lib_symbols)",
            f"  (text \"PHASE 2 SCHEMATIC — PCB layout not started. Read docs/design-notes/schematic-calculations.md and schematic-review.md before review.\" (at 20 20 0) (effects (font (size 1.8 1.8)) (justify left bottom)) (uuid {uid()}))"]
     for idx, sh in enumerate(sheets):

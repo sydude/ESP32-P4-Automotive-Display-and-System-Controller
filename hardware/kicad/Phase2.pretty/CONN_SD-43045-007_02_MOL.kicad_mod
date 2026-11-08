@@ -282,7 +282,7 @@
 		(uuid "8c732c71-7168-4b4a-9158-ba5627be8791")
 	)
 	(embedded_fonts no)
-	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/ul_430450218/430450218.stp"
+	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/ul_430450218/430450218.stp"
 		(offset
 			(xyz 0 0 5)
 		)

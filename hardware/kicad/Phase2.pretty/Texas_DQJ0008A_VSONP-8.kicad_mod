@@ -517,7 +517,7 @@
 		(uuid "8688225d-15bc-479e-8111-8e3d7dade89a")
 	)
 	(embedded_fonts no)
-	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
 		(offset
 			(xyz 0 0 0)
 		)

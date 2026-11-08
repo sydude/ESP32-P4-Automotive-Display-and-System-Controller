@@ -8,7 +8,7 @@
 		(title "ESP32-P4 Displayman Development Daughterboard")
 		(date "2026-09-19")
 		(rev "Phase 2 / single-source v0.4")
-		(company "sydude/ESP32-P4-Display-Development-Daughterboard")
+		(company "sydude/ESP32-P4-Automotive-Display-and-System-Controller")
 		(comment 1 "© 2026 Sy Aryeh")
 		(comment 2 "Hardware license: see LICENSE.md")
 		(comment 3 "REV1 development hardware")

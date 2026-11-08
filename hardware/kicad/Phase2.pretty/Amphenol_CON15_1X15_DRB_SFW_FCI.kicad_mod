@@ -330,7 +330,7 @@
 		(uuid "a2767282-505c-49ce-aba6-64aa122588f6")
 	)
 	(embedded_fonts no)
-	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/Amphenol/ul_SFW15R-2STE1LF/ssfw15r_2_4st_lf.stp"
+	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/Amphenol/ul_SFW15R-2STE1LF/ssfw15r_2_4st_lf.stp"
 		(offset
 			(xyz 0 -1.5 0)
 		)

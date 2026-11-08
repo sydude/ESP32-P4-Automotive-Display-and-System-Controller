@@ -1403,7 +1403,7 @@
 			(uuid "0ea5cc6b-ec8d-5d9d-949e-1d4c1b5a45d8")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/Molex/5051104096/5051104096.stp"
+		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/Molex/5051104096/5051104096.stp"
 			(offset
 				(xyz 0 1.25 0)
 			)
@@ -6055,7 +6055,7 @@
 			(uuid "275cad68-30bd-50a9-85f5-2526b481ca0c")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11005,7 +11005,7 @@
 			(uuid "6607b4a5-235e-52fa-84e5-035ce8e93c4e")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -24589,7 +24589,7 @@
 			(uuid "7ccec366-fe59-5f9d-986b-0bc6231bf8d3")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -25734,7 +25734,7 @@
 			(uuid "c1904994-5796-5dbe-b92c-dc85a2c90349")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -29188,7 +29188,7 @@
 			(uuid "7f3bdb39-3443-5caf-96c3-e5106cc16036")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -29698,7 +29698,7 @@
 			(uuid "ecde4d3f-25fb-5fda-b30a-073f638dbc26")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/ul_430450218/430450218.stp"
+		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/ul_430450218/430450218.stp"
 			(offset
 				(xyz 0 0 5)
 			)
@@ -31421,7 +31421,7 @@
 			(uuid "0ff40762-af9a-5d3b-97cf-bd50edcf3650")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
 			(offset
 				(xyz 0 0 0)
 			)

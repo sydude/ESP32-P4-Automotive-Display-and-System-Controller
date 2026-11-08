@@ -409,7 +409,7 @@
 		(uuid "bdccc457-ffb3-4080-91f7-2debe79ab123")
 	)
 	(embedded_fonts no)
-	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/ul_TPS259470ARPWR/RPW0010A.stp"
+	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/TI/ul_TPS259470ARPWR/RPW0010A.stp"
 		(offset
 			(xyz 0 0 0)
 		)

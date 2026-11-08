@@ -591,7 +591,7 @@
 		(uuid "02d35c7e-1653-4db3-9395-2752e474f123")
 	)
 	(embedded_fonts no)
-	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/Molex/5051104096/5051104096.stp"
+	(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/hardware/mechanical/vendor/Molex/5051104096/5051104096.stp"
 		(offset
 			(xyz 0 1.25 0)
 		)
