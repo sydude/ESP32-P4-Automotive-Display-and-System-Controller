@@ -9,12 +9,13 @@
 #include "freertos/task.h"
 #endif
 
-/* Verified against waveshare/esp_lcd_dsi 2.0.0 and the Waveshare WIFI6-DB BSP.
+/* 8.8inch DSI LCD backlight protocol, verified on the panel.
  * The DSI driver owns bus creation and the C0/C2/AC/AB/AA/AD init sequence.
  * Never replay that sequence here: it also affects the shared touch hardware.
  */
 #define BACKLIGHT_ADDRESS 0x45
-#define BACKLIGHT_REGISTER 0x96
+#define BACKLIGHT_LEVEL_REGISTER 0xAB
+#define BACKLIGHT_APPLY_REGISTER 0xAA
 #define BACKLIGHT_TIMEOUT_MS 20
 #define BRIGHTNESS_UPDATE_MS 50
 #define BRIGHTNESS_DEFAULT 75
@@ -36,17 +37,21 @@ static int clamp_percent(int value)
 static esp_err_t write_percent(int percent)
 {
     percent = clamp_percent(percent);
-    /* Match the vendor's integer scaling: 10->25, 75->191, 100->255. */
-    const uint8_t command[] = {BACKLIGHT_REGISTER, (uint8_t)(255U * (unsigned)percent / 100U)};
-    esp_err_t err = i2c_master_transmit(backlight, command, sizeof(command), BACKLIGHT_TIMEOUT_MS);
+    /* The LCD takes an inverted level followed by a separate apply write. */
+    const uint8_t level[] = {BACKLIGHT_LEVEL_REGISTER, (uint8_t)(255U - 255U * (unsigned)percent / 100U)};
+    const uint8_t apply[] = {BACKLIGHT_APPLY_REGISTER, 0x01};
+    esp_err_t err = i2c_master_transmit(backlight, level, sizeof(level), BACKLIGHT_TIMEOUT_MS);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Backlight level write failed at %d%%: %s", percent, esp_err_to_name(err));
+        return err;
+    }
+    err = i2c_master_transmit(backlight, apply, sizeof(apply), BACKLIGHT_TIMEOUT_MS);
     if (err == ESP_OK) {
         applied_percent = percent;
-        /* Temporary diagnostics: successful transmit, not brightness readback. */
-        ESP_LOGI(TAG, "Backlight I2C write OK: requested=%d%%, 7-bit address=0x%02X, register=0x%02X, byte=0x%02X (%u)",
-                 percent, BACKLIGHT_ADDRESS, BACKLIGHT_REGISTER, (unsigned)command[1], (unsigned)command[1]);
+        ESP_LOGI(TAG, "Backlight I2C OK: %d%%, 0x%02X: AB %02X then AA 01",
+                 percent, BACKLIGHT_ADDRESS, (unsigned)level[1]);
     } else {
-        ESP_LOGE(TAG, "Backlight I2C write FAILED: requested=%d%%, 7-bit address=0x%02X, register=0x%02X, byte=0x%02X (%u): %s",
-                 percent, BACKLIGHT_ADDRESS, BACKLIGHT_REGISTER, (unsigned)command[1], (unsigned)command[1], esp_err_to_name(err));
+        ESP_LOGE(TAG, "Backlight apply write failed at %d%%: %s", percent, esp_err_to_name(err));
     }
     return err;
 }
@@ -62,7 +67,6 @@ static void backlight_diagnostic(void *arg)
 {
     (void)arg;
     ESP_LOGW(TAG, "DIAG begin: 3 cycles, 100%%/10%%, 3000 ms each; slider writes disabled");
-    ESP_LOGW(TAG, "DIAG readback skipped: no documented safe 0x96 read protocol");
     bool failed = false;
     for (unsigned step = 0; step < 6; ++step) {
         const int percent = step % 2 == 0 ? 100 : 10;
@@ -107,7 +111,7 @@ void brightness_control_init(i2c_master_bus_handle_t bus)
 #ifdef CONFIG_BACKLIGHT_DIAGNOSTIC
         ESP_LOGW(TAG, "DIAG ready: backlight registered; test starts when UI attaches");
 #else
-        ESP_LOGI(TAG, "Backlight 0x45 register 0x96: %d%%", applied_percent);
+        ESP_LOGI(TAG, "Backlight initialized at %d%%", applied_percent);
 #endif
     }
 }
@@ -168,6 +172,10 @@ void brightness_control_attach(lv_obj_t *screen)
         ESP_LOGE(TAG, "Missing brightness widgets; regenerate and sync the LVGL Pro project");
         return;
     }
+    /* Keep this card entirely on the working half of the damaged test panel.
+     * Future touch controls should also stay on the right until replacement.
+     */
+    lv_obj_align(lv_obj_get_parent(slider), LV_ALIGN_RIGHT_MID, -48, 0);
     lv_obj_add_event_cb(screen, screen_deleted, LV_EVENT_DELETE, NULL);
     if (backlight_error != ESP_OK) {
         show_failure();

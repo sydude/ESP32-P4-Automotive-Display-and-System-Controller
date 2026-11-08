@@ -9,7 +9,7 @@ DSI initialization, partial RGB888 rotation, framebuffer sizes, and GT9271
 status/point/clear polling and coordinate mapping are unchanged.
 The feature is proposed on a separate branch; do not merge until hardware testing.
 
-## Vendor code inspected before adding brightness writes
+## Backlight protocol for the 8.8inch DSI LCD
 
 The actual dependency downloaded from the project's lockfile is
 `waveshare/esp_lcd_dsi` **2.0.0**, component hash
@@ -25,17 +25,27 @@ was inspected directly:
 - It removes its temporary device, keeps the bus alive, and waits **1000 ms**.
 - The existing app subsequently gets this bus and adds GT9271 at **0x14**.
 
-The [Waveshare WIFI6-DB BSP implementation](https://github.com/waveshareteam/ESP32-P4-WIFI6-DB/blob/a49e5a25397b3fca27fa64c8a1d554996c731bc0/components/waveshare_bsp/esp32_p4_wifi6_db/esp32_p4_wifi6_db.c)
-uses `bsp_display_brightness_set()` to transmit two bytes: register followed by
-`255 * percent / 100`. Its [board header](https://github.com/waveshareteam/ESP32-P4-WIFI6-DB/blob/a49e5a25397b3fca27fa64c8a1d554996c731bc0/components/waveshare_bsp/esp32_p4_wifi6_db/include/bsp/esp32_p4_wifi6_db.h)
-defines address **0x45** and brightness register **0x96**.
-The [8.8-inch display documentation](https://www.waveshare.com/wiki/8.8-DSI-TOUCH-A)
-also describes 0x45/0x96 and the 0–255 range.
+The [8.8inch DSI LCD instructions](https://www.waveshare.com/wiki/8.8inch_DSI_LCD#Adjust_Backlight_Brightness)
+use the Raspberry Pi's `8_8_inch` overlay. The [panel driver](https://github.com/raspberrypi/linux/blob/rpi-6.12.y/drivers/gpu/drm/panel/panel-waveshare-dsi.c#L391-L397)
+writes the inverted brightness to `0xAB`, then applies it with a separate
+`AA 01` write. Both use the same 7-bit device address `0x45`.
 
-The application reuses the existing bus after panel initialization and touch ID
-verification. It probes 0x45, registers a separate 100 kHz device, and sends only
-`96 BF` for the initial **75%**. It does not replay the initialization sequence,
-reset touch, create a second bus, or introduce an off/zero startup step.
+| Requested | Level write | Apply write |
+| --- | --- | --- |
+| 10% | `AB E6` | `AA 01` |
+| 50% | `AB 80` | `AA 01` |
+| 75% | `AB 40` | `AA 01` |
+| 100% | `AB 00` | `AA 01` |
+
+The [8.8-DSI-TOUCH-A](https://www.waveshare.com/wiki/8.8-DSI-TOUCH-A#Backlight_Control)
+uses `0x96` instead. The LCD acknowledged that command without visible dimming.
+On November 8, 2026, a temporary standalone test confirmed visible dimming on the
+LCD using `0xAB` followed by `0xAA`.
+
+The app reuses the existing 100 kHz bus after panel and touch initialization.
+It probes `0x45`, registers the device, and requests 75% on startup. It skips the
+apply write if the level write fails and records the new percentage only when
+both writes succeed.
 
 ## Runtime behavior
 
@@ -43,13 +53,16 @@ XML owns the card, 10–100 slider, percent binding, stable widget names, and
 `subject_brightness` (default 75). Firmware code in `main/brightness_control.c`
 attaches after `screen_main_create()` under the LVGL lock. No hardware callbacks
 live in generated code, so future generation preserves the integration.
+For the damaged test panel, firmware moves the card entirely into the right
+half of the landscape display at startup. Keep new touch targets on that
+half until a replacement display is installed.
 
 A 50 ms LVGL timer coalesces rapid slider changes, skips repeated values, clamps
-again in firmware, and performs synchronous writes with a 20 ms timeout.
+again in firmware, and performs two synchronous writes with a 20 ms timeout per write.
 The timer and touch polling run in the same LVGL task, so brightness cannot
 interrupt a touch status/point/clear sequence. The I2C master driver also
 serializes individual bus transactions. There is no worker or interrupt writer.
-A slow or failed write can still delay one LVGL iteration by the timeout.
+A slow brightness update can delay one LVGL iteration by up to two write timeouts.
 
 The percent label shows the requested value while dragging. A successful write
 means the controller acknowledged the transaction; it is not optical feedback
@@ -147,8 +160,8 @@ idf.py -p YOUR_PORT flash monitor
 ```
 
 1. Confirm the existing landscape background and orientation remain correct.
-   The new centered brightness card should show **75%**. Confirm the GT9271 ID
-   log and `Backlight 0x45 register 0x96: 75%`.
+   The brightness card on the right should show **75%**. Confirm the GT9271 ID
+   log and `Backlight I2C OK: 75%, 0x45: AB 40 then AA 01`.
 2. Drag slowly to **10%**, **50%**, **75%**, and **100%**. Check visible dimming,
    label tracking, correct finger direction, and reaching both endpoints.
 3. Drag rapidly back and forth for 30 seconds, release at each end, and verify

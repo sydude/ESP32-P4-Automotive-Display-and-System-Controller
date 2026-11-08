@@ -8,9 +8,9 @@
 
 static const char *mode;
 static int attempts;
-static uint8_t bytes[16];
-static uint8_t last_byte;
+static uint8_t writes[16][2];
 static bool fail_writes;
+static bool fail_apply;
 _Alignas(64) static uint8_t framebuffer[1920 * 480 * 3];
 static lv_point_t pointer;
 static bool pointer_down;
@@ -29,12 +29,20 @@ esp_err_t i2c_master_bus_add_device(i2c_master_bus_handle_t bus, const i2c_devic
 }
 esp_err_t i2c_master_transmit(i2c_master_dev_handle_t dev, const uint8_t *data, size_t size, int timeout)
 {
-    assert(dev == (void *)2 && size == 2 && data[0] == 0x96 && timeout == 20);
-    bytes[attempts] = data[1];
-    ++attempts;
-    last_byte = data[1];
-    return fail_writes || (strcmp(mode, "diagnostic_mid_failure") == 0 && attempts == 4) ? ESP_FAIL : ESP_OK;
+    assert(dev == (void *)2 && size == 2 && timeout == 20);
+    assert(attempts < (int)(sizeof(writes) / sizeof(writes[0])));
+    memcpy(writes[attempts++], data, size);
+    return fail_writes || (fail_apply && data[0] == 0xAA)
+        || (strcmp(mode, "diagnostic_mid_failure") == 0 && attempts == 8) ? ESP_FAIL : ESP_OK;
 }
+
+static void expect_level(int start, uint8_t value)
+{
+    assert(start >= 0 && start + 1 < attempts);
+    assert(writes[start][0] == 0xAB && writes[start][1] == value);
+    assert(writes[start + 1][0] == 0xAA && writes[start + 1][1] == 0x01);
+}
+
 static void flush(lv_display_t *display, const lv_area_t *area, uint8_t *pixels)
 {
     (void)area; (void)pixels;
@@ -104,6 +112,11 @@ int main(int argc, char **argv)
     assert(slider && percent && status);
     assert(flushes > 0);
     assert(lv_obj_get_width(slider) == 600 && lv_obj_get_height(slider) == 32);
+    lv_area_t coords, card;
+    lv_obj_get_coords(slider, &coords);
+    lv_obj_get_coords(lv_obj_get_parent(slider), &card);
+    assert(card.x1 >= 960 && card.x2 < 1920);
+    assert(coords.x1 >= card.x1 && coords.x2 <= card.x2);
     assert(lv_slider_get_min_value(slider) == 10 && lv_slider_get_max_value(slider) == 100);
 #ifdef CONFIG_BACKLIGHT_DIAGNOSTIC
     assert(lv_obj_has_state(slider, LV_STATE_DISABLED));
@@ -117,15 +130,18 @@ int main(int argc, char **argv)
     worker(NULL);
     assert(deletes == 1);
     if (fail_writes) {
-        assert(attempts == 2 && delays == 0 && bytes[0] == 255 && bytes[1] == 191);
-    } else if (strcmp(mode, "diagnostic_mid_failure") == 0) {
-        const uint8_t expected[] = {255, 25, 255, 25, 191};
-        assert(attempts == 5 && delays == 3);
-        assert(memcmp(bytes, expected, sizeof(expected)) == 0);
+        assert(attempts == 2 && delays == 0);
+        assert(writes[0][0] == 0xAB && writes[0][1] == 0x00);
+        assert(writes[1][0] == 0xAB && writes[1][1] == 0x40);
     } else {
-        const uint8_t expected[] = {255, 25, 255, 25, 255, 25, 191};
-        assert(attempts == 7 && delays == 6);
-        assert(memcmp(bytes, expected, sizeof(expected)) == 0);
+        const bool aborted = strcmp(mode, "diagnostic_mid_failure") == 0;
+        const int cycle_levels = aborted ? 4 : 6;
+        assert(attempts == 2 * (cycle_levels + 1));
+        assert(delays == (aborted ? 3 : 6));
+        for (int step = 0; step < cycle_levels; ++step) {
+            expect_level(2 * step, step % 2 == 0 ? 0x00 : 0xE6);
+        }
+        expect_level(2 * cycle_levels, 0x40);
     }
     int diagnostic_before = attempts;
     run_ms(10000);
@@ -142,34 +158,42 @@ int main(int argc, char **argv)
         puts("Startup failure safely disables brightness UI");
         return 0;
     }
-    assert(attempts == 1 && last_byte == 191);
+    assert(attempts == 2);
+    expect_level(0, 0x40);
     assert(strcmp(lv_label_get_text(percent), "75%") == 0);
     if (strcmp(mode, "update_failure") == 0) {
-        fail_writes = true;
+        fail_apply = true;
         lv_subject_set_int(brightness_subject(), 50);
         run_ms(100);
-        assert(attempts == 2 && lv_obj_has_state(slider, LV_STATE_DISABLED));
+        assert(attempts == 4 && lv_obj_has_state(slider, LV_STATE_DISABLED));
+        expect_level(2, 0x80);
         assert(lv_subject_get_int(brightness_subject()) == 75);
         assert(strstr(lv_label_get_text(status), "Write failed"));
         run_ms(500);
-        assert(attempts == 2);
+        assert(attempts == 4);
         puts("Failed update restores last sent value and stops retries");
         return 0;
     }
     /* A real LVGL pointer press and drag drives the compiled slider binding. */
-    lv_area_t coords;
-    lv_obj_get_coords(slider, &coords);
+    pointer = (lv_point_t){480, (coords.y1 + coords.y2) / 2};
+    pointer_down = true;
+    run_ms(100);
+    pointer_down = false;
+    run_ms(100);
+    assert(attempts == 2 && lv_subject_get_int(brightness_subject()) == 75);
     pointer = (lv_point_t){coords.x1 + (coords.x2 - coords.x1) * 65 / 90, (coords.y1 + coords.y2) / 2};
     pointer_down = true;
     run_ms(100);
     pointer.x = coords.x1;
     run_ms(100);
-    assert(lv_subject_get_int(brightness_subject()) == 10 && last_byte == 25);
+    assert(lv_subject_get_int(brightness_subject()) == 10);
+    expect_level(attempts - 2, 0xE6);
     pointer.x = coords.x2;
     run_ms(100);
     pointer_down = false;
     run_ms(100);
-    assert(lv_subject_get_int(brightness_subject()) == 100 && last_byte == 255);
+    assert(lv_subject_get_int(brightness_subject()) == 100);
+    expect_level(attempts - 2, 0x00);
     assert(strcmp(lv_label_get_text(percent), "100%") == 0);
     pointer.x = coords.x1 + (coords.x2 - coords.x1) * 40 / 90;
     pointer_down = true;
@@ -182,17 +206,20 @@ int main(int argc, char **argv)
     assert(attempts == before); /* No redundant writes. */
     lv_subject_set_int(brightness_subject(), -100);
     run_ms(100);
-    assert(lv_subject_get_int(brightness_subject()) == 10 && last_byte == 25);
+    assert(lv_subject_get_int(brightness_subject()) == 10);
+    expect_level(attempts - 2, 0xE6);
     lv_subject_set_int(brightness_subject(), 1000);
     run_ms(100);
-    assert(lv_subject_get_int(brightness_subject()) == 100 && last_byte == 255);
+    assert(lv_subject_get_int(brightness_subject()) == 100);
+    expect_level(attempts - 2, 0x00);
     /* Latest value wins within a timer period. */
     before = attempts;
     lv_subject_set_int(brightness_subject(), 20);
     lv_subject_set_int(brightness_subject(), 40);
     lv_subject_set_int(brightness_subject(), 75);
     run_ms(100);
-    assert(attempts == before + 1 && last_byte == 191);
+    assert(attempts == before + 2);
+    expect_level(before, 0x40);
     if (argc > 2) {
         lv_obj_invalidate(screen);
         lv_refr_now(display);

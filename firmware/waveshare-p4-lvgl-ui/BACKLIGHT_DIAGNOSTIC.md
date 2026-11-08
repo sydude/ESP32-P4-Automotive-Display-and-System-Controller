@@ -1,9 +1,8 @@
 # Temporary standalone backlight diagnostic
 
-For ESP32-P4-WIFI6-DB with the 8.8-inch 480x1920 DSI panel in landscape.
-The current hardware ACKs slider writes without visible dimming. This test
-isolates brightness commands from touch interaction and LVGL slider events.
-It does not establish that the controller protocol matches this panel revision.
+For ESP32-P4-WIFI6-DB with the Waveshare 8.8inch DSI LCD in landscape.
+This test isolates the LCD brightness sequence from touch and LVGL slider events.
+A temporary test using the same sequence produced visible dimming on November 8, 2026.
 
 ## Enable and run
 
@@ -18,19 +17,19 @@ idf.py -p YOUR_PORT flash monitor
 
 The switch is `CONFIG_BACKLIGHT_DIAGNOSTIC=y`, **off by default**. Do not change
 DSI initialization or regenerate UI resources to enable this test. Preserve your
-known-good firmware before flashing. No hardware was flashed during development.
+known-good firmware before flashing.
 
 After the existing backlight probe/registration and UI attachment, a FreeRTOS
 task runs once per boot, independently of touch events and LVGL timers:
 
-| Command | Payload at 7-bit address 0x45 | Hold |
+| Command | Two writes at 7-bit address 0x45 | Hold |
 | --- | --- | --- |
-| 100% | `96 FF` | 3000 ms |
-| 10% | `96 19` | 3000 ms |
+| 100% | `AB 00`, then `AA 01` | 3000 ms |
+| 10% | `AB E6`, then `AA 01` | 3000 ms |
 
 That pair repeats **three times** (about 18 seconds plus transaction/scheduling
-time), followed by one `96 BF` command to restore 75%. Holds start after each
-successful synchronous write. The normal initial 75% command is skipped in this
+time), followed by `AB 40` and `AA 01` to restore 75%. Holds start after each
+successful pair of writes. The normal initial 75% command is skipped in this
 mode. A failed cycle command aborts the remaining cycles and makes just one
 75% recovery attempt. A failed probe/device registration or task allocation
 starts no test. There are no automatic retries or off/zero commands.
@@ -50,8 +49,8 @@ not a new production touch scheduling policy.
 ## Interpret the serial log
 
 Look for `DIAG begin`, six `DIAG cycle` entries, `DIAG restore`, and `DIAG end`.
-Each write logs the requested percent, 7-bit address, register, payload byte,
-and success/failure; failures include the ESP-IDF error name. Probe/registration
+A successful update logs the requested percent, address, and both payloads.
+A failure identifies which write failed and includes the ESP-IDF error name. Probe/registration
 failure and task allocation failure are logged separately. Default INFO logging
 shows these messages.
 
@@ -63,12 +62,9 @@ shows these messages.
 - Any failed write: capture the error and whether the one restore attempt
   succeeded. `cycles=aborted` or failed restore is not a successful test.
 
-Readback is deliberately **skipped**, with a log entry. The pinned vendor sources
-in [BRIGHTNESS_TESTING.md](BRIGHTNESS_TESTING.md) establish the two-byte setter,
-not a safe read protocol for register 0x96. No speculative register-pointer
-write, receive, initialization replay, or undocumented write is performed.
-A returned register value, even if safely supported later, would not measure
-optical brightness.
+The test observes brightness on the panel and uses the serial log to confirm
+which writes the controller acknowledged. See [BRIGHTNESS_TESTING.md](BRIGHTNESS_TESTING.md)
+for the protocol and model distinction.
 
 ## Disable
 
@@ -86,10 +82,3 @@ test, single execution on reattachment, bounded write failure/recovery, probe
 failure, and task allocation failure, plus the four normal-slider scenarios.
 Run the commands in BRIGHTNESS_TESTING.md. These tests cannot verify optical
 response, real task timing, DSI or electrical behavior; observe those on hardware.
-
-Validation on 2026-11-05: ESP-IDF 6.1.0 / esp32p4 builds passed with the
-switch disabled and enabled. All nine host scenarios, the UI synchronization
-regression, and all 17 generated C/H byte comparisons passed in an isolated
-copy without the local duplicate generated files. Existing generated-code
-LVGL deprecation warnings remain. No firmware was flashed or optical response
-verified.
