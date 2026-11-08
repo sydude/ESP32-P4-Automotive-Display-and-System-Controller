@@ -45,7 +45,7 @@ These results were confirmed by the user on hardware; they are not an automated 
 
 `sdkconfig` and `sdkconfig.defaults` preserve ESP-IDF 6.1 and board settings. Translation support is enabled because LVGL Pro generates translation registration calls. The 8 MiB app partition is intended to provide space for the embedded full-screen background and fonts; it does not change the board's 32 MB physical flash size.
 
-## Brightness feature (draft; hardware test pending)
+## Brightness feature (hardware verified; PR remains draft)
 
 `main/brightness_control.c` controls the 8.8inch DSI LCD backlight on the
 existing bus shared with GT9271. It writes the inverted level to `0xAB` and
@@ -61,10 +61,13 @@ at startup, so the LVGL Pro editor preview still shows the source layout.
 
 The user confirmed LVGL Pro Build/Preview and slider updates. Fresh editor
 exports use a pointer-based `subject_brightness`; firmware also accepts the
-older draft value-based export without changing generated files. Generate C,
+older value-based export without changing generated files. Generate C,
 then run `python3 sync_lvgl_pro_ui.py` and `python3 sync_lvgl_pro_ui.py --check`
-before building. The standalone LCD dimming test passed; on-panel slider
-acceptance remains pending.
+before building. On November 8, 2026, the standalone LCD dimming test and
+normal right-side slider were verified on hardware. The user confirmed reliable
+touch, visible dimming, and a return to 75% after a power cycle. The ESP-IDF 6.1
+build, nine host scenarios, UI sync regression, and 17 generated file comparisons
+passed. Full dim and volume are planned, not implemented.
 
 See [BRIGHTNESS_TESTING.md](BRIGHTNESS_TESTING.md) for pinned vendor evidence,
 regeneration instructions, desktop tests, local flash/acceptance steps, and

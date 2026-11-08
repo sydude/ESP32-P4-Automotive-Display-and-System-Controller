@@ -7,7 +7,8 @@ This change is based on `47da933dba6ad962d5faaca70f6c99157a005618` on
 landscape display test. The separate `../waveshare-8p8-display-touch/` baseline,
 DSI initialization, partial RGB888 rotation, framebuffer sizes, and GT9271
 status/point/clear polling and coordinate mapping are unchanged.
-The feature is proposed on a separate branch; do not merge until hardware testing.
+The feature remains in draft PR #2. Hardware acceptance was confirmed on
+November 8, 2026, as recorded below.
 
 ## Backlight protocol for the 8.8inch DSI LCD
 
@@ -77,8 +78,8 @@ The fresh editor export declares `lv_subject_t * subject_brightness`, creates
 it with `lv_subject_create(LV_SUBJECT_TYPE_INT)`, and initializes it with
 `lv_subject_set_int(subject_brightness, 75)`. Keep that generated API intact.
 `brightness_subject.h` returns the pointer for firmware and host tests, while
-also supporting the older value-based draft export still tracked here.
-The user's freshly generated files are not yet present in this checkout.
+also supporting the older value-based export. The tracked generated files use
+the pointer-based API.
 
 1. Open the tracked `lvgl-project/basicrace1920x480v1/project.xml` in LVGL Pro.
 2. Validate and preview `screen_main`, then Generate C (Ctrl+E in the editor).
@@ -148,7 +149,19 @@ build-host/brightness_test success /tmp/brightness-preview.ppm
 - Tracked generated C/H files were not modified. These fixture checks do not
   replace syncing and building the user's actual freshly generated files.
 
-## Local hardware acceptance — user action required
+## Hardware acceptance confirmed on 2026-11-08
+
+- The normal right-side slider was built with ESP-IDF 6.1 and flashed successfully.
+- All nine host scenarios, the UI sync regression, and 17 generated file comparisons passed.
+- The user confirmed reliable touch and visible dimming on the 8.8inch DSI LCD.
+- Serial capture recorded 159 acknowledged updates across 10–100% with no write errors.
+- After a power cycle, the slider returned to 75% and the display visibly brightened.
+- The right-side layout is the intended Raptor layout. Full dim and volume remain future work.
+
+The November 5 notes above describe earlier validation, not outstanding hardware
+acceptance. Repeat the following checks after future firmware or UI changes.
+
+## Repeatable local hardware acceptance
 
 Save your current known-good binary/build or keep a separate baseline checkout
 before flashing. Activate the same ESP-IDF 6.1 installation used for the baseline.
@@ -174,4 +187,4 @@ idf.py -p YOUR_PORT flash monitor
 If display or touch regresses, stop testing and reflash your saved baseline,
 or build the baseline commit in a separate checkout. Do not reset or overwrite
 local changes. Report the build/flash result, observed dimming at 10/50/100%,
-touch behavior, and any serial errors before this draft is considered verified.
+touch behavior, and any serial errors when validating future changes.
