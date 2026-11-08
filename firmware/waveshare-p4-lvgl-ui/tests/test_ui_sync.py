@@ -1,6 +1,7 @@
 """Regression checks for the destructive-copy guard and incremental build fix."""
 from pathlib import Path
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -39,33 +40,50 @@ class UISyncTests(unittest.TestCase):
             self.assertNotEqual(run("--check").returncode, 0)
             self.assertEqual(copied.read_text(), "out of sync")
             self.assertEqual(run().returncode, 0)
-            # Model the user-observed LVGL Pro pointer export in a temporary
-            # fixture only. Never rewrite the tracked generated resources.
+            # The tracked export uses a pointer subject. Also exercise the
+            # older value API with a fixture derived from the same screen.
             gen = source / "basicrace1920x480v1_gen.c"
             header = source / "basicrace1920x480v1_gen.h"
             screen = source / "screens/screen_main/screen_main_gen.c"
-            header.write_text(header.read_text().replace("lv_subject_t subject_brightness", "lv_subject_t * subject_brightness"))
-            gen.write_text(gen.read_text().replace("lv_subject_t subject_brightness", "lv_subject_t * subject_brightness")
-                           .replace("lv_subject_init_int(&subject_brightness, 75);",
-                                    "subject_brightness = lv_subject_create(LV_SUBJECT_TYPE_INT);\n    lv_subject_set_int(subject_brightness, 75);")
-                           .replace("&subject_brightness", "subject_brightness"))
-            screen.write_text(screen.read_text().replace("&subject_brightness", "subject_brightness"))
+            pointer_export = {file: file.read_text() for file in (gen, header, screen)}
+            declaration = r"lv_subject_t\s*\*\s*subject_brightness"
+            header.write_text(re.sub(declaration, "lv_subject_t subject_brightness", pointer_export[header]))
+            value_gen = re.sub(declaration, "lv_subject_t subject_brightness", pointer_export[gen])
+            value_gen = re.sub(
+                r"subject_brightness\s*=\s*lv_subject_create\(LV_SUBJECT_TYPE_INT\);"
+                r"\s*lv_subject_set_int\(subject_brightness, 75\);",
+                "lv_subject_init_int(&subject_brightness, 75);",
+                value_gen,
+            )
+            gen.write_text(value_gen.replace('"subject_brightness", subject_brightness',
+                                             '"subject_brightness", &subject_brightness'))
+            slider_binding = r"(lv_slider_bind_value\s*\([^,]+,\s*)subject_brightness\b"
+            percent_binding = r"(lv_label_bind_text\s*\([^,]+,\s*)subject_brightness\b"
+            value_screen = re.sub(slider_binding, r"\1&subject_brightness", pointer_export[screen])
+            screen.write_text(re.sub(percent_binding, r"\1&subject_brightness", value_screen))
+            self.assertEqual(run().returncode, 0)
+            self.assertEqual(run("--check").returncode, 0)
+
+            for file, original in pointer_export.items():
+                file.write_text(original)
             self.assertEqual(run().returncode, 0)
             self.assertEqual(run("--check").returncode, 0)
             snapshot = {p.relative_to(dest): p.read_bytes() for p in dest.rglob("*") if p.is_file()}
-            for file, old, new in (
+            for file, pattern, replacement in (
                 (gen, "LV_SUBJECT_TYPE_INT", "LV_SUBJECT_TYPE_STRING"),
                 (gen, "subject_brightness, 75", "subject_brightness, 0"),
-                (header, "lv_subject_t * subject_brightness", "lv_subject_t subject_brightness"),
-                (screen, "lv_slider_bind_value(slider, subject_brightness)", "lv_slider_bind_value(slider, &subject_brightness)"),
-                (screen, 'lv_label_bind_text(percent, subject_brightness, "%d%%")', 'lv_label_bind_text(percent, &subject_brightness, "%d%%")'),
+                (header, declaration, "lv_subject_t subject_brightness"),
+                (screen, slider_binding, r"\1&subject_brightness"),
+                (screen, percent_binding, r"\1&subject_brightness"),
             ):
-                with self.subTest(mismatch=new):
+                with self.subTest(mismatch=pattern):
                     original = file.read_text()
-                    self.assertIn(old, original)
-                    file.write_text(original.replace(old, new))
+                    invalid, substitutions = re.subn(pattern, replacement, original)
+                    self.assertEqual(substitutions, 1)
+                    file.write_text(invalid)
                     result = run()
                     self.assertNotEqual(result.returncode, 0)
+                    self.assertIn("Stale or inconsistent brightness subject API", result.stderr)
                     self.assertEqual(snapshot, {p.relative_to(dest): p.read_bytes() for p in dest.rglob("*") if p.is_file()})
                     file.write_text(original)
             before = {p.relative_to(dest): p.read_bytes() for p in dest.rglob("*") if p.is_file()}

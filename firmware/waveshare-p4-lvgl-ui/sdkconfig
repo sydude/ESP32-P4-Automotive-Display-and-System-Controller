@@ -1331,7 +1331,7 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 # Backlight diagnostic
 #
-CONFIG_BACKLIGHT_DIAGNOSTIC=y
+# CONFIG_BACKLIGHT_DIAGNOSTIC is not set
 # end of Backlight diagnostic
 
 #
