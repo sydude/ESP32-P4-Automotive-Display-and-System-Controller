@@ -1,11 +1,19 @@
 <screen>
-	<view extends="lv_obj">
-		<style name="style_background_1" />
-		<style name="style_text_default" />
-		<lv_label
-			text="Hello P4!"
-			align="center"
-			style_text_font="font_bold_36"
-		/>
-	</view>
+    <view extends="lv_obj" scrollable="false">
+        <style name="style_background_1" />
+        <style name="style_text_default" />
+        <lv_obj width="720" height="300" align="center" scrollable="false"
+            flex_flow="column" style_flex_main_place="center"
+            style_flex_cross_place="center" style_flex_track_place="center"
+            style_pad_all="32" style_pad_row="20" style_radius="20"
+            style_bg_color="0x101820" style_bg_opa="100%" style_border_width="0">
+            <lv_label text="Display brightness" style_text_font="font_bold_36" />
+            <lv_label name="brightness_percent" bind_text="subject_brightness"
+                bind_text-fmt="%d%%" style_text_font="font_bold_36" />
+            <lv_slider name="brightness_slider" width="600" height="32"
+                min_value="10" max_value="100" adv_hittest="false" bind_value="subject_brightness" />
+            <lv_label name="brightness_status" text="10-100% | Drag to adjust"
+                style_text_font="font_body" />
+        </lv_obj>
+    </view>
 </screen>

@@ -8,7 +8,7 @@
 	</consts>
 
 	<subjects>
-		<!-- Add <int>, <string>, or <float> subjects here -->
+		<int name="subject_brightness" value="75" />
 	</subjects>
 
 	<images>

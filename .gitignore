@@ -20,3 +20,6 @@ hardware/mechanical/vendor/Waveshare/ESP32-P4-NANO/ESP32-P4-NANO-20260331.svg
 
 # ESP-IDF downloaded dependencies
 **/managed_components/
+
+# Brightness desktop test build
+**/build-host/

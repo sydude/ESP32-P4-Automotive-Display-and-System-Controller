@@ -1,4 +1,5 @@
 #include "ui/basicrace1920x480v1.h"
+#include "brightness_control.h"
 #include "soc/soc_caps.h"
 
 #if SOC_MIPI_DSI_SUPPORTED
@@ -131,13 +132,86 @@ static void flush_landscape(lv_display_t *display, const lv_area_t *area, uint8_
     lv_display_flush_ready(display);
 }
 
+// Temporary release diagnostics: no extra I2C traffic or input filtering.
+// Buffer fresh pressed reports; print only around release, at most 120 lines/boot.
+#define TOUCH_DIAG_HISTORY 4
+#define TOUCH_DIAG_LINES 120
+#define TOUCH_DIAG_REPRESS_US 250000
+
+typedef struct {
+    int64_t time_us;
+    uint8_t status;
+    esp_err_t status_err, point_err, clear_err;
+    bool raw_valid, pressed;
+    unsigned raw_x, raw_y;
+    lv_point_t output;
+} touch_diag_report_t;
+
+static void touch_diag_log(const char *event, const touch_diag_report_t *r)
+{
+    static unsigned lines;
+    if (lines >= TOUCH_DIAG_LINES) {
+        return;
+    }
+    ESP_LOGI(TAG, "GT9271 %s t=%" PRId64 "us status=0x%02x count=%u "
+             "err(status/point/clear)=%d/%d/%d raw_valid=%u raw=(%u,%u) "
+             "mapped=(%d,%d) out=(%d,%d) state=%s",
+             event, r->time_us, (unsigned)r->status, (unsigned)(r->status & 0x0f),
+             (int)r->status_err, (int)r->point_err, (int)r->clear_err,
+             (unsigned)r->raw_valid, r->raw_x, r->raw_y,
+             r->raw_valid ? (int)r->raw_y : -1,
+             r->raw_valid ? GUI_HEIGHT - 1 - (int)r->raw_x : -1,
+             (int)r->output.x, (int)r->output.y, r->pressed ? "PRESSED" : "RELEASED");
+    if (++lines == TOUCH_DIAG_LINES) {
+        ESP_LOGI(TAG, "GT9271 diagnostic limit reached; reboot to capture more");
+    }
+}
+
+static void touch_diag_record(const touch_diag_report_t *r, bool was_pressed)
+{
+    static touch_diag_report_t history[TOUCH_DIAG_HISTORY];
+    static unsigned next, used;
+    static int64_t release_us;
+    static bool had_release;
+    if (was_pressed && !r->pressed) {
+        for (unsigned i = 0; i < used; ++i) {
+            touch_diag_log("last-pressed", &history[(next + TOUCH_DIAG_HISTORY - used + i) % TOUCH_DIAG_HISTORY]);
+        }
+        touch_diag_log("release", r);
+        next = used = 0;
+        release_us = r->time_us;
+        had_release = true;
+    } else if (!was_pressed && r->pressed) {
+        if (had_release && r->time_us - release_us <= TOUCH_DIAG_REPRESS_US) {
+            touch_diag_log("immediate-repress", r);
+        }
+        had_release = false;
+    }
+    if (r->pressed && r->status_err == ESP_OK && (r->status & 0x80)) {
+        history[next] = *r;
+        next = (next + 1) % TOUCH_DIAG_HISTORY;
+        if (used < TOUCH_DIAG_HISTORY) {
+            ++used;
+        }
+    }
+}
+
 static void read_touch(lv_indev_t *indev, lv_indev_data_t *data)
 {
     static lv_point_t last_point;
     static bool pressed;
+    const bool was_pressed = pressed;
+    touch_diag_report_t diag = {
+        .time_us = esp_timer_get_time(),
+        // NOT_FINISHED means this transaction was not attempted.
+        .point_err = ESP_ERR_NOT_FINISHED,
+        .clear_err = ESP_ERR_NOT_FINISHED,
+    };
     const uint8_t status_reg[] = {0x81, 0x4e};
     uint8_t status = 0;
     esp_err_t err = i2c_master_transmit_receive(gt, status_reg, 2, &status, 1, 100);
+    diag.status = status;
+    diag.status_err = err;
     if (err != ESP_OK) {
         pressed = false;
     } else if (status & 0x80) {
@@ -147,9 +221,13 @@ static void read_touch(lv_indev_t *indev, lv_indev_data_t *data)
             const uint8_t point_reg[] = {0x81, 0x4f};
             uint8_t point[8];
             err = i2c_master_transmit_receive(gt, point_reg, 2, point, sizeof(point), 100);
+            diag.point_err = err;
             if (err == ESP_OK) {
                 unsigned raw_x = point[1] | (point[2] << 8);
                 unsigned raw_y = point[3] | (point[4] << 8);
+                diag.raw_valid = true;
+                diag.raw_x = raw_x;
+                diag.raw_y = raw_y;
                 if (raw_x < GUI_HEIGHT && raw_y < GUI_WIDTH) {
                     last_point.x = raw_y;
                     last_point.y = GUI_HEIGHT - 1 - raw_x;
@@ -158,13 +236,17 @@ static void read_touch(lv_indev_t *indev, lv_indev_data_t *data)
             }
         }
         const uint8_t clear[] = {0x81, 0x4e, 0};
-        if (i2c_master_transmit(gt, clear, sizeof(clear), 100) != ESP_OK) {
+        diag.clear_err = i2c_master_transmit(gt, clear, sizeof(clear), 100);
+        if (diag.clear_err != ESP_OK) {
             pressed = false;
         }
     }
     // A not-ready status is not a release; retain state until a fresh report.
     data->point = last_point;
     data->state = pressed ? LV_INDEV_STATE_PRESSED : LV_INDEV_STATE_RELEASED;
+    diag.output = last_point;
+    diag.pressed = pressed;
+    touch_diag_record(&diag, was_pressed);
 }
 
 static void start_gui(void)
@@ -190,6 +272,7 @@ static void start_gui(void)
     basicrace1920x480v1_init(NULL);
     lv_obj_t *screen = screen_main_create();
     assert(screen);
+    brightness_control_attach(screen);
     lv_screen_load(screen);
     lv_indev_t *input = lv_indev_create();
     assert(input);
@@ -215,6 +298,7 @@ void app_main(void)
     char product_id[5] = {0};
     ESP_ERROR_CHECK(i2c_master_transmit_receive(gt, id_reg, 2, (uint8_t *)product_id, 4, 100));
     ESP_LOGI(TAG, "Touch controller product ID: %s", product_id);
+    brightness_control_init(gt_bus);
     start_gui();
 }
 #endif

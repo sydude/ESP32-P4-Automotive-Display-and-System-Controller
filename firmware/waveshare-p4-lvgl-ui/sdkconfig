@@ -1329,6 +1329,12 @@ CONFIG_PARTITION_TABLE_MD5=y
 # end of Partition Table
 
 #
+# Backlight diagnostic
+#
+# CONFIG_BACKLIGHT_DIAGNOSTIC is not set
+# end of Backlight diagnostic
+
+#
 # Compiler options
 #
 # CONFIG_COMPILER_OPTIMIZATION_DEBUG is not set
@@ -4649,7 +4655,6 @@ CONFIG_LV_INDEV_DEF_ROTARY_SENSITIVITY=256
 #
 # default:
 CONFIG_LV_OBJ_STYLE_CACHE=y
-# default:
 CONFIG_LV_USE_OBJ_NAME=y
 # default:
 # CONFIG_LV_USE_OBJ_ID is not set
@@ -4661,7 +4666,6 @@ CONFIG_LV_USE_OBJ_NAME=y
 # CONFIG_LV_USE_FLOAT is not set
 # default:
 CONFIG_LV_USE_OBSERVER=y
-# default:
 CONFIG_LV_USE_TRANSLATION=y
 # default:
 # CONFIG_LV_USE_COLOR_FILTER is not set
