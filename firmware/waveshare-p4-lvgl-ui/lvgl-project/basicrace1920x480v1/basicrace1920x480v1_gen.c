@@ -87,7 +87,7 @@ lv_style_t style_text_default;
  * Subjects
  *----------------*/
 
-lv_subject_t subject_brightness;
+lv_subject_t * subject_brightness;
 
 /**********************
  *      MACROS
@@ -189,7 +189,9 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
     /*----------------
      * Subjects
      *----------------*/
-    lv_subject_init_int(&subject_brightness, 75);
+    subject_brightness = lv_subject_create(LV_SUBJECT_TYPE_INT);
+    lv_subject_set_int(subject_brightness, 75);
+
     /*----------------
      * Translations
      *----------------*/
@@ -218,7 +220,7 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
     lv_xml_register_font(NULL, "font_body", font_body);
 
     /* Register subjects */
-    lv_xml_register_subject(NULL, "subject_brightness", &subject_brightness);
+    lv_xml_register_subject(NULL, "subject_brightness", subject_brightness);
 
     /* Register callbacks */
 

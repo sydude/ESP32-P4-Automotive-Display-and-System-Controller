@@ -4,5 +4,6 @@
   "files.associations": {
     "*.h": "c"
   },
-  "debug.onTaskErrors": "abort"
+  "debug.onTaskErrors": "abort",
+  "idf.currentSetup": "/Users/saryeh/.espressif/v6.1/esp-idf"
 }

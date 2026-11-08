@@ -111,7 +111,7 @@ extern const void * race_background_1;
  * Subjects
  *----------------*/
 
-extern lv_subject_t subject_brightness;
+extern lv_subject_t * subject_brightness;
 
 /**********************
  * GLOBAL PROTOTYPES
