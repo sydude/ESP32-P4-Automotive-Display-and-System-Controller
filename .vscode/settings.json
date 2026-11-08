@@ -1,3 +1,3 @@
 {
-    "cmake.sourceDirectory": "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4-Automotive-Display-and-System-Controller/firmware/waveshare-8p8-display-touch"
+    "cmake.sourceDirectory": "${workspaceFolder}/firmware/waveshare-p4-lvgl-ui"
 }

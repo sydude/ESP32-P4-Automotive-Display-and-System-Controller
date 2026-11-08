@@ -4,7 +4,7 @@
 
 This change is based on `47da933dba6ad962d5faaca70f6c99157a005618` on
 `integration/lvgl-pro-1920x480`. That commit records the user's successful
-landscape display test. The separate `../waveshare-8p8-display-touch/` baseline,
+landscape display test. The separate `../archive/waveshare-8p8-display-touch/` baseline,
 DSI initialization, partial RGB888 rotation, framebuffer sizes, and GT9271
 status/point/clear polling and coordinate mapping are unchanged.
 The feature remains in draft PR #2. Hardware acceptance was confirmed on

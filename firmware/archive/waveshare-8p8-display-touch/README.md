@@ -2,12 +2,15 @@
 
 Standalone ESP-IDF **6.1.0** project for the Waveshare **ESP32-P4-WIFI6-DB**, 8.8-inch **480 × 1920** DSI LCD and **GT9271** touch controller. This project lives in the ESP32-P4 Automotive Display and System Controller repository; it has no dependency on a sibling source checkout.
 
+This is an archived baseline. Active dashboard development is in
+`firmware/waveshare-p4-lvgl-ui` at the repository root.
+
 ## Build
 
 With ESP-IDF 6.1.0 installed and activated:
 
 ```sh
-cd "firmware/waveshare-8p8-display-touch"
+cd "firmware/archive/waveshare-8p8-display-touch"
 idf.py build
 ```
 

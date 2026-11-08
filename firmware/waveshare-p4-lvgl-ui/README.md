@@ -1,6 +1,6 @@
 # Waveshare ESP32-P4 8.8-inch LVGL Pro UI integration
 
-ESP-IDF **6.1.x** application for the Waveshare **ESP32-P4-WIFI6-DB** and **480 × 1920** DSI LCD, presented in **1920 × 480 landscape**. This project is derived from the verified `../waveshare-8p8-display-touch/` hardware baseline. That baseline is preserved separately.
+ESP-IDF **6.1.x** application for the Waveshare **ESP32-P4-WIFI6-DB** and **480 × 1920** DSI LCD, presented in **1920 × 480 landscape**. This project is derived from the verified `../archive/waveshare-8p8-display-touch/` hardware baseline. That baseline is preserved separately.
 
 ## Project layout
 
