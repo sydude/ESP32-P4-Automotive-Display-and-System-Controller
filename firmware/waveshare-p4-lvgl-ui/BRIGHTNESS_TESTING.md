@@ -53,9 +53,8 @@ XML owns the card, 10–100 slider, percent binding, stable widget names, and
 `subject_brightness` (default 75). Firmware code in `main/brightness_control.c`
 attaches after `screen_main_create()` under the LVGL lock. No hardware callbacks
 live in generated code, so future generation preserves the integration.
-For the damaged test panel, firmware moves the card entirely into the right
-half of the landscape display at startup. Keep new touch targets on that
-half until a replacement display is installed.
+The Raptor layout keeps display and sound controls on the right. Firmware
+positions the brightness card entirely in that half at startup.
 
 A 50 ms LVGL timer coalesces rapid slider changes, skips repeated values, clamps
 again in firmware, and performs two synchronous writes with a 20 ms timeout per write.

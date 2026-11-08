@@ -54,9 +54,10 @@ It preserves vendor initialization and display/touch code, batches updates at
 50 ms, and disables the slider with a visible message if brightness control fails.
 The percent is not persisted across power cycles.
 
-Keep all interactive controls in the right half of the 1920 × 480 display
-while using the damaged test panel. Firmware aligns the brightness card at
-startup, so the LVGL Pro editor preview can retain the original layout.
+Keep Raptor touch controls on the right half of the 1920 × 480 display.
+Touch is reserved for display and sound adjustments. Brightness is available
+now, with full dim and volume planned. Firmware positions the brightness card
+at startup, so the LVGL Pro editor preview still shows the source layout.
 
 The user confirmed LVGL Pro Build/Preview and slider updates. Fresh editor
 exports use a pointer-based `subject_brightness`; firmware also accepts the

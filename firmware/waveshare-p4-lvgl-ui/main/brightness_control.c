@@ -172,9 +172,7 @@ void brightness_control_attach(lv_obj_t *screen)
         ESP_LOGE(TAG, "Missing brightness widgets; regenerate and sync the LVGL Pro project");
         return;
     }
-    /* Keep this card entirely on the working half of the damaged test panel.
-     * Future touch controls should also stay on the right until replacement.
-     */
+    /* The Raptor layout keeps its display and sound controls on the right. */
     lv_obj_align(lv_obj_get_parent(slider), LV_ALIGN_RIGHT_MID, -48, 0);
     lv_obj_add_event_cb(screen, screen_deleted, LV_EVENT_DELETE, NULL);
     if (backlight_error != ESP_OK) {
