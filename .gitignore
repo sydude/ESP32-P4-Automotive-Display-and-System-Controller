@@ -23,3 +23,5 @@ hardware/mechanical/vendor/Waveshare/ESP32-P4-NANO/ESP32-P4-NANO-20260331.svg
 
 # Brightness desktop test build
 **/build-host/
+
+/firmware/.vscode/settings.json
