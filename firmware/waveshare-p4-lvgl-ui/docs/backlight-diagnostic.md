@@ -63,7 +63,7 @@ shows these messages.
   succeeded. `cycles=aborted` or failed restore is not a successful test.
 
 The test observes brightness on the panel and uses the serial log to confirm
-which writes the controller acknowledged. See [BRIGHTNESS_TESTING.md](BRIGHTNESS_TESTING.md)
+which writes the controller acknowledged. See [brightness testing guide](brightness-testing.md)
 for the protocol and model distinction.
 
 ## Disable
@@ -80,5 +80,5 @@ UI, with I2C and diagnostic task scheduling mocked. It checks exact payloads,
 six 3000 ms delays, no writes from subject changes during holds or after the
 test, single execution on reattachment, bounded write failure/recovery, probe
 failure, and task allocation failure, plus the four normal-slider scenarios.
-Run the commands in BRIGHTNESS_TESTING.md. These tests cannot verify optical
+Run the commands in the [brightness testing guide](brightness-testing.md). These tests cannot verify optical
 response, real task timing, DSI or electrical behavior; observe those on hardware.

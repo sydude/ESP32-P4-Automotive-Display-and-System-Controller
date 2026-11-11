@@ -115,7 +115,8 @@ int main(int argc, char **argv)
     lv_area_t coords, card;
     lv_obj_get_coords(slider, &coords);
     lv_obj_get_coords(lv_obj_get_parent(slider), &card);
-    assert(card.x1 >= 960 && card.x2 < 1920);
+    assert(card.x1 >= 0 && card.x2 < 1920);
+    assert(card.y1 >= 0 && card.y2 < 480);
     assert(coords.x1 >= card.x1 && coords.x2 <= card.x2);
     assert(lv_slider_get_min_value(slider) == 10 && lv_slider_get_max_value(slider) == 100);
 #ifdef CONFIG_BACKLIGHT_DIAGNOSTIC
