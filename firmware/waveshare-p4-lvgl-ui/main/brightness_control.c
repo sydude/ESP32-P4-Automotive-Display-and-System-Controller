@@ -173,7 +173,6 @@ void brightness_control_attach(lv_obj_t *screen)
         return;
     }
     /* The Raptor layout keeps its display and sound controls on the right. */
-    lv_obj_align(lv_obj_get_parent(slider), LV_ALIGN_RIGHT_MID, -48, 0);
     lv_obj_add_event_cb(screen, screen_deleted, LV_EVENT_DELETE, NULL);
     if (backlight_error != ESP_OK) {
         show_failure();

@@ -1,4 +1,5 @@
 {
     "idf.currentSetup": "/Users/saryeh/.espressif/v6.1/esp-idf",
-    "idf.port": "/dev/tty.usbmodem5C931261821"
+    "idf.port": "/dev/tty.usbmodem5C931261821",
+    "idf.flashType": "UART"
 }
