@@ -1,75 +1,34 @@
-# Waveshare ESP32-P4 8.8-inch LVGL Pro UI integration
+# Waveshare ESP32-P4 LVGL display firmware
 
-ESP-IDF **6.1.x** application for the Waveshare **ESP32-P4-WIFI6-DB** and **480 × 1920** DSI LCD, presented in **1920 × 480 landscape**. This project is derived from the verified `../archive/waveshare-8p8-display-touch/` hardware baseline. That baseline is preserved separately.
+ESP-IDF **6.1.x** firmware for the Waveshare **ESP32-P4-WIFI6-DB** and 8.8-inch DSI LCD. The app renders in **1920 × 480 landscape** and polls the GT9271 touch controller.
 
-## Project layout
+- [main/](main/) contains the firmware and the compiled LVGL export in `main/ui/`.
+- [lvgl-project/](lvgl-project/) contains the editable LVGL Pro project and its generated C/H files.
+- [tests/](tests/) covers the normal brightness slider, the standalone backlight diagnostic, and export synchronization.
+- The [archived hardware baseline](../archive/waveshare-8p8-display-touch/) retains the original [vendor snapshot and checksums](../archive/waveshare-8p8-display-touch/reference/).
 
-- `main/display_touch.c`: verified DSI RGB888 initialization, landscape partial flush, GT9271 touch, and LVGL Pro UI startup.
-- `lvgl-project/basicrace1920x480v1/`: editable LVGL Pro XML source project and generated C/H resources.
-- `main/ui/`: generated C/H source files copied from LVGL Pro; ESP-IDF compiles these, not the XML files.
-- `sync_lvgl_pro_ui.py`: synchronizes the generated C/H resources into `main/ui/`.
-- `partitions.csv`: 8 MiB factory application partition for embedded graphics and fonts.
-- `reference/`: archived Waveshare source, not part of the active build.
+## Build and update the UI
 
-## Build
-
-Activate ESP-IDF 6.1.x (the local Mac installation previously used `source "$HOME/.espressif/tools/activate_idf_v6.1.sh"`). From this directory:
+Activate ESP-IDF 6.1.x and run from this directory:
 
 ```sh
-python3 sync_lvgl_pro_ui.py
+python3 sync_lvgl_pro_ui.py --check
 idf.py build
 ```
 
-The script requires that the LVGL Pro project has already been **generated** in the editor. It copies generated `.c` and `.h` files, not preview-build artifacts, and removes stale C/H files from `main/ui/` before copying.
+For UI changes, open [project.xml](lvgl-project/basicrace1920x480v1/project.xml) in LVGL Pro, preview the screen, and Generate C. Run `python3 sync_lvgl_pro_ui.py` before repeating the check and build. Sync replaces C/H files in `main/ui/`. The export targets LVGL 9.6.0.
 
-The ESP-IDF project is named `waveshare_p4_lvgl_ui`, targets `esp32p4`, and retains the working hardware configuration and managed-component lockfile. The LVGL Pro generated code targets LVGL 9.6.0. This integration uses the compiled C screen (`screen_main_create()`), not XML loaded at runtime.
+## Test
 
-## Current UI and hardware
+After the firmware build populates the managed components, run:
 
-The screen displays the embedded `race_background_1` image and a right-aligned **Display brightness** card with a **10–100%** touch slider and percent label (startup **75%**). It retains the native DSI panel configuration, RGB888 rendering, custom 90-degree partial flush, GT9271 I2C polling, and landscape touch coordinate mapping from the baseline. The LVGL port manages task, tick, and locking.
+```sh
+cmake -S tests/host -B build-host -G Ninja
+cmake --build build-host
+ctest --test-dir build-host --output-on-failure
+python3 tests/test_ui_sync.py
+```
 
-The two allocated 46,080-byte PSRAM buffers are a draw buffer and a rotation buffer, not double buffering. The Waveshare driver owns its native display framebuffer. No hardware rendering behavior has been changed for this integration.
+The [brightness testing guide](docs/brightness-testing.md) covers the panel-specific I2C protocol, export requirements, and hardware acceptance. The [standalone backlight diagnostic](docs/backlight-diagnostic.md) exercises dimming independently of slider input and is off by default.
 
-## Validation status
-
-User-confirmed hardware validation on **2026-11-05**, with the generated LVGL Pro sources committed on `integration/lvgl-pro-1920x480` (baseline commit `1350a80d4c6ba6b447b859a31811a4eeb09b26d2`):
-
-- The ESP-IDF build completed successfully.
-- The firmware flashed successfully to the ESP32-P4.
-- The LVGL Pro screen rendered correctly in **1920 × 480 landscape** on the **Waveshare 8.8-inch DSI** display.
-- The GT9271 touch controller initialized successfully, but **UI interaction has not been tested**.
-
-These results were confirmed by the user on hardware; they are not an automated or independently repeated validation. The integration baseline was merged in PR #1.
-
-## Notes
-
-`sdkconfig` and `sdkconfig.defaults` preserve ESP-IDF 6.1 and board settings. Translation support is enabled because LVGL Pro generates translation registration calls. The 8 MiB app partition is intended to provide space for the embedded full-screen background and fonts; it does not change the board's 32 MB physical flash size.
-
-## Brightness feature (hardware verified; PR remains draft)
-
-`main/brightness_control.c` controls the 8.8inch DSI LCD backlight on the
-existing bus shared with GT9271. It writes the inverted level to `0xAB` and
-applies it with `AA 01` at 7-bit address `0x45`.
-It preserves vendor initialization and display/touch code, batches updates at
-50 ms, and disables the slider with a visible message if brightness control fails.
-The percent is not persisted across power cycles.
-
-Keep Raptor touch controls on the right half of the 1920 × 480 display.
-Touch is reserved for display and sound adjustments. Brightness is available
-now, with full dim and volume planned. Firmware positions the brightness card
-at startup, so the LVGL Pro editor preview still shows the source layout.
-
-The user confirmed LVGL Pro Build/Preview and slider updates. Fresh editor
-exports use a pointer-based `subject_brightness`; firmware also accepts the
-older value-based export without changing generated files. Generate C,
-then run `python3 sync_lvgl_pro_ui.py` and `python3 sync_lvgl_pro_ui.py --check`
-before building. On November 8, 2026, the standalone LCD dimming test and
-normal right-side slider were verified on hardware. The user confirmed reliable
-touch, visible dimming, and a return to 75% after a power cycle. The ESP-IDF 6.1
-build, nine host scenarios, UI sync regression, and 17 generated file comparisons
-passed. Full dim and volume are planned, not implemented.
-
-See [BRIGHTNESS_TESTING.md](BRIGHTNESS_TESTING.md) for pinned vendor evidence,
-regeneration instructions, desktop tests, local flash/acceptance steps, and
-baseline recovery. Do not treat the existing display validation above as
-validation of this new brightness feature.
+Software brightness control was verified on hardware on November 8, 2026. The user confirmed that the earlier right-side slider visibly dimmed the display and returned to 75% after a power cycle. The current generated screen centers the brightness card. The cracked display was diagnosed as the cause of the intermittent phantom touches.

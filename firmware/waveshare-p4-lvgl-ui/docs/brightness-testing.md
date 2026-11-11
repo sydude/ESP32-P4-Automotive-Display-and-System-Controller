@@ -4,10 +4,10 @@
 
 This change is based on `47da933dba6ad962d5faaca70f6c99157a005618` on
 `integration/lvgl-pro-1920x480`. That commit records the user's successful
-landscape display test. The separate `../archive/waveshare-8p8-display-touch/` baseline,
+landscape display test. The separate [archived display and touch baseline](../../archive/waveshare-8p8-display-touch/),
 DSI initialization, partial RGB888 rotation, framebuffer sizes, and GT9271
 status/point/clear polling and coordinate mapping are unchanged.
-The feature remains in draft PR #2. Hardware acceptance was confirmed on
+Hardware acceptance for the earlier right-side layout was confirmed on
 November 8, 2026, as recorded below.
 
 ## Backlight protocol for the 8.8inch DSI LCD
@@ -54,8 +54,7 @@ XML owns the card, 10–100 slider, percent binding, stable widget names, and
 `subject_brightness` (default 75). Firmware code in `main/brightness_control.c`
 attaches after `screen_main_create()` under the LVGL lock. No hardware callbacks
 live in generated code, so future generation preserves the integration.
-The Raptor layout keeps display and sound controls on the right. Firmware
-positions the brightness card entirely in that half at startup.
+The right-side layout described in the hardware validation below was an earlier revision. The current generated screen centers the brightness card.
 
 A 50 ms LVGL timer coalesces rapid slider changes, skips repeated values, clamps
 again in firmware, and performs two synchronous writes with a 20 ms timeout per write.
@@ -72,6 +71,8 @@ If initialization fails, the label says `Unavailable`; display/touch continue.
 Reboot retries initialization. Values are not saved to flash.
 
 ## Regeneration contract
+
+Run the commands in this guide from the firmware project root.
 
 The user confirmed LVGL Pro Build/Preview works and the slider updates.
 The fresh editor export declares `lv_subject_t * subject_brightness`, creates
@@ -135,9 +136,8 @@ build-host/brightness_test success /tmp/brightness-preview.ppm
 - The compiled screen was rendered at **1920 × 480** and visually inspected:
   background, card, percent, slider, and status fit without clipping.
 - Generated-style C produces LVGL deprecation warnings; the build succeeds.
-- No firmware was flashed. Electrical behavior, visible dimming, GT9271
-  interaction remain pending. Editor Build/Preview and slider updates were
-  subsequently confirmed by the user; fresh C export sync/build is still required.
+- This November 5 validation covered the build and host behavior. The November 8
+  hardware acceptance below covers visible dimming and touch interaction.
 
 ## Subject API follow-up validation
 
@@ -153,13 +153,14 @@ build-host/brightness_test success /tmp/brightness-preview.ppm
 
 - The normal right-side slider was built with ESP-IDF 6.1 and flashed successfully.
 - All nine host scenarios, the UI sync regression, and 17 generated file comparisons passed.
-- The user confirmed reliable touch and visible dimming on the 8.8inch DSI LCD.
+- The user confirmed reliable touch and verified software brightness control by
+  observing visible dimming on the 8.8-inch DSI LCD.
+- The cracked display was diagnosed as the cause of intermittent phantom touches.
 - Serial capture recorded 159 acknowledged updates across 10–100% with no write errors.
 - After a power cycle, the slider returned to 75% and the display visibly brightened.
-- The right-side layout is the intended Raptor layout. Full dim and volume remain future work.
+- The right-side layout was intended for Raptor. Full dim and volume remain future work.
 
-The November 5 notes above describe earlier validation, not outstanding hardware
-acceptance. Repeat the following checks after future firmware or UI changes.
+Repeat the following checks after future firmware or UI changes.
 
 ## Repeatable local hardware acceptance
 
@@ -172,7 +173,7 @@ idf.py -p YOUR_PORT flash monitor
 ```
 
 1. Confirm the existing landscape background and orientation remain correct.
-   The brightness card on the right should show **75%**. Confirm the GT9271 ID
+   The brightness card should show **75%**. Confirm the GT9271 ID
    log and `Backlight I2C OK: 75%, 0x45: AB 40 then AA 01`.
 2. Drag slowly to **10%**, **50%**, **75%**, and **100%**. Check visible dimming,
    label tracking, correct finger direction, and reaching both endpoints.
