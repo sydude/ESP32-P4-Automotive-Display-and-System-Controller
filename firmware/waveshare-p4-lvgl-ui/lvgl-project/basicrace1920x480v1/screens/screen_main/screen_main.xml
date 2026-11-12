@@ -1,9 +1,15 @@
 <screen>
 	<view extends="lv_obj" scrollable="false">
-		<style name="style_main_screen_bg" />
+		<style name="style_screen_1_bg" />
 		<style name="style_text_default" />
+		<lv_image
+			name="dashboard_notch_overlay"
+			src="notch"
+			align="top_mid"
+		/>
+		
 		<lv_obj
-			width="720"
+			width="651"
 			height="300"
 			align="center"
 			scrollable="false"
@@ -20,7 +26,7 @@
 		>
 			<lv_label
 				text="Display brightness"
-				style_text_font="font_bold_36"
+				style_text_font="font_bold_20"
 			/>
 			<lv_label
 				name="brightness_percent"
@@ -30,8 +36,8 @@
 			/>
 			<lv_slider
 				name="brightness_slider"
-				width="600"
-				height="32"
+				width="357"
+				height="37"
 				min_value="10"
 				max_value="100"
 				adv_hittest="false"

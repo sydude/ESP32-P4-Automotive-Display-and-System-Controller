@@ -14,14 +14,14 @@
 	<images>
 		<!-- Add <file> or <data> tags here -->
 		<data
-			name="main_screen_bg"
-			src_path="images/main_screen_bg.png"
+			name="screen_1_bg"
+			src_path="images/screen_1_bg.png"
 			color_format="rgb565"
 		/>
 		<data
-			name="startup_bg"
-			src_path="images/startup_bg.png"
-			color_format="rgb565"
+			name="notch"
+			src_path="images/notch.png"
+			color_format="argb8888"
 		/>
 		<data
 			name="startup_svt_logo"
@@ -81,7 +81,7 @@
 
 	<styles>
 		<!-- Add <style> tags here -->
-		<style name="style_main_screen_bg" bg_image_src="main_screen_bg" />
+		<style name="style_screen_1_bg" bg_image_src="screen_1_bg" />
 		<style
 			name="style_text_default"
 			text_color="FFFFFF"
@@ -92,7 +92,7 @@
 	</styles>
 
 	<styles>
-		<style name="style_startup_bg" bg_image_src="startup_bg" />
+		<style name="style_startup_bg" bg_image_src="screen_1_bg" />
 		<style
 			name="style_text_default"
 			text_color="FFFFFF"

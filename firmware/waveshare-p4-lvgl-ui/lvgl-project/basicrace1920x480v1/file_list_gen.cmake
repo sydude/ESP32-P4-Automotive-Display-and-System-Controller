@@ -8,8 +8,8 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_bold_20_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_bold_36_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/font_default_data.c
-  ${CMAKE_CURRENT_LIST_DIR}/images/main_screen_bg_data.c
-  ${CMAKE_CURRENT_LIST_DIR}/images/startup_bg_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/notch_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/screen_1_bg_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/startup_svt_logo_data.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/screen_main/screen_main_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/startup_screen/startup_screen_gen.c)

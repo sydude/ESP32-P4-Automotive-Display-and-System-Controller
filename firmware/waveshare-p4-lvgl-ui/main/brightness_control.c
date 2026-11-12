@@ -18,7 +18,7 @@
 #define BACKLIGHT_APPLY_REGISTER 0xAA
 #define BACKLIGHT_TIMEOUT_MS 20
 #define BRIGHTNESS_UPDATE_MS 50
-#define BRIGHTNESS_DEFAULT 75
+#define BRIGHTNESS_DEFAULT 0
 
 static const char *TAG = "brightness";
 static i2c_master_dev_handle_t backlight;
@@ -31,7 +31,7 @@ static lv_timer_t *update_timer;
 
 static int clamp_percent(int value)
 {
-    return value < 10 ? 10 : value > 100 ? 100 : value;
+    return value < 0 ? 0 : value > 100 ? 100 : value;
 }
 
 static esp_err_t write_percent(int percent)
@@ -54,6 +54,15 @@ static esp_err_t write_percent(int percent)
         ESP_LOGE(TAG, "Backlight apply write failed at %d%%: %s", percent, esp_err_to_name(err));
     }
     return err;
+}
+
+esp_err_t brightness_control_set(int percent)
+{
+    if (backlight == NULL) {
+        return ESP_ERR_INVALID_STATE;
+    }
+
+    return write_percent(percent);
 }
 
 #ifdef CONFIG_BACKLIGHT_DIAGNOSTIC

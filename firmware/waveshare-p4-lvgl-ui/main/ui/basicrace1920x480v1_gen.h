@@ -85,7 +85,7 @@ static inline int32_t basicrace1920x480v1_style_transition_bezier_path_helper(co
  * Global styles
  *----------------*/
 
-extern lv_style_t style_main_screen_bg;
+extern lv_style_t style_screen_1_bg;
 extern lv_style_t style_text_default;
 extern lv_style_t style_startup_bg;
 
@@ -106,8 +106,8 @@ extern lv_font_t * font_body;
  *----------------*/
 
 /* Targets: any */
-extern const void * main_screen_bg;
-extern const void * startup_bg;
+extern const void * screen_1_bg;
+extern const void * notch;
 extern const void * startup_svt_logo;
 
 /*----------------

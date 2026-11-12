@@ -19,7 +19,7 @@ def main():
     dest = Path(__file__).resolve().parent / "main" / "ui"
     required = ("basicrace1920x480v1.h", "basicrace1920x480v1_gen.h", "basicrace1920x480v1_gen.c",
                 "basicrace1920x480v1.c", "screens/screen_main/screen_main_gen.c",
-                "images/race_background_1_data.c")
+                "images/screen_1_bg_data.c")
     missing = [name for name in required if not (source / name).is_file()]
     if missing:
         parser.error("Generate the LVGL Pro project first. Missing: " + ", ".join(missing))

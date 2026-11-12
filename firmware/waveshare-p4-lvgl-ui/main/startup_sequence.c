@@ -4,6 +4,12 @@
 #include <assert.h>
 #include "brightness_control.h"
 
+static void reveal_background(lv_timer_t *timer)
+{
+    brightness_control_set(75);
+    lv_timer_delete(timer);
+}
+
 static void set_logo_opacity(void *obj, int32_t value)
 {
     lv_obj_set_style_opa((lv_obj_t *)obj, value, 0);
@@ -39,6 +45,9 @@ static void startup_finished(lv_timer_t *timer)
 
 void begin_startup_sequence(lv_obj_t *startup_screen)
 {
+    lv_timer_t *reveal_timer = lv_timer_create(reveal_background, 2000, NULL);
+    lv_timer_set_repeat_count(reveal_timer, 1);
+
     lv_obj_t *logo = lv_obj_find_by_name(
         startup_screen, "startup_svt_logo_widget"
     );
@@ -48,7 +57,7 @@ void begin_startup_sequence(lv_obj_t *startup_screen)
     }
 
     lv_timer_t *timer = lv_timer_create(
-        startup_finished, 12000, NULL
+        startup_finished, 13000, NULL
     );
     lv_timer_set_repeat_count(timer, 1);
 }

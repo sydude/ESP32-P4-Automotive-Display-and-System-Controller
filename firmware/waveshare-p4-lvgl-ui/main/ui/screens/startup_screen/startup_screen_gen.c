@@ -43,7 +43,10 @@ lv_obj_t * startup_screen_create(void)
         lv_obj_set_name_static(lv_image_0, "startup_screen_#");
         lv_obj_set_scrollable(lv_image_0, false);
 
-        lv_obj_add_style(lv_image_0, &style_startup_bg, 0);
+        lv_obj_t * screen_1_bg_widget = lv_image_create(lv_image_0);
+        lv_obj_set_name(screen_1_bg_widget, "screen_1_bg_widget");
+        lv_image_set_src(screen_1_bg_widget, screen_1_bg);
+
         lv_obj_t * startup_svt_logo_widget = lv_image_create(lv_image_0);
         lv_obj_set_name(startup_svt_logo_widget, "startup_svt_logo_widget");
         lv_obj_set_align(startup_svt_logo_widget, LV_ALIGN_CENTER);

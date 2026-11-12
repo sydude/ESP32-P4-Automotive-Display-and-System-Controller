@@ -7,3 +7,5 @@
 void brightness_control_init(i2c_master_bus_handle_t bus);
 /* Call once with the compiled LVGL Pro screen, while holding the LVGL lock. */
 void brightness_control_attach(lv_obj_t *screen);
+
+esp_err_t brightness_control_set(int percent);

@@ -43,10 +43,15 @@ lv_obj_t * screen_main_create(void)
         lv_obj_set_name_static(lv_obj_0, "screen_main_#");
         lv_obj_set_scrollable(lv_obj_0, false);
 
-        lv_obj_add_style(lv_obj_0, &style_main_screen_bg, 0);
+        lv_obj_add_style(lv_obj_0, &style_screen_1_bg, 0);
         lv_obj_add_style(lv_obj_0, &style_text_default, 0);
+        lv_obj_t * dashboard_notch_overlay = lv_image_create(lv_obj_0);
+        lv_obj_set_name(dashboard_notch_overlay, "dashboard_notch_overlay");
+        lv_image_set_src(dashboard_notch_overlay, notch);
+        lv_obj_set_align(dashboard_notch_overlay, LV_ALIGN_TOP_MID);
+
         lv_obj_t * lv_obj_1 = lv_obj_create(lv_obj_0);
-        lv_obj_set_width(lv_obj_1, 720);
+        lv_obj_set_width(lv_obj_1, 651);
         lv_obj_set_height(lv_obj_1, 300);
         lv_obj_set_align(lv_obj_1, LV_ALIGN_CENTER);
         lv_obj_set_scrollable(lv_obj_1, false);
@@ -62,7 +67,7 @@ lv_obj_t * screen_main_create(void)
         lv_obj_set_style_border_width(lv_obj_1, 0, 0);
         lv_obj_t * lv_label_0 = lv_label_create(lv_obj_1);
         lv_label_set_text(lv_label_0, "Display brightness");
-        lv_obj_set_style_text_font(lv_label_0, font_bold_36, 0);
+        lv_obj_set_style_text_font(lv_label_0, font_bold_20, 0);
 
         lv_obj_t * brightness_percent = lv_label_create(lv_obj_1);
         lv_obj_set_name(brightness_percent, "brightness_percent");
@@ -71,8 +76,8 @@ lv_obj_t * screen_main_create(void)
 
         lv_obj_t * brightness_slider = lv_slider_create(lv_obj_1);
         lv_obj_set_name(brightness_slider, "brightness_slider");
-        lv_obj_set_width(brightness_slider, 600);
-        lv_obj_set_height(brightness_slider, 32);
+        lv_obj_set_width(brightness_slider, 357);
+        lv_obj_set_height(brightness_slider, 37);
         lv_slider_set_min_value(brightness_slider, 10);
         lv_slider_set_max_value(brightness_slider, 100);
         lv_obj_set_adv_hittest(brightness_slider, false);

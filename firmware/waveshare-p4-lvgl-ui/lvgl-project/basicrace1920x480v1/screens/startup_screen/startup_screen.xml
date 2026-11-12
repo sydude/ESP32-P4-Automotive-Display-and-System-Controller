@@ -1,6 +1,6 @@
 <screen>
 	<view extends="lv_image" scrollable="false">
-		<style name="style_startup_bg" />
+		<lv_image name="screen_1_bg_widget" src="screen_1_bg" />
 		<lv_image
 			name="startup_svt_logo_widget"
 			align="center"
