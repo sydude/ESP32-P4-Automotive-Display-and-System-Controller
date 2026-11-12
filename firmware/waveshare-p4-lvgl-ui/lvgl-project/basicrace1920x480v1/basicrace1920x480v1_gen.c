@@ -73,15 +73,20 @@ extern lv_font_t font_body_data;
  *----------------*/
 
 /* Targets: any */
-const void * race_background_1 = NULL;
-extern const void * race_background_1_data;
+const void * main_screen_bg = NULL;
+extern const void * main_screen_bg_data;
+const void * startup_bg = NULL;
+extern const void * startup_bg_data;
+const void * startup_svt_logo = NULL;
+extern const void * startup_svt_logo_data;
 
 /*----------------
  * Global styles
  *----------------*/
 
-lv_style_t style_background_1;
+lv_style_t style_main_screen_bg;
 lv_style_t style_text_default;
+lv_style_t style_startup_bg;
 
 /*----------------
  * Subjects
@@ -159,9 +164,17 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
     /* Targets: any */
     #if BASICRACE1920X480V1_CHECK_COMPILE_TARGET(BASICRACE1920X480V1_TARGET_ALL)
     if (basicrace1920x480v1_check_target(BASICRACE1920X480V1_TARGET_ALL)) {
-        /* race_background_1 */
-        if (!race_background_1) {
-            race_background_1 = &race_background_1_data;
+        /* main_screen_bg */
+        if (!main_screen_bg) {
+            main_screen_bg = &main_screen_bg_data;
+        }
+        /* startup_bg */
+        if (!startup_bg) {
+            startup_bg = &startup_bg_data;
+        }
+        /* startup_svt_logo */
+        if (!startup_svt_logo) {
+            startup_svt_logo = &startup_svt_logo_data;
         }
     }
     #endif
@@ -174,10 +187,17 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
 
     if (!style_inited) {
         /*Init all styles*/
-        lv_style_init(&style_background_1);
+        lv_style_init(&style_main_screen_bg);
         lv_style_init(&style_text_default);
+        lv_style_init(&style_startup_bg);
 
-        lv_style_set_bg_image_src(&style_background_1, race_background_1);
+        lv_style_set_bg_image_src(&style_main_screen_bg, main_screen_bg);
+        lv_style_set_text_color(&style_text_default, lv_color_hex(0xFFFFFF));
+        lv_style_set_text_font(&style_text_default, font_default);
+        lv_style_set_text_letter_space(&style_text_default, 0);
+        lv_style_set_text_line_space(&style_text_default, 2);
+
+        lv_style_set_bg_image_src(&style_startup_bg, startup_bg);
         lv_style_set_text_color(&style_text_default, lv_color_hex(0xFFFFFF));
         lv_style_set_text_font(&style_text_default, font_default);
         lv_style_set_text_letter_space(&style_text_default, 0);
@@ -231,7 +251,9 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
      * While running in the editor skip this step to update the preview when the XML changes */
 #if defined(LV_USE_XML) && LV_USE_XML && !defined(LV_EDITOR_PREVIEW)
     /* Register images */
-    lv_xml_register_image(NULL, "race_background_1", race_background_1);
+    lv_xml_register_image(NULL, "main_screen_bg", main_screen_bg);
+    lv_xml_register_image(NULL, "startup_bg", startup_bg);
+    lv_xml_register_image(NULL, "startup_svt_logo", startup_svt_logo);
 #endif
 
 #if !defined(LV_USE_XML) || LV_USE_XML == 0

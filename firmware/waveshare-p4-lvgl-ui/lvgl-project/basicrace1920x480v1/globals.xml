@@ -14,9 +14,19 @@
 	<images>
 		<!-- Add <file> or <data> tags here -->
 		<data
-			name="race_background_1"
-			src_path="images/basicrace1920x480.png"
+			name="main_screen_bg"
+			src_path="images/main_screen_bg.png"
 			color_format="rgb565"
+		/>
+		<data
+			name="startup_bg"
+			src_path="images/startup_bg.png"
+			color_format="rgb565"
+		/>
+		<data
+			name="startup_svt_logo"
+			src_path="images/startup_svt_logo.png"
+			color_format="argb8888"
 		/>
 	</images>
 
@@ -71,7 +81,18 @@
 
 	<styles>
 		<!-- Add <style> tags here -->
-		<style name="style_background_1" bg_image_src="race_background_1" />
+		<style name="style_main_screen_bg" bg_image_src="main_screen_bg" />
+		<style
+			name="style_text_default"
+			text_color="FFFFFF"
+			text_font="font_default"
+			text_letter_space="0"
+			text_line_space="2"
+		/>
+	</styles>
+
+	<styles>
+		<style name="style_startup_bg" bg_image_src="startup_bg" />
 		<style
 			name="style_text_default"
 			text_color="FFFFFF"

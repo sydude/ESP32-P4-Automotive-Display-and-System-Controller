@@ -1,6 +1,7 @@
 #include "ui/basicrace1920x480v1.h"
 #include "brightness_control.h"
 #include "soc/soc_caps.h"
+#include "startup_sequence.h"
 
 #if SOC_MIPI_DSI_SUPPORTED
 
@@ -249,6 +250,7 @@ static void read_touch(lv_indev_t *indev, lv_indev_data_t *data)
     touch_diag_record(&diag, was_pressed);
 }
 
+
 static void start_gui(void)
 {
     lvgl_port_cfg_t port_cfg = ESP_LVGL_PORT_INIT_CONFIG();
@@ -270,18 +272,22 @@ static void start_gui(void)
     // The display driver, rotation, and touch handling remain unchanged.
     lv_display_set_default(display);
     basicrace1920x480v1_init(NULL);
-    lv_obj_t *screen = screen_main_create();
+
+    // Display the startup screen first.
+    lv_obj_t *screen = startup_screen_create();
     assert(screen);
-    brightness_control_attach(screen);
     lv_screen_load(screen);
+    begin_startup_sequence(screen);
+
     lv_indev_t *input = lv_indev_create();
     assert(input);
     lv_indev_set_type(input, LV_INDEV_TYPE_POINTER);
     lv_indev_set_display(input, display);
     lv_indev_set_read_cb(input, read_touch);
     lvgl_port_unlock();
-    ESP_LOGI(TAG, "LVGL Pro screen loaded: landscape 1920x480; 46080-byte draw and rotation buffers");
+    ESP_LOGI(TAG, "LVGL Pro startup screen loaded: landscape 1920x480; 46080-byte draw and rotation buffers");
 }
+
 
 void app_main(void)
 {

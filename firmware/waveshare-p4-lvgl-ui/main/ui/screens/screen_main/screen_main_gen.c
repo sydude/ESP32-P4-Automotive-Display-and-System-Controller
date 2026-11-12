@@ -43,7 +43,7 @@ lv_obj_t * screen_main_create(void)
         lv_obj_set_name_static(lv_obj_0, "screen_main_#");
         lv_obj_set_scrollable(lv_obj_0, false);
 
-        lv_obj_add_style(lv_obj_0, &style_background_1, 0);
+        lv_obj_add_style(lv_obj_0, &style_main_screen_bg, 0);
         lv_obj_add_style(lv_obj_0, &style_text_default, 0);
         lv_obj_t * lv_obj_1 = lv_obj_create(lv_obj_0);
         lv_obj_set_width(lv_obj_1, 720);

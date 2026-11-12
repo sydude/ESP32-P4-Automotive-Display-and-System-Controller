@@ -85,8 +85,9 @@ static inline int32_t basicrace1920x480v1_style_transition_bezier_path_helper(co
  * Global styles
  *----------------*/
 
-extern lv_style_t style_background_1;
+extern lv_style_t style_main_screen_bg;
 extern lv_style_t style_text_default;
+extern lv_style_t style_startup_bg;
 
 /*----------------
  * Fonts
@@ -105,7 +106,9 @@ extern lv_font_t * font_body;
  *----------------*/
 
 /* Targets: any */
-extern const void * race_background_1;
+extern const void * main_screen_bg;
+extern const void * startup_bg;
+extern const void * startup_svt_logo;
 
 /*----------------
  * Subjects
@@ -141,6 +144,7 @@ void basicrace1920x480v1_init_gen(const char * asset_path);
 
 /*Include all the widgets, components and screens of this library*/
 #include "screens/screen_main/screen_main_gen.h"
+#include "screens/startup_screen/startup_screen_gen.h"
 
 #ifdef __cplusplus
 } /*extern "C"*/
