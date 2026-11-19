@@ -3,8 +3,8 @@ file(GLOB_RECURSE UI_SOURCES
 )
 
 idf_component_register(
-    SRCS "display_touch.c" "brightness_control.c" "startup_sequence.c" ${UI_SOURCES}
-    INCLUDE_DIRS "." "ui"
+    SRCS "main.c" "display_touch.c" "brightness_control.c" "startup_sequence.c" "ui_transitions.c" ${UI_SOURCES}
+    INCLUDE_DIRS "." "ui" "app"
     PRIV_REQUIRES
         waveshare__esp_lcd_dsi
         esp_lcd

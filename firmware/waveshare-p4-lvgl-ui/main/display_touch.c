@@ -288,8 +288,7 @@ static void start_gui(void)
     ESP_LOGI(TAG, "LVGL Pro startup screen loaded: landscape 1920x480; 46080-byte draw and rotation buffers");
 }
 
-
-void app_main(void)
+void display_touch_init(void)
 {
     test_init_lcd();
     i2c_master_bus_handle_t gt_bus;
@@ -307,4 +306,4 @@ void app_main(void)
     brightness_control_init(gt_bus);
     start_gui();
 }
-#endif
+#endif // SOC_MIPI_DSI_SUPPORTED
