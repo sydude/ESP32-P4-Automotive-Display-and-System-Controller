@@ -24,7 +24,7 @@ def main():
     if missing:
         parser.error("Generate the LVGL Pro project first. Missing: " + ", ".join(missing))
     files = [f for f in source.rglob("*") if f.is_file() and f.suffix in (".c", ".h")
-             and not any(part in ("preview-build", "preview-bin", "sim", ".git", "__MACOSX") for part in f.relative_to(source).parts)]
+             and not any(part in ("build", "preview-build", "preview-bin", "sim", ".git", "__MACOSX") for part in f.relative_to(source).parts)]
     if not files:
         parser.error("No generated C/H files found")
     # The firmware attaches by these stable XML names and exported subject.

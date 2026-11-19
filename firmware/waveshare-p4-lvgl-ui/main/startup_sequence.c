@@ -24,10 +24,10 @@ static void start_logo_animation(lv_obj_t *logo)
     lv_anim_set_exec_cb(&anim, set_logo_opacity);
 
     lv_anim_set_values(&anim, LV_OPA_TRANSP, LV_OPA_COVER);
-    lv_anim_set_duration(&anim, 3000);
+    lv_anim_set_duration(&anim, 2000);
     lv_anim_set_playback_duration(&anim, 3000);
-    lv_anim_set_playback_delay(&anim, 3000);
-    lv_anim_set_delay(&anim, 3000);
+    lv_anim_set_playback_delay(&anim, 2000);
+    lv_anim_set_delay(&anim, 2000);
 
     lv_anim_start(&anim);
 }

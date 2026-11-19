@@ -67,6 +67,12 @@ lv_font_t * font_body_symbols;
 extern lv_font_t font_body_symbols_data;
 lv_font_t * font_body;
 extern lv_font_t font_body_data;
+lv_font_t * font_dash_category_18;
+extern lv_font_t font_dash_category_18_data;
+lv_font_t * font_dash_category_14;
+extern lv_font_t font_dash_category_14_data;
+lv_font_t * font_dash_item_14;
+extern lv_font_t font_dash_item_14_data;
 
 /*----------------
  * Images
@@ -79,6 +85,36 @@ const void * notch = NULL;
 extern const void * notch_data;
 const void * startup_svt_logo = NULL;
 extern const void * startup_svt_logo_data;
+const void * screen_1_logo = NULL;
+extern const void * screen_1_logo_data;
+const void * raptor_front = NULL;
+extern const void * raptor_front_data;
+const void * raptor_rear = NULL;
+extern const void * raptor_rear_data;
+const void * rear_lights = NULL;
+extern const void * rear_lights_data;
+const void * wide_lights = NULL;
+extern const void * wide_lights_data;
+const void * amber_lights = NULL;
+extern const void * amber_lights_data;
+const void * svt_switches = NULL;
+extern const void * svt_switches_data;
+const void * svt_switch_1_on = NULL;
+extern const void * svt_switch_1_on_data;
+const void * svt_switch_2_on = NULL;
+extern const void * svt_switch_2_on_data;
+const void * svt_switch_3_on = NULL;
+extern const void * svt_switch_3_on_data;
+const void * svt_switch_4_on = NULL;
+extern const void * svt_switch_4_on_data;
+const void * svt_switch_1_off = NULL;
+extern const void * svt_switch_1_off_data;
+const void * svt_switch_2_off = NULL;
+extern const void * svt_switch_2_off_data;
+const void * svt_switch_3_off = NULL;
+extern const void * svt_switch_3_off_data;
+const void * svt_switch_4_off = NULL;
+extern const void * svt_switch_4_off_data;
 
 /*----------------
  * Global styles
@@ -87,12 +123,20 @@ extern const void * startup_svt_logo_data;
 lv_style_t style_screen_1_bg;
 lv_style_t style_text_default;
 lv_style_t style_startup_bg;
+lv_style_t light_button_off;
+lv_style_t light_button_amber_on;
+lv_style_t light_button_wide_on;
+lv_style_t light_button_rear_on;
 
 /*----------------
  * Subjects
  *----------------*/
 
 lv_subject_t * subject_brightness;
+lv_subject_t * amber_lights_on;
+lv_subject_t * wide_lights_on;
+lv_subject_t * rear_lights_on;
+lv_subject_t * seat_eject_true;
 
 /**********************
  *      MACROS
@@ -154,6 +198,24 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
             font_body = &font_body_data;
 
         }
+        if (!font_dash_category_18) {
+            /* font_dash_category_18 */
+            /* get font 'font_dash_category_18' from a C array */
+            font_dash_category_18 = &font_dash_category_18_data;
+
+        }
+        if (!font_dash_category_14) {
+            /* font_dash_category_14 */
+            /* get font 'font_dash_category_14' from a C array */
+            font_dash_category_14 = &font_dash_category_14_data;
+
+        }
+        if (!font_dash_item_14) {
+            /* font_dash_item_14 */
+            /* get font 'font_dash_item_14' from a C array */
+            font_dash_item_14 = &font_dash_item_14_data;
+
+        }
     }
     #endif
 
@@ -176,6 +238,66 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
         if (!startup_svt_logo) {
             startup_svt_logo = &startup_svt_logo_data;
         }
+        /* screen_1_logo */
+        if (!screen_1_logo) {
+            screen_1_logo = &screen_1_logo_data;
+        }
+        /* raptor_front */
+        if (!raptor_front) {
+            raptor_front = &raptor_front_data;
+        }
+        /* raptor_rear */
+        if (!raptor_rear) {
+            raptor_rear = &raptor_rear_data;
+        }
+        /* rear_lights */
+        if (!rear_lights) {
+            rear_lights = &rear_lights_data;
+        }
+        /* wide_lights */
+        if (!wide_lights) {
+            wide_lights = &wide_lights_data;
+        }
+        /* amber_lights */
+        if (!amber_lights) {
+            amber_lights = &amber_lights_data;
+        }
+        /* svt_switches */
+        if (!svt_switches) {
+            svt_switches = &svt_switches_data;
+        }
+        /* svt_switch_1_on */
+        if (!svt_switch_1_on) {
+            svt_switch_1_on = &svt_switch_1_on_data;
+        }
+        /* svt_switch_2_on */
+        if (!svt_switch_2_on) {
+            svt_switch_2_on = &svt_switch_2_on_data;
+        }
+        /* svt_switch_3_on */
+        if (!svt_switch_3_on) {
+            svt_switch_3_on = &svt_switch_3_on_data;
+        }
+        /* svt_switch_4_on */
+        if (!svt_switch_4_on) {
+            svt_switch_4_on = &svt_switch_4_on_data;
+        }
+        /* svt_switch_1_off */
+        if (!svt_switch_1_off) {
+            svt_switch_1_off = &svt_switch_1_off_data;
+        }
+        /* svt_switch_2_off */
+        if (!svt_switch_2_off) {
+            svt_switch_2_off = &svt_switch_2_off_data;
+        }
+        /* svt_switch_3_off */
+        if (!svt_switch_3_off) {
+            svt_switch_3_off = &svt_switch_3_off_data;
+        }
+        /* svt_switch_4_off */
+        if (!svt_switch_4_off) {
+            svt_switch_4_off = &svt_switch_4_off_data;
+        }
     }
     #endif
 
@@ -190,6 +312,10 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
         lv_style_init(&style_screen_1_bg);
         lv_style_init(&style_text_default);
         lv_style_init(&style_startup_bg);
+        lv_style_init(&light_button_off);
+        lv_style_init(&light_button_amber_on);
+        lv_style_init(&light_button_wide_on);
+        lv_style_init(&light_button_rear_on);
 
         lv_style_set_bg_image_src(&style_screen_1_bg, screen_1_bg);
         lv_style_set_text_color(&style_text_default, lv_color_hex(0xFFFFFF));
@@ -203,6 +329,12 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
         lv_style_set_text_letter_space(&style_text_default, 0);
         lv_style_set_text_line_space(&style_text_default, 2);
 
+        lv_style_set_bg_color(&light_button_off, lv_color_hex(0x353A42));
+        lv_style_set_radius(&light_button_off, 12);
+        lv_style_set_bg_color(&light_button_amber_on, lv_color_hex(0xC77B0A));
+        lv_style_set_bg_color(&light_button_wide_on, lv_color_hex(0xe3e3e3));
+        lv_style_set_bg_color(&light_button_rear_on, lv_color_hex(0xe3e3e3));
+
         style_inited = true;
     }
 
@@ -211,6 +343,14 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
      *----------------*/
     subject_brightness = lv_subject_create(LV_SUBJECT_TYPE_INT);
     lv_subject_set_int(subject_brightness, 75);
+    amber_lights_on = lv_subject_create(LV_SUBJECT_TYPE_INT);
+    lv_subject_set_int(amber_lights_on, 0);
+    wide_lights_on = lv_subject_create(LV_SUBJECT_TYPE_INT);
+    lv_subject_set_int(wide_lights_on, 0);
+    rear_lights_on = lv_subject_create(LV_SUBJECT_TYPE_INT);
+    lv_subject_set_int(rear_lights_on, 0);
+    seat_eject_true = lv_subject_create(LV_SUBJECT_TYPE_INT);
+    lv_subject_set_int(seat_eject_true, 0);
 
     /*----------------
      * Translations
@@ -231,6 +371,9 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
     check_font(&font_bold_36, "font_bold_36");
     check_font(&font_body_symbols, "font_body_symbols");
     check_font(&font_body, "font_body");
+    check_font(&font_dash_category_18, "font_dash_category_18");
+    check_font(&font_dash_category_14, "font_dash_category_14");
+    check_font(&font_dash_item_14, "font_dash_item_14");
 
     /* Register fonts */
     lv_xml_register_font(NULL, "font_default", font_default);
@@ -238,9 +381,16 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
     lv_xml_register_font(NULL, "font_bold_36", font_bold_36);
     lv_xml_register_font(NULL, "font_body_symbols", font_body_symbols);
     lv_xml_register_font(NULL, "font_body", font_body);
+    lv_xml_register_font(NULL, "font_dash_category_18", font_dash_category_18);
+    lv_xml_register_font(NULL, "font_dash_category_14", font_dash_category_14);
+    lv_xml_register_font(NULL, "font_dash_item_14", font_dash_item_14);
 
     /* Register subjects */
     lv_xml_register_subject(NULL, "subject_brightness", subject_brightness);
+    lv_xml_register_subject(NULL, "amber_lights_on", amber_lights_on);
+    lv_xml_register_subject(NULL, "wide_lights_on", wide_lights_on);
+    lv_xml_register_subject(NULL, "rear_lights_on", rear_lights_on);
+    lv_xml_register_subject(NULL, "seat_eject_true", seat_eject_true);
 
     /* Register callbacks */
 
@@ -254,6 +404,21 @@ void basicrace1920x480v1_init_gen(const char * asset_path)
     lv_xml_register_image(NULL, "screen_1_bg", screen_1_bg);
     lv_xml_register_image(NULL, "notch", notch);
     lv_xml_register_image(NULL, "startup_svt_logo", startup_svt_logo);
+    lv_xml_register_image(NULL, "screen_1_logo", screen_1_logo);
+    lv_xml_register_image(NULL, "raptor_front", raptor_front);
+    lv_xml_register_image(NULL, "raptor_rear", raptor_rear);
+    lv_xml_register_image(NULL, "rear_lights", rear_lights);
+    lv_xml_register_image(NULL, "wide_lights", wide_lights);
+    lv_xml_register_image(NULL, "amber_lights", amber_lights);
+    lv_xml_register_image(NULL, "svt_switches", svt_switches);
+    lv_xml_register_image(NULL, "svt_switch_1_on", svt_switch_1_on);
+    lv_xml_register_image(NULL, "svt_switch_2_on", svt_switch_2_on);
+    lv_xml_register_image(NULL, "svt_switch_3_on", svt_switch_3_on);
+    lv_xml_register_image(NULL, "svt_switch_4_on", svt_switch_4_on);
+    lv_xml_register_image(NULL, "svt_switch_1_off", svt_switch_1_off);
+    lv_xml_register_image(NULL, "svt_switch_2_off", svt_switch_2_off);
+    lv_xml_register_image(NULL, "svt_switch_3_off", svt_switch_3_off);
+    lv_xml_register_image(NULL, "svt_switch_4_off", svt_switch_4_off);
 #endif
 
 #if !defined(LV_USE_XML) || LV_USE_XML == 0

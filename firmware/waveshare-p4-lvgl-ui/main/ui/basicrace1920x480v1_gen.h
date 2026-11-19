@@ -88,6 +88,10 @@ static inline int32_t basicrace1920x480v1_style_transition_bezier_path_helper(co
 extern lv_style_t style_screen_1_bg;
 extern lv_style_t style_text_default;
 extern lv_style_t style_startup_bg;
+extern lv_style_t light_button_off;
+extern lv_style_t light_button_amber_on;
+extern lv_style_t light_button_wide_on;
+extern lv_style_t light_button_rear_on;
 
 /*----------------
  * Fonts
@@ -99,6 +103,9 @@ extern lv_font_t * font_bold_20;
 extern lv_font_t * font_bold_36;
 extern lv_font_t * font_body_symbols;
 extern lv_font_t * font_body;
+extern lv_font_t * font_dash_category_18;
+extern lv_font_t * font_dash_category_14;
+extern lv_font_t * font_dash_item_14;
 
 
 /*----------------
@@ -109,12 +116,31 @@ extern lv_font_t * font_body;
 extern const void * screen_1_bg;
 extern const void * notch;
 extern const void * startup_svt_logo;
+extern const void * screen_1_logo;
+extern const void * raptor_front;
+extern const void * raptor_rear;
+extern const void * rear_lights;
+extern const void * wide_lights;
+extern const void * amber_lights;
+extern const void * svt_switches;
+extern const void * svt_switch_1_on;
+extern const void * svt_switch_2_on;
+extern const void * svt_switch_3_on;
+extern const void * svt_switch_4_on;
+extern const void * svt_switch_1_off;
+extern const void * svt_switch_2_off;
+extern const void * svt_switch_3_off;
+extern const void * svt_switch_4_off;
 
 /*----------------
  * Subjects
  *----------------*/
 
 extern lv_subject_t * subject_brightness;
+extern lv_subject_t * amber_lights_on;
+extern lv_subject_t * wide_lights_on;
+extern lv_subject_t * rear_lights_on;
+extern lv_subject_t * seat_eject_true;
 
 /**********************
  * GLOBAL PROTOTYPES

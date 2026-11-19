@@ -9,6 +9,10 @@
 
 	<subjects>
 		<int name="subject_brightness" value="75" />
+		<int name="amber_lights_on" value="0" />
+		<int name="wide_lights_on" value="0" />
+		<int name="rear_lights_on" value="0" />
+		<int name="seat_eject_true" value="0" />
 	</subjects>
 
 	<images>
@@ -16,7 +20,7 @@
 		<data
 			name="screen_1_bg"
 			src_path="images/screen_1_bg.png"
-			color_format="rgb565"
+			color_format="rgb888"
 		/>
 		<data
 			name="notch"
@@ -27,6 +31,81 @@
 			name="startup_svt_logo"
 			src_path="images/startup_svt_logo.png"
 			color_format="argb8888"
+		/>
+		<data
+			name="screen_1_logo"
+			src_path="images/screen_1_logo.png"
+			color_format="argb8888"
+		/>
+		<data
+			name="raptor_front"
+			src_path="images/raptor_front.png"
+			color_format="argb8888"
+		/>
+		<data
+			name="raptor_rear"
+			src_path="images/raptor_rear.png"
+			color_format="argb8888"
+		/>
+		<data
+			name="rear_lights"
+			src_path="images/rear_lights.png"
+			color_format="argb8888"
+		/>
+		<data
+			name="wide_lights"
+			src_path="images/wide_lights.png"
+			color_format="argb8888"
+		/>
+		<data
+			name="amber_lights"
+			src_path="images/amber_lights.png"
+			color_format="argb8888"
+		/>
+		<data
+			name="svt_switches"
+			src_path="images/svt_switch/svt_switch.png"
+			color_format="rgb888"
+		/>
+		<data
+			name="svt_switch_1_on"
+			src_path="images/svt_switch/svt_switch_1_on.png"
+			color_format="rgb888"
+		/>
+		<data
+			name="svt_switch_2_on"
+			src_path="images/svt_switch/svt_switch_2_on.png"
+			color_format="rgb888"
+		/>
+		<data
+			name="svt_switch_3_on"
+			src_path="images/svt_switch/svt_switch_3_on.png"
+			color_format="rgb888"
+		/>
+		<data
+			name="svt_switch_4_on"
+			src_path="images/svt_switch/svt_switch_4_on.png"
+			color_format="rgb888"
+		/>
+		<data
+			name="svt_switch_1_off"
+			src_path="images/svt_switch/svt_switch_1_off.png"
+			color_format="rgb888"
+		/>
+		<data
+			name="svt_switch_2_off"
+			src_path="images/svt_switch/svt_switch_2_off.png"
+			color_format="rgb888"
+		/>
+		<data
+			name="svt_switch_3_off"
+			src_path="images/svt_switch/svt_switch_3_off.png"
+			color_format="rgb888"
+		/>
+		<data
+			name="svt_switch_4_off"
+			src_path="images/svt_switch/svt_switch_4_off.png"
+			color_format="rgb888"
 		/>
 	</images>
 
@@ -77,6 +156,39 @@
 			as_file="false"
 			lv_fallback="font_body_symbols_data"
 		/>
+		<bin
+			name="font_dash_category_18"
+			size="18"
+			src_path="fonts/EurostileLT-BoldExtendedTwo.ttf"
+			bpp="4"
+			range="0x20-0x7E"
+			symbols="°—•±×µΩ"
+			as_file="false"
+		/>
+		<bin
+			name="font_dash_category_14"
+			size="14"
+			src_path="fonts/EurostileLT-BoldExtendedTwo.ttf"
+			bpp="4"
+			range="0x20-0x7E"
+			symbols="°—•±×µΩ"
+			as_file="false"
+		/>
+		<bin
+			name="font_dash_item_14"
+			size="14"
+			src_path="fonts/EurostileLT-Demi.ttf"
+			bpp="4"
+			range="0x20-0x7E"
+			symbols="°—•±×µΩ"
+			as_file="false"
+		/>
+		<!--
+		for automotive fonts use:
+			symbols="°—•±×µΩ"
+				and 
+			range="0x20-0x7E"
+		-->
 	</fonts>
 
 	<styles>
@@ -100,5 +212,12 @@
 			text_letter_space="0"
 			text_line_space="2"
 		/>
+	</styles>
+
+	<styles>
+		<style name="light_button_off" bg_color="0x353A42" radius="12" />
+		<style name="light_button_amber_on" bg_color="0xC77B0A" />
+		<style name="light_button_wide_on" bg_color="0xe3e3e3" />
+		<style name="light_button_rear_on" bg_color="0xe3e3e3" />
 	</styles>
 </globals>
