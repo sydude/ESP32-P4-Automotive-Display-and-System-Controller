@@ -2,6 +2,8 @@
 
 Open `P4-Power-and-Functions-Aux-Board.kicad_pro` in KiCad 10. The root sheet contains the vehicle protection stage. The four child sheets contain the switched supplies, bus interfaces, host harness and LTE carrier. The PCB is a placement and routing work in progress.
 
+![Top-side PCB placement and connector locations](Raptor-placement.svg)
+
 ## Power and key operation
 
 J201 pin 1 accepts constant fused battery positive. Pin 2 is the battery return. Fuse the vehicle harness at its source. F201 is a second, on-board 5 A time-delay fuse. J601 pin 1 accepts a positive, ignition-switched 12 V signal and pin 2 its return. Select a feed that goes low at key-off. Both returns connect to board ground.
