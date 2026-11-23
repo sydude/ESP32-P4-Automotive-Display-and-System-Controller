@@ -1,6 +1,6 @@
 # Raptor REV1 AUX board
 
-Open `P4-Power-and-Functions-Aux-Board.kicad_pro` in KiCad 10. The root sheet contains the vehicle protection stage. The four child sheets contain the switched supplies, bus interfaces, host harness and LTE carrier. The PCB is a placement and routing work in progress.
+Open `P4-Power-and-Functions-Aux-Board.kicad_pro` in KiCad 10. The root sheet contains the vehicle protection stage. The four child sheets contain the switched supplies, bus interfaces, host harness and LTE carrier. The four-layer PCB is routed for prototype review.
 
 ![Top-side PCB placement and connector locations](Raptor-placement.svg)
 
@@ -84,6 +84,10 @@ Firmware must configure GPIO33 low by default. Wait for GPIO46 power-good and at
 
 ## Layout and verification
 
-The board uses the registered LCD mounting pattern and four-layer stack with an L2 ground plane. The placement preserves the vehicle protection copper and reuses compatible regulator routes from the display daughterboard. The modem USB pair runs on F.Cu directly through the two ESD signal lands and references L2. Route the 5 V and LTE feeds as copper sized for their load, keeping the branches short and the switch nodes compact. For USB, obtain the manufacturer's 90 Ω differential geometry against L2 and verify the routed pair. The 0.15 mm trace and gap entries in the project are provisional. The minimum 0.15 mm copper spacing accommodates the TI package escapes. Use the full current-carrying width or copper pours outside the escapes.
+F.Cu carries the components and the short switching loops. Each LM76003 has separate copper from its VIN ceramics to its input pins, from its SW pins to the inductor, and from the inductor output to its capacitor bank. In1.Cu provides a continuous ground reference around the required holes. In2.Cu distributes protected battery, 5 V and LTE power. Multiple vias connect each output capacitor bank to its distribution copper. The five VBAT pins at J1 connect to two local copper areas. The host eFuse uses both ends of its IN and OUT lands and a 1.30 mm trunk on B.Cu to J410.
 
-KiCad 10.0.8 reports zero ERC errors or warnings, 145 PCB footprints, zero schematic parity findings and zero DRC geometry violations at this placement. DRC separately reports **320 unconnected items**. Complete routing, rerun DRC including connectivity and parity, then validate power, temperature, modem transmit droop and USB power transitions on the bench.
+J701 pads 2 and 3 connect through the ESD diodes to J1 pins 9 and 7. Both USB traces measure 10.184 mm pad-center to pad-center on F.Cu, with zero signal vias. The coupled sections use 0.15 mm traces with a nominal 0.16 mm gap. The design assumes a 0.10 mm F.Cu–In1.Cu dielectric. Have the fabricator confirm the 90 Ω differential geometry for its actual stackup. Identify the cable data pair and continuity-check its polarity end to end.
+
+KiCad 10.0.8 reports zero ERC errors or warnings, zero PCB DRC violations, zero unconnected items and zero schematic parity findings. The board contains 145 footprints including H1–H4. A test Gerber and drill export produced a separate non-plated drill file with four Ø2.70 mm hits at the specified 58.00 × 49.00 mm pitch.
+
+Before ordering, check the 1:1 mechanical drawing against the display with its cables installed. Verify actual standoff thread depth, connector tails, modem retainer and enclosure depth. On the prototype, check key-off current, both supply rails under combined load, USB power transitions, thermal rise and modem rail droop under transmit. Vehicle transient protection and cold-crank recovery require hardware tests.
