@@ -1,0 +1,5 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "P4-Power-and-Functions-Aux-Board") (type "KiCad") (uri "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.kicad_sym") (options "") (descr "Project-local P4-Power-and-Functions-Aux-Board schematic symbols"))
+	(lib (name "Eagle Import") (type "KiCad") (uri "${KIPRJMOD}/ESP32-S3_Autosport_AddOn_Board_v2-eagle-import.kicad_sym") (options "") (descr ""))
+)

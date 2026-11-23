@@ -1,0 +1,64 @@
+(footprint "TP20SQ"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "TEST PAD")
+	(property "Reference" "REF**"
+		(at -1 -1.05 0)
+		(layer "F.SilkS")
+		(uuid "d5f009c1-ca93-419a-8176-626744261bf9")
+		(effects
+			(font
+				(size 1.1684 1.1684)
+				(thickness 0.1016)
+			)
+			(justify left bottom)
+		)
+	)
+	(property "Value" "TP20SQ"
+		(at -1.016 1.143 0)
+		(layer "F.Fab")
+		(uuid "5423bd76-d1d6-4802-9908-0cc3ed673b01")
+		(effects
+			(font
+				(size 0.023368 0.023368)
+				(thickness 0.002032)
+			)
+			(justify left bottom)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ef811043-edfe-4ba1-8947-3733a55f36f1")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7087fc4c-f217-4be2-9626-9bd4ca42b723")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(duplicate_pad_numbers_are_jumpers no)
+	(pad "TP" smd rect
+		(at 0 0)
+		(size 2 2)
+		(layers "F.Cu" "F.Mask")
+		(solder_mask_margin 0.1016)
+		(solder_paste_margin 0)
+		(thermal_bridge_angle 0)
+		(uuid "d99a744a-3cd6-41a5-9449-0343ad9df99c")
+	)
+	(embedded_fonts no)
+)

@@ -1,0 +1,173 @@
+(footprint "FUSAD2590W70L2150D550B"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Axial Fuse, 25.90 mm pitch, 21.50 mm body length, 5.50 mm body diameter\n\nAxial Fuse package with 25.90 mm pitch (lead spacing), 0.70 mm lead diameter, 21.50 mm body length and 5.50 mm body diameter")
+	(property "Reference" "REF**"
+		(at 0 -3.81 0)
+		(layer "F.SilkS")
+		(uuid "2a465062-d3e7-45a3-b2b1-2350d2898e2a")
+		(effects
+			(font
+				(size 1.1684 1.1684)
+				(thickness 0.1016)
+			)
+		)
+	)
+	(property "Value" "FUSAD2590W70L2150D550B"
+		(at 0 3.81 0)
+		(layer "F.Fab")
+		(uuid "8b278f87-2b33-4fac-b5e3-7aacf88cf47e")
+		(effects
+			(font
+				(size 1.1684 1.1684)
+				(thickness 0.1016)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7d713adc-0a1c-4e11-89cf-5e283525d262")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6426cec1-2a77-4989-8f83-cf33e10db9d3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -11.25 -2.9)
+		(end -11.25 2.9)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cf60a6d7-2619-45da-b4ee-1009e4ce2208")
+	)
+	(fp_line
+		(start -11.25 0)
+		(end -11.946 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "fe6195c6-6f01-4e7d-a222-d36255dcca7d")
+	)
+	(fp_line
+		(start -11.25 2.9)
+		(end 11.25 2.9)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5ebcd51f-5904-4900-9e19-f4003bb17fc9")
+	)
+	(fp_line
+		(start 11.25 -2.9)
+		(end -11.25 -2.9)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "908e9140-7a7b-4a7f-b4bb-33be3a6c2c39")
+	)
+	(fp_line
+		(start 11.25 0)
+		(end 11.946 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e0940b77-1000-410e-9231-b5596dea29db")
+	)
+	(fp_line
+		(start 11.25 2.9)
+		(end 11.25 -2.9)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "58769640-652e-451e-ad5a-2b3e16bf32fb")
+	)
+	(fp_line
+		(start -11.25 -2.9)
+		(end 11.25 -2.9)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "55bcddbd-1971-4ebe-b665-820a8d3b6363")
+	)
+	(fp_line
+		(start -11.25 2.9)
+		(end -11.25 -2.9)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "51e7291f-2361-453b-aab7-8fb7ee986275")
+	)
+	(fp_line
+		(start 11.25 -2.9)
+		(end 11.25 2.9)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "3a62588d-45c5-4846-850b-d9d58d07d707")
+	)
+	(fp_line
+		(start 11.25 2.9)
+		(end -11.25 2.9)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "fad46f09-6453-4e8f-a41d-ee258e647a00")
+	)
+	(pad "1" thru_hole circle
+		(at -12.95 0)
+		(size 1.5 1.5)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.1016)
+		(thermal_bridge_angle 0)
+		(uuid "f0f7dba9-f772-4fd0-92b7-2d08f0834149")
+	)
+	(pad "2" thru_hole circle
+		(at 12.95 0)
+		(size 1.5 1.5)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.1016)
+		(thermal_bridge_angle 0)
+		(uuid "686ecda9-f0d1-4695-9516-e1efd75b1d99")
+	)
+	(embedded_fonts no)
+)
