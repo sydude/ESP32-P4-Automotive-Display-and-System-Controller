@@ -545,22 +545,7 @@
         "via_drill": 0.2
       },
       {
-        "clearance": 0.2,
-        "diff_pair_gap": 0.25,
-        "diff_pair_width": 0.2,
-        "microvia_diameter": 0.3,
-        "microvia_drill": 0.1,
-        "name": "MIPI-DSI",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 0,
-        "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2,
-        "tuning_profile": "",
-        "via_diameter": 0.5,
-        "via_drill": 0.2
-      },
-      {
-        "clearance": 0.2,
+        "clearance": 0.15,
         "diff_pair_gap": 0.25,
         "diff_pair_width": 0.2,
         "microvia_diameter": 0.3,
@@ -568,21 +553,6 @@
         "name": "Power_12v_HighCurrent",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 5,
-        "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 1.0,
-        "tuning_profile": "",
-        "via_diameter": 0.6,
-        "via_drill": 0.3
-      },
-      {
-        "clearance": 0.2,
-        "diff_pair_gap": 0.25,
-        "diff_pair_width": 0.2,
-        "microvia_diameter": 0.3,
-        "microvia_drill": 0.1,
-        "name": "Power_24v",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 6,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "tuning_profile": "",
@@ -620,7 +590,7 @@
         "via_drill": 0.2
       },
       {
-        "clearance": 0.3,
+        "clearance": 0.15,
         "diff_pair_gap": 0.3,
         "diff_pair_width": 0.3,
         "microvia_diameter": 0.2,
@@ -633,6 +603,25 @@
         "tuning_profile": "",
         "via_diameter": 0.5,
         "via_drill": 0.2
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.15,
+        "diff_pair_gap": 0.15,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.15,
+        "line_style": 0,
+        "microvia_diameter": 0.2,
+        "microvia_drill": 0.5,
+        "name": "USB_HS",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.15,
+        "tuning_profile": "",
+        "via_diameter": 0.5,
+        "via_drill": 0.2,
+        "wire_width": 6
       }
     ],
     "meta": {
@@ -640,7 +629,56 @@
     },
     "net_colors": {},
     "netclass_assignments": {},
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "pattern": "LTE_USB_P",
+        "netclass": "USB_HS"
+      },
+      {
+        "pattern": "LTE_USB_N",
+        "netclass": "USB_HS"
+      },
+      {
+        "pattern": "VEH_12V_RAW",
+        "netclass": "Power_12v_HighCurrent"
+      },
+      {
+        "pattern": "VEH_FUSED",
+        "netclass": "Power_12v_HighCurrent"
+      },
+      {
+        "pattern": "VEH_FILTER",
+        "netclass": "Power_12v_HighCurrent"
+      },
+      {
+        "pattern": "VEH_FET_MID",
+        "netclass": "Power_12v_HighCurrent"
+      },
+      {
+        "pattern": "VEH_PROT",
+        "netclass": "Power_12v_HighCurrent"
+      },
+      {
+        "pattern": "SYS_5V",
+        "netclass": "Power_5v_HighCurrent"
+      },
+      {
+        "pattern": "HOST_5V",
+        "netclass": "Power_5v_HighCurrent"
+      },
+      {
+        "pattern": "LTE_3V8",
+        "netclass": "Power_5v_HighCurrent"
+      },
+      {
+        "pattern": "BUCK5_SW",
+        "netclass": "Switching_Nodes"
+      },
+      {
+        "pattern": "BUCK6_SW",
+        "netclass": "Switching_Nodes"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
@@ -800,8 +838,24 @@
   },
   "sheets": [
     [
-      "95ed5eda-07d0-4bd1-9d8d-498592ee8d01",
+      "c5f810bd-4f8d-4f31-8784-a9e3c72dfd6b",
       "P4-Power-and-Functions-Aux-Board"
+    ],
+    [
+      "4200e16e-ab27-5605-b40c-74911a51599d",
+      "P4 and display supply"
+    ],
+    [
+      "0ca8fe71-9655-5cbe-9d52-b95e8fe314e9",
+      "LTE supply"
+    ],
+    [
+      "cbc4d441-1c7a-5870-85a8-d36c35374eec",
+      "Vehicle interfaces and host harness"
+    ],
+    [
+      "af86d82e-846e-5cb2-a928-a1e191f0d802",
+      "SIM7600G-H-M2 and SIM"
     ]
   ],
   "text_variables": {},
