@@ -4,6 +4,23 @@ Open `P4-Power-and-Functions-Aux-Board.kicad_pro` in KiCad 10. The root sheet co
 
 ![Top-side PCB placement and connector locations](Raptor-placement.svg)
 
+## Mounting on the Waveshare 8.8
+
+The top of the AUX board faces away from the LCD. In the rear view the display ribbon exits on the right. The 150.00 × 64.60 mm PCB is centered on the 240.50 × 68.00 mm glass. The nominal margins are 45.25 mm left and right and 1.70 mm top and bottom. The locked rectangle on the Drawings layer records the glass envelope.
+
+| Mount | From left of glass | From top of glass | From left of AUX | From top of AUX |
+|---|---:|---:|---:|---:|
+| H1, upper left | 83.95 | 13.50 | 38.70 | 11.80 |
+| H2, upper right | 141.95 | 13.50 | 96.70 | 11.80 |
+| H3, lower left | 83.95 | 62.50 | 38.70 | 60.80 |
+| H4, lower right | 141.95 | 62.50 | 96.70 | 60.80 |
+
+All dimensions are in millimeters. The four posts marked in red are M2.5, height 8 mm. They have 58.00 × 49.00 mm center spacing. H1–H4 are locked Ø2.70 mm non-plated holes. The layout reserves Ø6.40 mm at each screw for its head and standoff. Use the placement drawing at actual size to check the pattern. The card retention hole at J1 is separate.
+
+All external cable headers mate vertically, including the Micro-Fit battery header and the JST GH headers J3 and J701. With the real LCD, check solder-tail clearance over its components, DSI and power cable access, and the mated height behind the dash. For screw selection measure usable thread depth and allow for PCB and washer thickness. The drawing specifies post height only.
+
+[Annotated Waveshare rear and side views](../Mechanical/8.8inch%20DSI%20LCD-20241025.pdf)
+
 ## Power and key operation
 
 J201 pin 1 accepts constant fused battery positive. Pin 2 is the battery return. Fuse the vehicle harness at its source. F201 is a second, on-board 5 A time-delay fuse. J601 pin 1 accepts a positive, ignition-switched 12 V signal and pin 2 its return. Select a feed that goes low at key-off. Both returns connect to board ground.
@@ -67,6 +84,6 @@ Firmware must configure GPIO33 low by default. Wait for GPIO46 power-good and at
 
 ## Layout and verification
 
-The board uses the inherited outline and four-layer stack with an L2 ground plane. The placement preserves the vehicle protection copper and reuses compatible regulator routes from the display daughterboard. Confirm final connector access, antenna exits and mounting clearances before completing the copper. Route the 5 V and LTE feeds as copper sized for their load, keeping the branches short and the switch nodes compact. For USB, obtain the manufacturer's 90 Ω differential geometry against L2 and verify the routed pair. The 0.15 mm trace and gap entries in the project are provisional. The minimum 0.15 mm copper spacing accommodates the TI package escapes. Use the full current-carrying width or copper pours outside the escapes.
+The board uses the registered LCD mounting pattern and four-layer stack with an L2 ground plane. The placement preserves the vehicle protection copper and reuses compatible regulator routes from the display daughterboard. The modem USB pair runs on F.Cu directly through the two ESD signal lands and references L2. Route the 5 V and LTE feeds as copper sized for their load, keeping the branches short and the switch nodes compact. For USB, obtain the manufacturer's 90 Ω differential geometry against L2 and verify the routed pair. The 0.15 mm trace and gap entries in the project are provisional. The minimum 0.15 mm copper spacing accommodates the TI package escapes. Use the full current-carrying width or copper pours outside the escapes.
 
-KiCad 10.0.8 reports zero ERC errors or warnings, 141 PCB footprints, zero schematic parity findings and zero DRC geometry violations at this placement. DRC separately reports **326 unconnected items**. Complete routing, rerun DRC including connectivity and parity, then validate power, temperature, modem transmit droop and USB power transitions on the bench.
+KiCad 10.0.8 reports zero ERC errors or warnings, 145 PCB footprints, zero schematic parity findings and zero DRC geometry violations at this placement. DRC separately reports **320 unconnected items**. Complete routing, rerun DRC including connectivity and parity, then validate power, temperature, modem transmit droop and USB power transitions on the bench.
