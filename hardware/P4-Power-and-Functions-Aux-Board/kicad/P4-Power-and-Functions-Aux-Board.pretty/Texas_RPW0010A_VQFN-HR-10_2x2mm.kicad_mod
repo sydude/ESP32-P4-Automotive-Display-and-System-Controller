@@ -94,7 +94,7 @@
     (layers "F.Paste") (roundrect_rratio 0.08))
   (pad "" smd roundrect (at 0.25 0.63 0) (size 0.28 1.06)
     (layers "F.Paste") (roundrect_rratio 0.08))
-  (model "${KIPRJMOD}/Phase2.3dshapes/Texas_RPW0010A.step"
+  (model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/Texas_RPW0010A.step"
     (offset (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0)))

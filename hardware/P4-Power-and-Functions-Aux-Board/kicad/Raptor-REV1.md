@@ -19,7 +19,9 @@ All dimensions are in millimeters. The four posts marked in red are M2.5, height
 
 All external cable headers mate vertically, including the Micro-Fit battery header and the JST GH headers J3 and J701. With the real LCD, check solder-tail clearance over its components, DSI and power cable access, and the mated height behind the dash. For screw selection measure usable thread depth and allow for PCB and washer thickness. The drawing specifies post height only.
 
-[Annotated Waveshare rear and side views](../Mechanical/8.8inch%20DSI%20LCD-20241025.pdf)
+The SL headers in the 3D viewer use simplified, unmated STEP envelopes based on Molex drawing 1719710000-SD. Body height is 12.83 mm from the board surface. The 3.30 mm solder tails extend approximately 1.70 mm below a 1.60 mm board before solder. Allow extra space above the headers for the mating housings and the bends in the harness. The dashed outline in the placement drawing shows the LCD controller PCB underneath the AUX board.
+
+[Molex SL mechanical drawing](https://www.ic-components.it/files/90/1719710002.pdf) · [Annotated Waveshare rear and side views](../Mechanical/8.8inch%20DSI%20LCD-20241025.pdf)
 
 ## Power and key operation
 

@@ -690,7 +690,7 @@
 		(remove_unused_layers no)
 	)
 	(embedded_fonts no)
-	(model "${KIPRJMOD}/Phase2.3dshapes/Texas_RNP0030B.step"
+	(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/Texas_RNP0030B.step"
 		(offset
 			(xyz 0 0 0)
 		)

@@ -2254,7 +2254,7 @@
 			(uuid "5d50b49a-b159-4f0e-b3fa-009f8ecc7cdc")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_SL_171971-0003_1x03_P2.54mm_Vertical.step"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/SL_171971-0003_envelope.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -6548,7 +6548,7 @@
 			(uuid "a7982064-f400-4cdf-8ca2-4e67afdda10d")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/DQJ0008A.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -9015,7 +9015,7 @@
 			(uuid "096571d2-a2c9-462e-a417-0e172bd02bcd")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_SL_171971-0003_1x03_P2.54mm_Vertical.step"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/SL_171971-0003_envelope.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -9732,7 +9732,7 @@
 			(uuid "2d1a5e92-0d28-4065-940c-217960ea4334")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/Phase2.3dshapes/Texas_RPW0010A.step"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/Texas_RPW0010A.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -12872,7 +12872,7 @@
 			(uuid "10555d50-3b10-4b42-ba31-7a40f0c5e5ea")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/Phase2.3dshapes/Texas_RNP0030B.step"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/Texas_RNP0030B.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -16583,7 +16583,7 @@
 			(uuid "5ba7c155-2ae7-470b-936f-56f0e1f92653")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_SL_171971-0013_1x13_P2.54mm_Vertical.step"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/SL_171971-0013_envelope.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -18686,7 +18686,7 @@
 			(uuid "08f790aa-23ee-43ff-8737-affe14d063c3")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_SL_171971-0002_1x02_P2.54mm_Vertical.step"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/SL_171971-0002_envelope.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -19806,7 +19806,7 @@
 			(uuid "36560a23-2921-4a24-b907-c0fa618876b5")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/Phase2.3dshapes/Texas_RNP0030B.step"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/Texas_RNP0030B.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -22568,7 +22568,7 @@
 			(uuid "ecde4d3f-25fb-5fda-b30a-073f638dbc26")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/ul_430450218/430450218.stp"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/430450218.stp"
 			(offset
 				(xyz 0 0 5)
 			)
@@ -24016,7 +24016,7 @@
 			(uuid "bc4eab22-965a-4622-92cc-27fb704b3de1")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_SL_171971-0002_1x02_P2.54mm_Vertical.step"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/SL_171971-0002_envelope.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -34974,7 +34974,7 @@
 			(uuid "98580ef3-edb9-4af9-9ce1-d15ba769cbd9")
 		)
 		(embedded_fonts no)
-		(model "/Users/saryeh/Documents/GitHub/Libraries/ESP32-P4 Display Development Daughterboard/hardware/mechanical/vendor/TI/CSD19531Q5A/DQJ0008A.stp"
+		(model "${KIPRJMOD}/P4-Power-and-Functions-Aux-Board.3dshapes/DQJ0008A.stp"
 			(offset
 				(xyz 0 0 0)
 			)
