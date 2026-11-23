@@ -256,7 +256,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": "Phase 2 / single-source v0.4"
+      "sch_revision": "REV1"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -631,52 +631,52 @@
     "netclass_assignments": {},
     "netclass_patterns": [
       {
-        "pattern": "LTE_USB_P",
-        "netclass": "USB_HS"
+        "netclass": "USB_HS",
+        "pattern": "LTE_USB_P"
       },
       {
-        "pattern": "LTE_USB_N",
-        "netclass": "USB_HS"
+        "netclass": "USB_HS",
+        "pattern": "LTE_USB_N"
       },
       {
-        "pattern": "VEH_12V_RAW",
-        "netclass": "Power_12v_HighCurrent"
+        "netclass": "Power_12v_HighCurrent",
+        "pattern": "VEH_12V_RAW"
       },
       {
-        "pattern": "VEH_FUSED",
-        "netclass": "Power_12v_HighCurrent"
+        "netclass": "Power_12v_HighCurrent",
+        "pattern": "VEH_FUSED"
       },
       {
-        "pattern": "VEH_FILTER",
-        "netclass": "Power_12v_HighCurrent"
+        "netclass": "Power_12v_HighCurrent",
+        "pattern": "VEH_FILTER"
       },
       {
-        "pattern": "VEH_FET_MID",
-        "netclass": "Power_12v_HighCurrent"
+        "netclass": "Power_12v_HighCurrent",
+        "pattern": "VEH_FET_MID"
       },
       {
-        "pattern": "VEH_PROT",
-        "netclass": "Power_12v_HighCurrent"
+        "netclass": "Power_12v_HighCurrent",
+        "pattern": "VEH_PROT"
       },
       {
-        "pattern": "SYS_5V",
-        "netclass": "Power_5v_HighCurrent"
+        "netclass": "Power_5v_HighCurrent",
+        "pattern": "SYS_5V"
       },
       {
-        "pattern": "HOST_5V",
-        "netclass": "Power_5v_HighCurrent"
+        "netclass": "Power_5v_HighCurrent",
+        "pattern": "HOST_5V"
       },
       {
-        "pattern": "LTE_3V8",
-        "netclass": "Power_5v_HighCurrent"
+        "netclass": "Power_5v_HighCurrent",
+        "pattern": "LTE_3V8"
       },
       {
-        "pattern": "BUCK5_SW",
-        "netclass": "Switching_Nodes"
+        "netclass": "Switching_Nodes",
+        "pattern": "BUCK5_SW"
       },
       {
-        "pattern": "BUCK6_SW",
-        "netclass": "Switching_Nodes"
+        "netclass": "Switching_Nodes",
+        "pattern": "BUCK6_SW"
       }
     ]
   },
@@ -838,7 +838,7 @@
   },
   "sheets": [
     [
-      "c5f810bd-4f8d-4f31-8784-a9e3c72dfd6b",
+      "95ed5eda-07d0-4bd1-9d8d-498592ee8d01",
       "P4-Power-and-Functions-Aux-Board"
     ],
     [

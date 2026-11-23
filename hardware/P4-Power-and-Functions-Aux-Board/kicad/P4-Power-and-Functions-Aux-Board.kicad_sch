@@ -7213,7 +7213,7 @@
 		)
 		(instances
 			(project "P4-Power-and-Functions-Aux-Board"
-				(path "/c5f810bd-4f8d-4f31-8784-a9e3c72dfd6b"
+				(path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01"
 					(page "3")
 				)
 			)
@@ -7258,7 +7258,7 @@
 		)
 		(instances
 			(project "P4-Power-and-Functions-Aux-Board"
-				(path "/c5f810bd-4f8d-4f31-8784-a9e3c72dfd6b"
+				(path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01"
 					(page "2")
 				)
 			)
@@ -7303,7 +7303,7 @@
 		)
 		(instances
 			(project "P4-Power-and-Functions-Aux-Board"
-				(path "/c5f810bd-4f8d-4f31-8784-a9e3c72dfd6b"
+				(path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01"
 					(page "5")
 				)
 			)
@@ -7348,7 +7348,7 @@
 		)
 		(instances
 			(project "P4-Power-and-Functions-Aux-Board"
-				(path "/c5f810bd-4f8d-4f31-8784-a9e3c72dfd6b"
+				(path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01"
 					(page "4")
 				)
 			)
@@ -7359,4 +7359,5 @@
 			(page "1")
 		)
 	)
+	(embedded_fonts no)
 )
