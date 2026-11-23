@@ -1,0 +1,18 @@
+ERC report (2026-09-19T19:17:45, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+
+***** Sheet /Power/
+
+***** Sheet /Display Power & Backlight/
+
+***** Sheet /Interfaces & Nano/
+
+ ** ERC messages: 0  Errors 0  Warnings 0
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

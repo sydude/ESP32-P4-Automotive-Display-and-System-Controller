@@ -482,6 +482,7 @@
       "pin_to_pin": "warning",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
+      "same_local_global_power": "warning",
       "similar_label_and_power": "warning",
       "similar_labels": "warning",
       "similar_power": "warning",
@@ -634,8 +635,8 @@
     "meta": {
       "version": 5
     },
-    "net_colors": null,
-    "netclass_assignments": null,
+    "net_colors": {},
+    "netclass_assignments": {},
     "netclass_patterns": []
   },
   "pcbnew": {
@@ -791,7 +792,7 @@
         "uuid": "95ed5eda-07d0-4bd1-9d8d-498592ee8d01"
       }
     ],
-    "used_designators": "L201,L301,L501,L901,D201,D301-302,D601-602,D901,D1001-1004,FB901,C201-207,C301-313,C501-514,C601-607,C801-803,C901-908,Q201-202,Q301-304,Q801,J1-3,J201,J501,J701-702,J801,J901,J1001-1004,R201-206,R301-309,R501-512,R601-611,R701-706,R801-804,R901-910,R1001-1014,TP103,TP201-202,TP301-302,TP501-504,TP601-607,TP801-805,TP901-905,TP1001-1006,U201,U301,U501-502,U601-608,U701,U801-803,U901-902,F201,PWR101,PWR201,PWR301,PWR501,PWR601",
+    "used_designators": "C201-207,C301-313,C501-514,C601-607,C801-803,C901-908,D201,D301-302,D601-602,D901,D1001-1004,F201,FB901,J1-3,J201,J501,J701-702,J801,J901,J1001-1004,L201,L301,L501,L901,PWR101,PWR201,PWR301,PWR501,PWR601,Q201-202,Q301-304,Q801,R201-206,R301-309,R501-512,R601-611,R701-706,R801-804,R901-910,R1001-1014,TP103,TP201-202,TP301-302,TP501-504,TP601-607,TP801-805,TP901-905,TP1001-1006,U201,U301,U501-502,U601-608,U701,U801-803,U901-902",
     "variants": []
   },
   "sheets": [
