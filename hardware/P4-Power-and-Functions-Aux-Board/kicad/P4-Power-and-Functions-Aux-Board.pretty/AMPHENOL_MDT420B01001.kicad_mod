@@ -21930,16 +21930,7 @@
 		(layers "*.Cu" "*.Mask")
 		(uuid "92519e5f-9f40-41eb-9d23-bea65a3377dd")
 	)
-	(pad "" thru_hole circle
-		(at 0 40.2)
-		(size 5.5 5.5)
-		(drill 3.5)
-		(property pad_prop_mechanical)
-		(layers "*.Cu" "*.Mask")
-		(remove_unused_layers no)
-		(thermal_bridge_angle 90)
-		(uuid "f2a50c9b-5f48-4fae-9ac5-0ac30d8077b8")
-	)
+
 	(pad "" np_thru_hole circle
 		(at 10 0)
 		(size 1.65 1.65)

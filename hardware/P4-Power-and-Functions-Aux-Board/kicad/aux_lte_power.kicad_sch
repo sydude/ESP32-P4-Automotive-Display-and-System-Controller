@@ -3758,6 +3758,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "063b6368-bf0e-5758-a915-1adc07feb31e")
+		(property "Manufacturer" "Yageo" (at 110.49 204.47 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC1206FR-072K2L" (at 110.49 204.47 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C229510" (at 110.49 204.47 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R606"
 			(at 110.49 199.39 90)
 			(show_name no)
@@ -3835,6 +3838,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "086ea07f-5af2-5930-b560-3c21016c505a")
+		(property "Manufacturer" "Molex" (at 49.53 199.39 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J601"
 			(at 49.53 194.31 0)
 			(show_name no)
@@ -3923,6 +3927,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "16caae8a-bd6c-53dd-8b47-809d4d54d731")
+		(property "Manufacturer" "Texas Instruments" (at 64.77 77.47 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "LM76003QRNPRQ1" (at 64.77 77.47 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C2073028" (at 64.77 77.47 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U601"
 			(at 64.77 53.34 0)
 			(show_name no)
@@ -4087,6 +4094,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "1df41898-cb51-5500-af62-5a9f08de5906")
+		(property "Manufacturer" "Murata" (at 342.9 107.95 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM32ER71A226KE12L" (at 342.9 107.95 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C913632" (at 342.9 107.95 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C611"
 			(at 342.9 102.87 90)
 			(show_name no)
@@ -4164,6 +4174,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2f4dac82-7296-5423-b72e-46f393ca5f72")
+		(property "Manufacturer" "Coilcraft" (at 142.24 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C55598417" (at 142.24 48.26 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "L601"
 			(at 142.24 43.18 90)
 			(show_name no)
@@ -4252,6 +4264,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "3cca1208-8159-5ed8-8a32-758e7c1ce4bd")
+		(property "Manufacturer" "Yageo" (at 289.56 204.47 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0710KL" (at 289.56 204.47 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116677" (at 289.56 204.47 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R608"
 			(at 289.56 199.39 90)
 			(show_name no)
@@ -4329,6 +4344,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "494bad7a-0895-5b52-9bc2-06acc8e1044f")
+		(property "Manufacturer" "Murata" (at 142.24 87.63 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GRM188R71A225KE15D" (at 142.24 87.63 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C86018" (at 142.24 87.63 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C602"
 			(at 142.24 82.55 90)
 			(show_name no)
@@ -4406,6 +4424,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "50ea60b4-f3c6-5fd2-ae13-e8973bcc7166")
+		(property "Manufacturer" "KEMET" (at 275.59 107.95 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "C0603C473K1RAC7867" (at 275.59 107.95 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C3881354" (at 275.59 107.95 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C615"
 			(at 275.59 102.87 90)
 			(show_name no)
@@ -4483,6 +4504,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "68751e1e-7f22-52ae-8dc5-2df08e84e1ff")
+		(property "Manufacturer" "Ever Ohms" (at 209.55 87.63 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "TR0603B24K9P0525Z" (at 209.55 87.63 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C149931" (at 209.55 87.63 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R602"
 			(at 209.55 82.55 90)
 			(show_name no)
@@ -4560,6 +4584,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "6c60ad6d-9558-5633-bf7e-0395e984b4dd")
+		(property "Manufacturer" "Yageo" (at 289.56 182.88 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0722KL" (at 289.56 182.88 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C144680" (at 289.56 182.88 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R607"
 			(at 289.56 177.8 90)
 			(show_name no)
@@ -4637,6 +4664,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "792f64be-42a2-5555-a94b-1ce9425d095d")
+		(property "Manufacturer" "KEMET" (at 275.59 87.63 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "C0603C473K1RAC7867" (at 275.59 87.63 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C3881354" (at 275.59 87.63 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C607"
 			(at 275.59 82.55 90)
 			(show_name no)
@@ -4714,6 +4744,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7b491a50-8620-5222-9c00-089b8940568c")
+		(property "Manufacturer" "Murata" (at 342.9 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM32ER71A226KE12L" (at 342.9 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C913632" (at 342.9 48.26 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C608"
 			(at 342.9 43.18 90)
 			(show_name no)
@@ -4791,6 +4824,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "87dffd02-b17e-5907-ba74-a47804f19bd3")
+		(property "Manufacturer" "Murata" (at 342.9 68.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM32ER71A226KE12L" (at 342.9 68.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C913632" (at 342.9 68.58 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C609"
 			(at 342.9 63.5 90)
 			(show_name no)
@@ -4868,6 +4904,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9afce2f9-e73a-5e34-b50a-d9697f615e05")
+		(property "Manufacturer" "Murata" (at 275.59 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GRM32ER71H106KA12L" (at 275.59 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C77102" (at 275.59 48.26 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C605"
 			(at 275.59 43.18 90)
 			(show_name no)
@@ -5019,6 +5058,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a5402a1a-4e9c-54ff-aac9-d0a58d6c3d22")
+		(property "Manufacturer" "Panasonic" (at 209.55 68.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "ERA-3AEB6982V" (at 209.55 68.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C3924043" (at 209.55 68.58 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R601"
 			(at 209.55 63.5 90)
 			(show_name no)
@@ -5096,6 +5138,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "abc4f4cf-d245-551b-9a83-85a346711670")
+		(property "Manufacturer" "Yageo" (at 209.55 107.95 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-074R7L" (at 209.55 107.95 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C144651" (at 209.55 107.95 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R603"
 			(at 209.55 102.87 90)
 			(show_name no)
@@ -5173,6 +5218,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b6fa875c-467f-59b8-ab09-db0682b6963d")
+		(property "Manufacturer" "Murata" (at 142.24 107.95 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C105KA64D" (at 142.24 107.95 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C161212" (at 142.24 107.95 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C603"
 			(at 142.24 102.87 90)
 			(show_name no)
@@ -5324,6 +5372,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "cc7c5174-bae6-5424-9115-916a82ed4241")
+		(property "Manufacturer" "Murata" (at 342.9 87.63 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM32ER71A226KE12L" (at 342.9 87.63 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C913632" (at 342.9 87.63 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C610"
 			(at 342.9 82.55 90)
 			(show_name no)
@@ -5401,6 +5452,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ce4add91-eb6c-5aa9-bb8a-bd04cbdf129e")
+		(property "Manufacturer" "Diodes Incorporated" (at 165.1 223.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "1N4148W-7-F" (at 165.1 223.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C83528" (at 165.1 223.52 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "D601"
 			(at 165.1 218.44 0)
 			(show_name no)
@@ -5478,6 +5532,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ce7ccf4d-56a4-560a-83b6-bcfe6e214855")
+		(property "Manufacturer" "Yageo" (at 410.21 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0710KL" (at 410.21 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116677" (at 410.21 48.26 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R604"
 			(at 410.21 43.18 90)
 			(show_name no)
@@ -5555,6 +5612,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d1349517-d971-589e-83c9-c5f8c68b344a")
+		(property "Manufacturer" "Murata" (at 275.59 68.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GRM32ER71H106KA12L" (at 275.59 68.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C77102" (at 275.59 68.58 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C606"
 			(at 275.59 63.5 90)
 			(show_name no)
@@ -5632,6 +5692,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d2da0608-cf7b-533e-8f2e-ab128be5b43c")
+		(property "Manufacturer" "Lite-On" (at 218.44 198.12 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "LTV-817S-TA1-C" (at 218.44 198.12 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C109227" (at 218.44 198.12 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U602"
 			(at 218.44 191.77 0)
 			(show_name no)
@@ -5715,6 +5778,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d31ad87e-88cf-5d3a-bd6e-d0b3ae257f10")
+		(property "Manufacturer" "Yageo" (at 110.49 181.61 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC1206FR-072K2L" (at 110.49 181.61 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C229510" (at 110.49 181.61 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R605"
 			(at 110.49 176.53 90)
 			(show_name no)
@@ -5792,6 +5858,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d53fd807-56ca-5f88-9d19-819b7ac92c08")
+		(property "Manufacturer" "Murata" (at 355.6 195.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71H103KA37D" (at 355.6 195.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C85863" (at 355.6 195.58 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C612"
 			(at 355.6 190.5 90)
 			(show_name no)
@@ -5869,6 +5938,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d81716d5-adec-57c7-9164-f70a76f8779e")
+		(property "Manufacturer" "Murata" (at 142.24 68.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GRM188R71E474KA12D" (at 142.24 68.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C77052" (at 142.24 68.58 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C601"
 			(at 142.24 63.5 90)
 			(show_name no)
@@ -5946,6 +6018,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e923f1dd-4df3-5d69-aab5-749ea2752ef0")
+		(property "Manufacturer" "Murata" (at 209.55 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GRM188R71H223KA01D" (at 209.55 48.26 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C77056" (at 209.55 48.26 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C604"
 			(at 209.55 43.18 90)
 			(show_name no)
@@ -6023,6 +6098,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "f70ea63f-ed90-590d-85df-931b9bb658ea")
+		(property "Manufacturer" "Panasonic" (at 405.13 96.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C2162098" (at 405.13 96.52 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C613"
 			(at 405.13 91.44 90)
 			(show_name no)

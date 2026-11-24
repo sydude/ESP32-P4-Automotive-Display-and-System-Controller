@@ -1,0 +1,4 @@
+(version 1)
+(rule "H701 locating bore to its four solder lands per JAE SJ116266"
+  (condition "A.memberOfFootprint('H701') && B.memberOfFootprint('H701')")
+  (constraint hole_clearance (min 0.19mm)))

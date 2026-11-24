@@ -11,6 +11,9 @@
 		(company "Sy Aryeh")
 	)
 	(lib_symbols
+		(symbol "P4-Power-and-Functions-Aux-Board:AssemblyItem" (pin_names (hide yes)) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no)
+ (property "Reference" "M" (at 0 2.54 0) (effects (font (size 1 1)))) (property "Value" "AssemblyItem" (at 0 0 0) (effects (font (size 1 1))))
+ (symbol "AssemblyItem_0_1" (rectangle (start -18 4.2) (end 18 -2) (stroke (width 0.23) (type default)) (fill (type background)))))
 		(symbol "P4-Power-and-Functions-Aux-Board:C201_100nF_100V"
 			(pin_names
 				(offset 0.8)
@@ -4894,6 +4897,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2d72ca35-2faf-4096-956f-a60d57373820")
+		(property "LCSC" "C476811" (at 422.91 107.95 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J201"
 			(at 422.91 100.87 0)
 			(show_name no)
@@ -5001,6 +5005,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2ef655fa-768e-41aa-95d4-cae4fc7af433")
+		(property "LCSC" "C5249699" (at 557.53 105.41 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "F201"
 			(at 557.53 101.6 0)
 			(show_name no)
@@ -5011,7 +5016,7 @@
 				)
 			)
 		)
-		(property "Value" "5A TIME DELAY"
+		(property "Value" "5A MINI fuse holder"
 			(at 557.53 109.22 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5054,7 +5059,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Littelfuse / Keystone"
+		(property "Manufacturer" "Keystone Electronics"
 			(at 557.53 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -5065,7 +5070,7 @@
 				)
 			)
 		)
-		(property "MPN" "0297005.WXNV / 3568"
+		(property "MPN" "3568"
 			(at 557.53 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -5102,6 +5107,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2f48f3d6-e8b0-4adf-b28a-da0b4dcae870")
+		(property "LCSC" "C163421" (at 609.6 166.37 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R205"
 			(at 609.6 162.56 0)
 			(show_name no)
@@ -5155,7 +5161,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Yageo"
 			(at 609.6 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -5166,7 +5172,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "RC0603FR-076K49L"
 			(at 609.6 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -5203,6 +5209,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "32131426-574c-4648-a4b8-612a953152a1")
+		(property "LCSC" "C19862796" (at 558.8 181.61 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C207"
 			(at 558.8 177.8 0)
 			(show_name no)
@@ -5304,6 +5311,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "447c26de-13a6-457b-86cf-8328a87c8db0")
+		(property "LCSC" "C2163037" (at 608.33 120.65 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C203"
 			(at 608.33 116.84 0)
 			(show_name no)
@@ -5357,7 +5365,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Vishay"
 			(at 608.33 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -5368,7 +5376,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "MAL215097101E3"
 			(at 608.33 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -5503,6 +5511,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5a91e586-efaa-429d-b3da-c538feb6b7bf")
+		(property "LCSC" "C415406" (at 558.8 135.89 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C201"
 			(at 558.8 132.08 0)
 			(show_name no)
@@ -5556,7 +5565,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Murata"
 			(at 558.8 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -5567,7 +5576,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "GCM188R72A104KA64D"
 			(at 558.8 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -5604,6 +5613,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "60bd915c-0740-499b-a519-fc60db93d81b")
+		(property "LCSC" "C415406" (at 558.8 166.37 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C206"
 			(at 558.8 162.56 0)
 			(show_name no)
@@ -5657,7 +5667,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Murata"
 			(at 558.8 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -5668,7 +5678,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "GCM188R72A104KA64D"
 			(at 558.8 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -5705,6 +5715,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "618db3e3-0df9-40d3-a648-b4965a41c903")
+		(property "LCSC" "C116674" (at 608.33 151.13 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R204"
 			(at 608.33 147.32 0)
 			(show_name no)
@@ -5758,7 +5769,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Yageo"
 			(at 608.33 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -5769,7 +5780,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "AC0603FR-07100KL"
 			(at 608.33 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -5806,6 +5817,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "627edd0a-f3bd-42f2-aea4-77e32f1765e0")
+		(property "LCSC" "C1976790" (at 657.86 120.65 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "D201"
 			(at 657.86 116.84 0)
 			(show_name no)
@@ -5907,6 +5919,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "657871b6-0854-4f4d-b5d0-43f0c7b782c6")
+		(property "LCSC" "C22388553" (at 608.33 105.41 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C202"
 			(at 608.33 101.6 0)
 			(show_name no)
@@ -5927,7 +5940,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+		(property "Footprint" "Capacitor_SMD:C_1812_4532Metric"
 			(at 608.33 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -5960,7 +5973,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "PSA (Prosperity Dielectrics)"
 			(at 608.33 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -5971,7 +5984,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "FS43X226K500ERG"
 			(at 608.33 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -6008,6 +6021,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "6d6039ba-aeea-45ae-b774-44b9991b70c9")
+		(property "LCSC" "C193336" (at 656.59 166.37 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R206"
 			(at 656.59 162.56 0)
 			(show_name no)
@@ -6109,6 +6123,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "73c666a2-2701-4f14-b68d-4c3d65731e61")
+		(property "LCSC" "C3215600" (at 488.95 113.03 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U201"
 			(at 488.95 100.87 0)
 			(show_name no)
@@ -6243,6 +6258,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8a8ead39-ced8-414a-8f00-8571d8bd2557")
+		(property "LCSC" "C1882617" (at 657.86 151.13 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R202"
 			(at 657.86 147.32 0)
 			(show_name no)
@@ -6296,7 +6312,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Yageo"
 			(at 657.86 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -6307,7 +6323,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "AF0603FR-0756K2L"
 			(at 657.86 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -6344,6 +6360,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8ce96c83-f2a5-42aa-881c-301c3c92d579")
+		(property "LCSC" "C2760462" (at 488.95 144.78 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "Q201"
 			(at 488.95 135.16 0)
 			(show_name no)
@@ -6463,6 +6480,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a3af1dcb-31c1-4be2-9544-6c02c8d12389")
+		(property "LCSC" "C2760462" (at 488.95 176.53 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "Q202"
 			(at 488.95 166.91 0)
 			(show_name no)
@@ -6582,6 +6600,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "bac6aafe-8daf-4a33-8c91-2e6e5c34f18d")
+		(property "LCSC" "C415406" (at 557.53 151.13 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C205"
 			(at 557.53 147.32 0)
 			(show_name no)
@@ -6635,7 +6654,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Murata"
 			(at 557.53 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -6646,7 +6665,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "GCM188R72A104KA64D"
 			(at 557.53 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -6781,6 +6800,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "eb301f00-f786-4e4f-9b52-5532ad61c8d8")
+		(property "LCSC" "C2042353" (at 557.53 120.65 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "L201"
 			(at 557.53 116.84 0)
 			(show_name no)
@@ -6882,6 +6902,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "fb688845-f166-4b33-aafc-8b4a944deff2")
+		(property "LCSC" "C77102" (at 657.86 105.41 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C204"
 			(at 657.86 101.6 0)
 			(show_name no)
@@ -6935,7 +6956,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Murata"
 			(at 657.86 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -6946,7 +6967,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "GRM32ER71H106KA12L"
 			(at 657.86 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -6983,6 +7004,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "fc817d42-0b66-4503-8c6b-a2825d192948")
+		(property "LCSC" "C2832126" (at 609.6 135.89 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R201"
 			(at 609.6 132.08 0)
 			(show_name no)
@@ -7036,7 +7058,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Ever Ohms"
 			(at 609.6 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -7047,7 +7069,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "CRH2512F1R00E04S"
 			(at 609.6 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -7084,6 +7106,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "fe7b63fd-83dd-4ec1-af84-c1873be847c4")
+		(property "LCSC" "C116677" (at 657.86 135.89 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R203"
 			(at 657.86 132.08 0)
 			(show_name no)
@@ -7137,7 +7160,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" ""
+		(property "Manufacturer" "Yageo"
 			(at 657.86 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -7148,7 +7171,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "AC0603FR-0710KL"
 			(at 657.86 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -7360,4 +7383,13 @@
 		)
 	)
 	(embedded_fonts no)
+
+	(symbol (lib_id "P4-Power-and-Functions-Aux-Board:AssemblyItem") (at 340 230 0) (unit 1) (body_style 1) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no) (dnp no) (uuid "80e0d313-8850-576b-a93e-a2e3c7308369")
+		(property "Reference" "F202" (at 340 227.46 0) (effects (font (size 1 1))))
+		(property "Value" "5 A MINI blade fuse" (at 340 230 0) (effects (font (size 1 1))))
+		(property "Footprint" "" (at 340 230 0) (hide yes) (effects (font (size 1 1))))
+		(property "Manufacturer" "Littelfuse" (at 340 230 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "0297005.WXNV" (at 340 230 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C151093" (at 340 230 0) (hide yes) (effects (font (size 1 1))))
+		(instances (project "P4-Power-and-Functions-Aux-Board" (path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01" (reference "F202") (unit 1)))))
 )
