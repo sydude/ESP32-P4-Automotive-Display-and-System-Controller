@@ -15,7 +15,7 @@ The top of the AUX board faces away from the LCD. In the rear view the display r
 | H3, lower left | 83.95 | 62.50 | 38.70 | 60.80 |
 | H4, lower right | 141.95 | 62.50 | 96.70 | 60.80 |
 
-All dimensions are in millimeters. The four posts marked in red are M2.5, height 8 mm. They have 58.00 × 49.00 mm center spacing. H1–H4 are locked Ø2.70 mm non-plated holes. The layout reserves Ø6.40 mm at each screw for its head and standoff. Use the placement drawing at actual size to check the pattern. The card retention hole at J1 is separate.
+All dimensions are in millimeters. The four posts marked in red are M2.5, height 8 mm. They have 58.00 × 49.00 mm center spacing. H1–H4 are locked Ø2.70 mm non-plated holes. The layout reserves Ø6.40 mm at each screw for its head and standoff. Use the placement drawing at actual size to check the pattern. H701 is the separate modem retainer.
 
 All external cable headers mate vertically, including the Micro-Fit battery header and the JST GH headers J3 and J701. With the real LCD, check solder-tail clearance over its components, DSI and power cable access, and the mated height behind the dash. For screw selection measure usable thread depth and allow for PCB and washer thickness. The drawing specifies post height only.
 
@@ -74,7 +74,7 @@ On the reviewed WIFI6-DB schematic, H2 programming USB-C VBUS connects to USB0_5
 - **LTE USB** uses the host's separate P1 four-pin HS header. Use a short shielded USB harness with a 90 Ω differential pair. P1 pin 2 to J701 pin 2 is D−, P1 pin 3 to J701 pin 3 is D+, and P1 pin 4 to J701 pin 4 is ground. Omit pin 1 at both ends. The modem takes power at J1 from U601. A matching pitch alone does not establish mating compatibility between connector families.
 - **CAN** uses the P4's native Classical CAN controllers. J401 and J402 each use pins 1/2/3 for CANH/CANL/GND. Fit JP411 or JP412 only if that port is a bus end. For the Haltech bus use 1 Mbit/s. Both transceivers start recessive.
 - **RS-485** uses J3 pins 1/2/3 for ground, U2 A (noninverting) and U2 B (inverting). Pin 4 is open. Match the accessory using polarity or its datasheet. Fit JP413 only at a bus end. Driver enable defaults low.
-- **SIM** uses J702, a hinged nano-SIM holder. Insert the SIM with power off. J1 includes a mounting hole at the inherited 40.2 mm offset. The SIMCom card is 42.0 × 31.4 mm. Check screw, standoff height and antenna cable clearance with the actual hardware before fabrication.
+- **SIM** uses J702, a hinged nano-SIM holder. Insert the SIM with power off. H701 occupies the modem notch center 40.20 mm from the J1 datum. The SIMCom card is 42.0 × 31.4 mm. H701 is a JAE SM3ZS067U410-NUT1-R1200 with an M2 thread, a 2.45 mm nominal card shoulder, and a 0.65 mm locating lip. Four separate solder lands connect to ground. H702 is supplied loose for installation with the customer’s modem. Check antenna cable and screw-head clearance on the first physical assembly.
 
 [TCAN1042V-Q1](https://www.ti.com/product/TCAN1042V-Q1) · [74LVC125A power-off behavior](https://assets.nexperia.com/documents/data-sheet/74LVC125A.pdf) · [SIMCom M.2 module](https://en.simcom.com/product/SIM7600X-H-M2.html)
 
@@ -90,6 +90,26 @@ F.Cu carries the components and the short switching loops. Each LM76003 has sepa
 
 J701 pads 2 and 3 connect through the ESD diodes to J1 pins 9 and 7. Both USB traces measure 10.184 mm pad-center to pad-center on F.Cu, with zero signal vias. The coupled sections use 0.15 mm traces with a nominal 0.16 mm gap. The design assumes a 0.10 mm F.Cu–In1.Cu dielectric. Have the fabricator confirm the 90 Ω differential geometry for its actual stackup. Identify the cable data pair and continuity-check its polarity end to end.
 
-KiCad 10.0.8 reports zero ERC errors or warnings, zero PCB DRC violations, zero unconnected items and zero schematic parity findings. The board contains 145 footprints including H1–H4. A test Gerber and drill export produced a separate non-plated drill file with four Ø2.70 mm hits at the specified 58.00 × 49.00 mm pitch.
+KiCad 10.0.8 verification on November 25, 2026 passed ERC and PCB DRC after copper refill and again on reopening the saved PCB for DRC. The configured checks report zero errors, warnings, unconnected items and schematic parity findings. Both C202 pads clear the routed edge by 0.804 mm. Both CAN pairs run on F.Cu without signal vias.
+
+[Download the verified PCBWay package](../fabrication/Raptor-REV1-PCBWay.zip). It contains the bare-board Gerber/drill ZIP, the BOM, the millimeter placement CSV and the fabrication and assembly notes. The bare-board data includes four copper layers, both masks, both paste layers, both legends, the routed profile, the Gerber job file and separate plated and non-plated drill files. The drill files contain 350 plated and seven non-plated holes. The four Ø2.70 mm display mounts measure 58.00 × 49.00 mm center to center. The two J1 locating drills follow Amphenol’s Ø1.10 and Ø1.60 mm nominal dimensions. H701 has one Ø2.60 mm non-plated bore, four top copper lands with matching paste apertures, and four vias connected to the filled In1.Cu ground plane.
+
+All 141 fitted BOM designators match their schematic and board sourcing fields and top-side placements. All 141 also import as valid solids in the populated STEP export, with zero solid intersections between fitted components. The customer-supplied module was checked separately with a flat 0.80 mm card body using SIMCom Figure 4 and the J1 model’s insertion stop. At the 2.45 mm standoff shoulder, the card contacts H701 without solid overlap. The modeled socket spring contacts engage the card. The socket and standoff locating features clear their board holes.
+
+| Nominal clearance at J702 | Distance |
+|---|---:|
+| Installed modem PCB to closed SIM holder, nearest surfaces | 1.35 mm |
+| Installed modem PCB to closed SIM holder, in plan view | 0.77 mm |
+| Installed modem PCB to SIM-holder courtyard, in plan view | 0.13 mm |
+| Existing traced modem drawing to SIM-holder courtyard, in plan view | 0.084 mm |
+| J1 socket body to closed SIM holder, nearest surfaces | 2.21 mm |
+
+These measurements cover the nominal closed assembly. Confirm module insertion, lid travel and antenna leads on the first article. Ask PCBWay to confirm the finished Ø2.60 ±0.03 mm H701 bore and the USB stackup at quotation.
 
 Before ordering, check the 1:1 mechanical drawing against the display with its cables installed. Verify actual standoff thread depth, connector tails, modem retainer and enclosure depth. On the prototype, check key-off current, both supply rails under combined load, USB power transitions, thermal rise and modem rail droop under transmit. Vehicle transient protection and cold-crank recovery require hardware tests.
+
+## PCBWay assembly and sourcing
+
+Use [Raptor-REV1-PCBWay-BOM.csv](Raptor-REV1-PCBWay-BOM.csv) for per-board quantities. PCBWay sources J1, the soldered standoff H701, its loose screw H702, the MINI fuse and holder, and the three loose termination shunts. M701 is the customer-supplied modem. Its purchase quantity is zero. TP701 is a bare copper test pad. Check rows marked for quotation before placing a turnkey order.
+
+The Amphenol MDT420B01001 body is 4.2 mm maximum. The nominal housing slot in the project STEP spans 2.40 to 3.32 mm above the host board. SIMCom specifies 0.80 ±0.08 mm card thickness and a Ø3.50 mm mounting notch. Use the lower card surface and H701’s shoulder for the clearance check. JAE specifies four annular sector lands around a Ø2.60 ±0.03 mm locating bore. The local relief in the modem keepout accommodates H701’s courtyard. [Amphenol drawing](https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/mdtxxxxxx001.pdf) · [JAE drawing SJ116266](https://www.infinity-semiconductor.com/datasheet/5e-SM3ZS067U310-NUT1-R1800.pdf) · [SIMCom guide, pp. 20 and 59](../Mechanical/SIM7600X-M2_Hardware_Design_V1.01.pdf)

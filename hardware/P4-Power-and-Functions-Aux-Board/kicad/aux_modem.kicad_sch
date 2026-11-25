@@ -9,6 +9,13 @@
 		(rev "Raptor REV1")
 	)
 	(lib_symbols
+		(symbol "P4-Power-and-Functions-Aux-Board:AssemblyItem" (pin_names (hide yes)) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no)
+ (property "Reference" "M" (at 0 2.54 0) (effects (font (size 1 1)))) (property "Value" "AssemblyItem" (at 0 0 0) (effects (font (size 1 1))))
+ (symbol "AssemblyItem_0_1" (rectangle (start -18 4.2) (end 18 -2) (stroke (width 0.23) (type default)) (fill (type background)))))
+		(symbol "P4-Power-and-Functions-Aux-Board:ModemStandoff" (pin_names (hide yes)) (pin_numbers (hide yes)) (exclude_from_sim yes) (in_bom yes) (on_board yes) (in_pos_files yes)
+ (property "Reference" "H" (at 0 6.35 0) (effects (font (size 1 1)))) (property "Value" "ModemStandoff" (at 0 3.81 0) (effects (font (size 1 1))))
+ (symbol "ModemStandoff_0_1" (circle (center 0 1.27) (radius 1.27) (stroke (width 0.7) (type default)) (fill (type none))))
+ (symbol "ModemStandoff_1_1" (pin passive line (at 0 -2.54 90) (length 2.54) (name "GND" (effects (font (size 1 1)))) (number "1" (effects (font (size 1 1)))))))
 		(symbol "Connector:TestPoint"
 			(pin_numbers
 				(hide yes)
@@ -4841,6 +4848,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "418a9ca7-1c43-5b1e-a8ba-820b6911490b")
+		(property "Manufacturer" "Yageo" (at 57.15 223.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0722KL" (at 57.15 223.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C144680" (at 57.15 223.52 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R704"
 			(at 57.15 218.44 90)
 			(show_name no)
@@ -4918,6 +4928,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "4be3ab85-b563-58ad-951d-9043500f44bc")
+		(property "Manufacturer" "Murata" (at 327.66 149.86 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 327.66 149.86 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 327.66 149.86 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C701"
 			(at 327.66 144.78 90)
 			(show_name no)
@@ -4995,6 +5008,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "50f3e9ab-8566-53e4-b8ae-b307b4e1ccf3")
+		(property "Manufacturer" "onsemi" (at 405.13 88.9 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "ESD9M5.0ST5G" (at 405.13 88.9 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C242267" (at 405.13 88.9 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "D703"
 			(at 405.13 83.82 0)
 			(show_name no)
@@ -5072,6 +5088,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5733fe96-cc6f-5c5e-b5b4-0da015ac51d7")
+		(property "Manufacturer" "Yageo" (at 327.66 245.11 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0722KL" (at 327.66 245.11 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C144680" (at 327.66 245.11 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R709"
 			(at 327.66 240.03 90)
 			(show_name no)
@@ -5149,6 +5168,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5c542d97-f298-526e-a985-ccd0ac6f9aff")
+		(property "Manufacturer" "Yageo" (at 241.3 105.41 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "RC0603JR-070RL" (at 241.3 105.41 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C95177" (at 241.3 105.41 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R702"
 			(at 241.3 100.33 90)
 			(show_name no)
@@ -5226,6 +5248,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5d1029f9-f450-5566-9ebe-a92caf9aa32e")
+		(property "Manufacturer" "onsemi" (at 238.76 67.31 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "ESD9M5.0ST5G" (at 238.76 67.31 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C242267" (at 238.76 67.31 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "D702"
 			(at 238.76 62.23 0)
 			(show_name no)
@@ -5298,9 +5323,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "64108363-fc6b-5a70-a04a-b50d0a9d1c87")
 		(property "Reference" "TP701"
@@ -5377,6 +5402,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "6620301b-2820-5318-b2bf-6f195ab4c7b7")
+		(property "Manufacturer" "Yageo" (at 190.5 220.98 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0710KL" (at 190.5 220.98 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116677" (at 190.5 220.98 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R706"
 			(at 190.5 215.9 90)
 			(show_name no)
@@ -5454,6 +5482,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "6899e6ef-5d97-560f-9ea5-76accab9b1ee")
+		(property "Manufacturer" "onsemi" (at 405.13 120.65 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "ESD9M5.0ST5G" (at 405.13 120.65 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C242267" (at 405.13 120.65 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "D705"
 			(at 405.13 115.57 0)
 			(show_name no)
@@ -5531,6 +5562,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "781ba7ce-b10b-5e64-b6fc-00a292829156")
+		(property "Manufacturer" "Yageo" (at 241.3 120.65 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0722RL" (at 241.3 120.65 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C138283" (at 241.3 120.65 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R703"
 			(at 241.3 115.57 90)
 			(show_name no)
@@ -5608,6 +5642,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7b60e152-dbf3-5771-a1ac-fb42cd146dbe")
+		(property "Manufacturer" "Yageo" (at 392.43 245.11 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-07100KL" (at 392.43 245.11 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116674" (at 392.43 245.11 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R711"
 			(at 392.43 240.03 90)
 			(show_name no)
@@ -5685,6 +5722,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "81c3c124-b02f-5d7f-b970-6f7052acdf41")
+		(property "Manufacturer" "JST" (at 166.37 64.77 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C161692" (at 166.37 64.77 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J701"
 			(at 166.37 54.61 0)
 			(show_name no)
@@ -5785,6 +5824,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "83d6a658-a21b-55e6-8d66-bba9cd0c0663")
+		(property "Manufacturer" "Murata" (at 163.83 100.33 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C105KA64D" (at 163.83 100.33 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C161212" (at 163.83 100.33 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C702"
 			(at 163.83 95.25 90)
 			(show_name no)
@@ -5862,6 +5904,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "89175820-9a3e-54e6-b842-ccc5fbadd7e5")
+		(property "Manufacturer" "Murata" (at 163.83 118.11 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 163.83 118.11 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 163.83 118.11 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C703"
 			(at 163.83 113.03 90)
 			(show_name no)
@@ -5939,6 +5984,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "94b967e1-c537-5bf6-a6eb-65dccd6b125c")
+		(property "Manufacturer" "onsemi" (at 405.13 105.41 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "ESD9M5.0ST5G" (at 405.13 105.41 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C242267" (at 405.13 105.41 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "D704"
 			(at 405.13 100.33 0)
 			(show_name no)
@@ -6016,6 +6064,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9cc69cd3-6319-5d09-83fa-3a0533dd50db")
+		(property "Manufacturer" "Yageo" (at 57.15 243.84 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-07100KL" (at 57.15 243.84 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116674" (at 57.15 243.84 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R705"
 			(at 57.15 238.76 90)
 			(show_name no)
@@ -6093,6 +6144,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a1270070-877d-5b01-9370-ed18c8715878")
+		(property "Manufacturer" "Diodes Incorporated" (at 261.62 223.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "MMBT3906-7-F" (at 261.62 223.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C82762" (at 261.62 223.52 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "Q702"
 			(at 261.62 217.17 0)
 			(show_name no)
@@ -6173,6 +6227,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a70fb38b-f20a-56aa-8573-dc57c0c709a0")
+		(property "Manufacturer" "onsemi" (at 238.76 50.8 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "ESD9M5.0ST5G" (at 238.76 50.8 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C242267" (at 238.76 50.8 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "D701"
 			(at 238.76 45.72 0)
 			(show_name no)
@@ -6250,6 +6307,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a9be6bf7-c087-58d5-af95-7631e92f73b4")
+		(property "Manufacturer" "Same Sky (CUI Devices)" (at 330.2 110.49 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "NSIM-2-C" (at 330.2 110.49 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C29799059" (at 330.2 110.49 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J702"
 			(at 330.2 101.6 0)
 			(show_name no)
@@ -6345,6 +6405,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ad8b8aec-216a-57fe-9858-f53580b82cb3")
+		(property "Manufacturer" "Yageo" (at 190.5 246.38 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 190.5 246.38 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 190.5 246.38 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R707"
 			(at 190.5 241.3 90)
 			(show_name no)
@@ -6422,6 +6485,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b26572e1-95df-5dff-9e58-ae0a4a1e3c23")
+		(property "Manufacturer" "Diodes Incorporated" (at 121.92 223.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "MMBT3904-7-F" (at 121.92 223.52 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C94514" (at 121.92 223.52 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "Q701"
 			(at 121.92 217.17 0)
 			(show_name no)
@@ -6502,6 +6568,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c370d672-8ba4-570a-a0d5-3654418ece46")
+		(property "Manufacturer" "Yageo" (at 327.66 220.98 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-074K7L" (at 327.66 220.98 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116697" (at 327.66 220.98 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R708"
 			(at 327.66 215.9 90)
 			(show_name no)
@@ -6579,6 +6648,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e8cc59c9-b58b-5c2b-b819-9c44a9d5c77a")
+		(property "Manufacturer" "Amphenol" (at 69.85 101.6 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C4594496" (at 69.85 101.6 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J1"
 			(at 69.85 48.26 0)
 			(show_name no)
@@ -6589,7 +6660,7 @@
 				)
 			)
 		)
-		(property "Value" "SIM7600G-H-M2"
+		(property "Value" "M.2 B-key socket"
 			(at 69.85 50.8 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6868,6 +6939,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "eb777410-a8b4-58f8-b89c-b312c44cf4a7")
+		(property "Manufacturer" "Yageo" (at 241.3 88.9 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0722RL" (at 241.3 88.9 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C138283" (at 241.3 88.9 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R701"
 			(at 241.3 83.82 90)
 			(show_name no)
@@ -6945,6 +7019,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "fdc81e33-b925-5f25-b0e7-3bee4635313d")
+		(property "Manufacturer" "Yageo" (at 392.43 220.98 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-07100KL" (at 392.43 220.98 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116674" (at 392.43 220.98 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R710"
 			(at 392.43 215.9 90)
 			(show_name no)
@@ -7011,4 +7088,34 @@
 			)
 		)
 	)
+
+	(symbol (lib_id "P4-Power-and-Functions-Aux-Board:ModemStandoff") (at 71.12 172.72 0) (unit 1) (body_style 1) (exclude_from_sim yes) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no) (uuid "6fceb2b3-dfc0-5d77-a118-741f0c55da55")
+		(property "Reference" "H701" (at 71.12 166.72 0) (effects (font (size 1 1))))
+		(property "Value" "Modem standoff" (at 71.12 168.92 0) (effects (font (size 1 1))))
+		(property "Footprint" "P4-Power-and-Functions-Aux-Board:JAE_SM3ZS067U410-NUT1" (at 71.12 172.72 0) (hide yes) (effects (font (size 1 1))))
+		(property "Manufacturer" "JAE Electronics" (at 71.12 172.72 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "SM3ZS067U410-NUT1-R1200" (at 71.12 172.72 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C5137457" (at 71.12 172.72 0) (hide yes) (effects (font (size 1 1))))
+		(pin "1" (uuid "b4bacb7a-b676-5627-af72-0bf02f4e8043"))
+		(instances (project "P4-Power-and-Functions-Aux-Board" (path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01/af86d82e-846e-5cb2-a928-a1e191f0d802" (reference "H701") (unit 1)))))
+
+	(symbol (lib_id "P4-Power-and-Functions-Aux-Board:AssemblyItem") (at 131 170 0) (unit 1) (body_style 1) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no) (dnp no) (uuid "70ceb446-dec0-5be2-a618-7c120b55d8bc")
+		(property "Reference" "H702" (at 131 167.46 0) (effects (font (size 1 1))))
+		(property "Value" "Modem retaining screw" (at 131 170 0) (effects (font (size 1 1))))
+		(property "Footprint" "" (at 131 170 0) (hide yes) (effects (font (size 1 1))))
+		(property "Manufacturer" "MODDIY" (at 131 170 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "CM2X3-4.5" (at 131 170 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "" (at 131 170 0) (hide yes) (effects (font (size 1 1))))
+		(instances (project "P4-Power-and-Functions-Aux-Board" (path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01/af86d82e-846e-5cb2-a928-a1e191f0d802" (reference "H702") (unit 1)))))
+
+	(symbol (lib_id "P4-Power-and-Functions-Aux-Board:AssemblyItem") (at 185 170 0) (unit 1) (body_style 1) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no) (dnp yes) (uuid "864dc8f2-9e7d-5790-afbb-ab8e08445f5e")
+		(property "Reference" "M701" (at 185 167.46 0) (effects (font (size 1 1))))
+		(property "Value" "SIM7600G-H-M2" (at 185 170 0) (effects (font (size 1 1))))
+		(property "Footprint" "" (at 185 170 0) (hide yes) (effects (font (size 1 1))))
+		(property "Manufacturer" "SIMCom" (at 185 170 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "SIM7600G-H-M2" (at 185 170 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "" (at 185 170 0) (hide yes) (effects (font (size 1 1))))
+		(instances (project "P4-Power-and-Functions-Aux-Board" (path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01/af86d82e-846e-5cb2-a928-a1e191f0d802" (reference "M701") (unit 1)))))
+
+	(global_label "GND" (shape bidirectional) (at 71.12 175.26 180) (effects (font (size 0.9 0.9)) (justify right)) (uuid "bc11381c-8ad1-5e6b-a1ec-883a29d42a47"))
 )

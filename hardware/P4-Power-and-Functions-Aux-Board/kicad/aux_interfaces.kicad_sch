@@ -9,6 +9,9 @@
 		(rev "Raptor REV1")
 	)
 	(lib_symbols
+		(symbol "P4-Power-and-Functions-Aux-Board:AssemblyItem" (pin_names (hide yes)) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no)
+ (property "Reference" "M" (at 0 2.54 0) (effects (font (size 1 1)))) (property "Value" "AssemblyItem" (at 0 0 0) (effects (font (size 1 1))))
+ (symbol "AssemblyItem_0_1" (rectangle (start -18 4.2) (end 18 -2) (stroke (width 0.23) (type default)) (fill (type background)))))
 		(symbol "Connector_Generic:Conn_01x02"
 			(pin_names
 				(offset 1.016)
@@ -6515,6 +6518,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "009a42b7-fd34-5aea-a876-309ca1575fa3")
+		(property "Manufacturer" "Nexperia" (at 66.04 267.97 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "74LVC125APW,118" (at 66.04 267.97 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C6059" (at 66.04 267.97 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U410"
 			(at 66.04 255.27 0)
 			(show_name no)
@@ -6628,6 +6634,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "15a99a42-8928-5494-b2a6-31db546c21a8")
+		(property "Manufacturer" "Nexperia" (at 130.81 54.61 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "PESD2CANFD24V-TR" (at 130.81 54.61 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C552486" (at 130.81 54.61 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U6"
 			(at 130.81 48.26 0)
 			(show_name no)
@@ -6708,6 +6717,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "258fa532-1ed5-54b6-8dd6-56d17f7ccf31")
+		(property "Manufacturer" "Murata" (at 265.43 110.49 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 265.43 110.49 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 265.43 110.49 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C412"
 			(at 265.43 105.41 90)
 			(show_name no)
@@ -6785,6 +6797,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "293e468f-dba9-5a57-ae41-1498c0e1d135")
+		(property "Manufacturer" "Yageo" (at 302.26 248.92 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 302.26 248.92 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 302.26 248.92 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R424"
 			(at 302.26 243.84 90)
 			(show_name no)
@@ -6862,6 +6877,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2adf07d7-36f6-54c2-9ccd-1630035178a1")
+		(property "Manufacturer" "Yageo" (at 302.26 265.43 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 302.26 265.43 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 302.26 265.43 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R425"
 			(at 302.26 260.35 90)
 			(show_name no)
@@ -6939,6 +6957,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "311bb7c7-8fee-5958-9222-e47dc89108cc")
+		(property "Manufacturer" "Yageo" (at 240.03 248.92 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 240.03 248.92 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 240.03 248.92 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R420"
 			(at 240.03 243.84 90)
 			(show_name no)
@@ -7016,6 +7037,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "403c625e-d841-557f-a336-618387337b3c")
+		(property "Manufacturer" "Yageo" (at 330.2 180.34 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC1206FR-07120RL" (at 330.2 180.34 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C229293" (at 330.2 180.34 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R12"
 			(at 330.2 175.26 90)
 			(show_name no)
@@ -7093,6 +7117,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "4fa3a21f-cd39-5859-93d9-2a81f33e991f")
+		(property "Manufacturer" "Murata" (at 265.43 176.53 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 265.43 176.53 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 265.43 176.53 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C4"
 			(at 265.43 171.45 90)
 			(show_name no)
@@ -7170,6 +7197,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "548e77f1-c588-58ab-bf95-d3175801b54a")
+		(property "Manufacturer" "Yageo" (at 328.93 114.3 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC1206FR-07120RL" (at 328.93 114.3 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C229293" (at 328.93 114.3 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R412"
 			(at 328.93 109.22 90)
 			(show_name no)
@@ -7247,6 +7277,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "553b6338-5757-5fde-b489-419e9e4d0117")
+		(property "Manufacturer" "Yageo" (at 374.65 264.16 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-07100KL" (at 374.65 264.16 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116674" (at 374.65 264.16 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R433"
 			(at 374.65 259.08 90)
 			(show_name no)
@@ -7324,6 +7357,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5c60a7f9-3857-5715-a0e2-43e59ae55b34")
+		(property "Manufacturer" "Nexperia" (at 130.81 119.38 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "PESD2CANFD24V-TR" (at 130.81 119.38 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C552486" (at 130.81 119.38 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U5"
 			(at 130.81 113.03 0)
 			(show_name no)
@@ -7404,6 +7440,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5cd23d96-e74c-5524-b84d-486491a4113d")
+		(property "Manufacturer" "Murata" (at 265.43 63.5 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 265.43 63.5 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 265.43 63.5 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C411"
 			(at 265.43 58.42 90)
 			(show_name no)
@@ -7481,6 +7520,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "67056e10-363d-5e61-9d78-aa9cafd4bb63")
+		(property "Manufacturer" "Yageo" (at 374.65 279.4 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-07100KL" (at 374.65 279.4 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116674" (at 374.65 279.4 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R434"
 			(at 374.65 274.32 90)
 			(show_name no)
@@ -7558,6 +7600,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "71d8d640-85c1-5aa4-950c-ddd4d9a283a5")
+		(property "Manufacturer" "Murata" (at 157.48 295.91 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 157.48 295.91 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 157.48 295.91 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C419"
 			(at 157.48 290.83 90)
 			(show_name no)
@@ -7635,6 +7680,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7463c0a1-c7fc-58cc-a6be-766a24a9d84f")
+		(property "Manufacturer" "Murata" (at 64.77 295.91 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 64.77 295.91 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 64.77 295.91 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C418"
 			(at 64.77 290.83 90)
 			(show_name no)
@@ -7786,6 +7834,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "84d4314a-da7a-50eb-b4f9-ca4348ea9c28")
+		(property "Manufacturer" "Hanxia" (at 397.51 119.38 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "HX PZ2.54-1x2P ZZ" (at 397.51 119.38 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C32713268" (at 397.51 119.38 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "JP412"
 			(at 397.51 114.3 0)
 			(show_name no)
@@ -7863,6 +7914,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8b7a2dc6-d4cb-5830-8773-7ff14568dcc9")
+		(property "Manufacturer" "Molex" (at 201.93 54.61 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J401"
 			(at 201.93 46.99 0)
 			(show_name no)
@@ -7954,6 +8006,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8d82dd94-f2cc-5845-9218-e54440ca3d49")
+		(property "Manufacturer" "Texas Instruments" (at 64.77 119.38 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "TCAN1042VDRQ1" (at 64.77 119.38 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C485806" (at 64.77 119.38 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U1"
 			(at 64.77 110.49 0)
 			(show_name no)
@@ -8049,6 +8104,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "90713bb8-57a9-5b95-bf29-ea145baf9165")
+		(property "Manufacturer" "JST" (at 204.47 190.5 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C161692" (at 204.47 190.5 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J3"
 			(at 204.47 180.34 0)
 			(show_name no)
@@ -8149,6 +8206,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "912c3bd3-87b4-5112-b82a-14b42219bef0")
+		(property "Manufacturer" "Murata" (at 265.43 195.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GRM21BR71A106KE51L" (at 265.43 195.58 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C86038" (at 265.43 195.58 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C5"
 			(at 265.43 190.5 90)
 			(show_name no)
@@ -8226,6 +8286,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "930fbc91-1698-5269-accc-4fe3fca8e849")
+		(property "Manufacturer" "Yageo" (at 374.65 295.91 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-07100KL" (at 374.65 295.91 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116674" (at 374.65 295.91 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R435"
 			(at 374.65 290.83 90)
 			(show_name no)
@@ -8303,6 +8366,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9b3cbe2d-874b-562c-a6c1-dfa5f3df8f7c")
+		(property "Manufacturer" "Yageo" (at 302.26 297.18 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 302.26 297.18 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 302.26 297.18 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R427"
 			(at 302.26 292.1 90)
 			(show_name no)
@@ -8380,6 +8446,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9cbc86f9-db52-59cc-b289-372f30aa4008")
+		(property "Manufacturer" "Semtech" (at 134.62 187.96 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "SM712.TCT" (at 134.62 187.96 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C12067" (at 134.62 187.96 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U3"
 			(at 134.62 182.88 0)
 			(show_name no)
@@ -8515,6 +8584,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0444c7b-19b0-50b9-a284-df682b14d07e")
+		(property "Manufacturer" "Texas Instruments" (at 64.77 54.61 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "TCAN1042VDRQ1" (at 64.77 54.61 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C485806" (at 64.77 54.61 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U4"
 			(at 64.77 45.72 0)
 			(show_name no)
@@ -8610,6 +8682,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "abbf6ef2-946c-5d17-a4a3-134722bf48ee")
+		(property "Manufacturer" "Murata" (at 265.43 45.72 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 265.43 45.72 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 265.43 45.72 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C410"
 			(at 265.43 40.64 90)
 			(show_name no)
@@ -8687,6 +8762,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b0d0d050-718c-50d1-a1fb-6466c1c751bf")
+		(property "Manufacturer" "Hanxia" (at 397.51 185.42 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "HX PZ2.54-1x2P ZZ" (at 397.51 185.42 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C32713268" (at 397.51 185.42 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "JP413"
 			(at 397.51 180.34 0)
 			(show_name no)
@@ -8764,6 +8842,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b3f2eaba-66a7-594a-b110-d36031126a4f")
+		(property "Manufacturer" "Yageo" (at 240.03 280.67 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 240.03 280.67 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 240.03 280.67 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R422"
 			(at 240.03 275.59 90)
 			(show_name no)
@@ -8841,6 +8922,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b44d4efe-d110-589d-b7c2-5cf4d559e5f4")
+		(property "Manufacturer" "Yageo" (at 240.03 297.18 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 240.03 297.18 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 240.03 297.18 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R423"
 			(at 240.03 292.1 90)
 			(show_name no)
@@ -8918,6 +9002,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b8bdd858-a6ad-5ef1-96a9-c9c81bcee1a1")
+		(property "Manufacturer" "Yageo" (at 328.93 49.53 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC1206FR-07120RL" (at 328.93 49.53 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C229293" (at 328.93 49.53 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R411"
 			(at 328.93 44.45 90)
 			(show_name no)
@@ -8995,6 +9082,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "bb960f5e-8e49-5e5b-9380-305dc4b6347e")
+		(property "Manufacturer" "Yageo" (at 240.03 265.43 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 240.03 265.43 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 240.03 265.43 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R421"
 			(at 240.03 260.35 90)
 			(show_name no)
@@ -9072,6 +9162,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c086431e-35a9-5edc-9e73-c94d971ae625")
+		(property "Manufacturer" "Molex" (at 90.17 375.92 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J410"
 			(at 90.17 355.6 0)
 			(show_name no)
@@ -9193,6 +9284,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c16fecef-a269-5399-9fac-a0424a2846df")
+		(property "Manufacturer" "Molex" (at 201.93 119.38 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "J402"
 			(at 201.93 111.76 0)
 			(show_name no)
@@ -9284,6 +9376,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c4fd80f4-441f-597f-838d-8e115821f260")
+		(property "Manufacturer" "Yageo" (at 374.65 247.65 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-07100KL" (at 374.65 247.65 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C116674" (at 374.65 247.65 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R432"
 			(at 374.65 242.57 90)
 			(show_name no)
@@ -9361,6 +9456,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c5ea1fa9-42ba-5876-bbb4-d9a147d4d9f2")
+		(property "Manufacturer" "Nexperia" (at 157.48 267.97 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "74LVC125APW,118" (at 157.48 267.97 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C6059" (at 157.48 267.97 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U411"
 			(at 157.48 255.27 0)
 			(show_name no)
@@ -9474,6 +9572,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d4523903-5de7-5ef8-b588-0492a2da4689")
+		(property "Manufacturer" "Yageo" (at 302.26 280.67 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "AC0603FR-0747KL" (at 302.26 280.67 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C111134" (at 302.26 280.67 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "R426"
 			(at 302.26 275.59 90)
 			(show_name no)
@@ -9551,6 +9652,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e1febff7-6b7e-5431-b4bf-e49197b0d5b2")
+		(property "Manufacturer" "Hanxia" (at 397.51 54.61 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "HX PZ2.54-1x2P ZZ" (at 397.51 54.61 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C32713268" (at 397.51 54.61 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "JP411"
 			(at 397.51 49.53 0)
 			(show_name no)
@@ -9628,6 +9732,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ea298808-a363-5843-85d6-e318df19f798")
+		(property "Manufacturer" "Analog Devices (Maxim)" (at 64.77 187.96 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "MAX3485AEASA+T" (at 64.77 187.96 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C94609" (at 64.77 187.96 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "U2"
 			(at 64.77 170.18 0)
 			(show_name no)
@@ -9723,6 +9830,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "f289f08d-2c86-531b-a5d1-949db6b58143")
+		(property "Manufacturer" "Murata" (at 265.43 128.27 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "GCM188R71C104KA37D" (at 265.43 128.27 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C184760" (at 265.43 128.27 0) (hide yes) (effects (font (size 1 1))))
 		(property "Reference" "C413"
 			(at 265.43 123.19 90)
 			(show_name no)
@@ -9789,4 +9899,31 @@
 			)
 		)
 	)
+
+	(symbol (lib_id "P4-Power-and-Functions-Aux-Board:AssemblyItem") (at 75 300 0) (unit 1) (body_style 1) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no) (dnp no) (uuid "39bdc644-eb43-5b0d-aee4-71763eb02929")
+		(property "Reference" "JP414" (at 75 297.46 0) (effects (font (size 1 1))))
+		(property "Value" "JP411 shunt" (at 75 300 0) (effects (font (size 1 1))))
+		(property "Footprint" "" (at 75 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "Manufacturer" "XKB Connection" (at 75 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "X2541-A1NIB" (at 75 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C2938578" (at 75 300 0) (hide yes) (effects (font (size 1 1))))
+		(instances (project "P4-Power-and-Functions-Aux-Board" (path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01/cbc4d441-1c7a-5870-85a8-d36c35374eec" (reference "JP414") (unit 1)))))
+
+	(symbol (lib_id "P4-Power-and-Functions-Aux-Board:AssemblyItem") (at 125 300 0) (unit 1) (body_style 1) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no) (dnp no) (uuid "3abdc7d7-ec43-5ca2-afe4-730d4bb03dee")
+		(property "Reference" "JP415" (at 125 297.46 0) (effects (font (size 1 1))))
+		(property "Value" "JP412 shunt" (at 125 300 0) (effects (font (size 1 1))))
+		(property "Footprint" "" (at 125 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "Manufacturer" "XKB Connection" (at 125 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "X2541-A1NIB" (at 125 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C2938578" (at 125 300 0) (hide yes) (effects (font (size 1 1))))
+		(instances (project "P4-Power-and-Functions-Aux-Board" (path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01/cbc4d441-1c7a-5870-85a8-d36c35374eec" (reference "JP415") (unit 1)))))
+
+	(symbol (lib_id "P4-Power-and-Functions-Aux-Board:AssemblyItem") (at 175 300 0) (unit 1) (body_style 1) (exclude_from_sim yes) (in_bom yes) (on_board no) (in_pos_files no) (dnp no) (uuid "3bbdc96a-ed43-5e37-a8e4-67ec4cb03f87")
+		(property "Reference" "JP416" (at 175 297.46 0) (effects (font (size 1 1))))
+		(property "Value" "JP413 shunt" (at 175 300 0) (effects (font (size 1 1))))
+		(property "Footprint" "" (at 175 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "Manufacturer" "XKB Connection" (at 175 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "MPN" "X2541-A1NIB" (at 175 300 0) (hide yes) (effects (font (size 1 1))))
+		(property "LCSC" "C2938578" (at 175 300 0) (hide yes) (effects (font (size 1 1))))
+		(instances (project "P4-Power-and-Functions-Aux-Board" (path "/95ed5eda-07d0-4bd1-9d8d-498592ee8d01/cbc4d441-1c7a-5870-85a8-d36c35374eec" (reference "JP416") (unit 1)))))
 )
