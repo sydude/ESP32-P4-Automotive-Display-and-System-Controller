@@ -90,7 +90,21 @@ F.Cu carries the components and the short switching loops. Each LM76003 has sepa
 
 J701 pads 2 and 3 connect through the ESD diodes to J1 pins 9 and 7. Both USB traces measure 10.184 mm pad-center to pad-center on F.Cu, with zero signal vias. The coupled sections use 0.15 mm traces with a nominal 0.16 mm gap. The design assumes a 0.10 mm F.Cu–In1.Cu dielectric. Have the fabricator confirm the 90 Ω differential geometry for its actual stackup. Identify the cable data pair and continuity-check its polarity end to end.
 
-The CAN-routing baseline passed ERC, PCB DRC and schematic parity checks. The new H701 standoff and the larger C202 land require a fresh zone fill, DRC and parity check before fabrication. The board contains 146 footprints including H1–H4 and H701. A test Gerber and drill export produced a separate non-plated drill file with four Ø2.70 mm hits at the specified 58.00 × 49.00 mm pitch.
+KiCad 10.0.8 verification on November 25, 2026 passed ERC and PCB DRC after copper refill and again on reopening the saved PCB for DRC. The configured checks report zero errors, warnings, unconnected items and schematic parity findings. Both C202 pads clear the routed edge by 0.804 mm. Both CAN pairs run on F.Cu without signal vias.
+
+[Download the verified PCBWay package](../fabrication/Raptor-REV1-PCBWay.zip). It contains the bare-board Gerber/drill ZIP, the BOM, the millimeter placement CSV and the fabrication and assembly notes. The bare-board data includes four copper layers, both masks, both paste layers, both legends, the routed profile, the Gerber job file and separate plated and non-plated drill files. The drill files contain 350 plated and seven non-plated holes. The four Ø2.70 mm display mounts measure 58.00 × 49.00 mm center to center. The two J1 locating drills follow Amphenol’s Ø1.10 and Ø1.60 mm nominal dimensions. H701 has one Ø2.60 mm non-plated bore, four top copper lands with matching paste apertures, and four vias connected to the filled In1.Cu ground plane.
+
+All 141 fitted BOM designators match their schematic and board sourcing fields and top-side placements. All 141 also import as valid solids in the populated STEP export, with zero solid intersections between fitted components. The customer-supplied module was checked separately with a flat 0.80 mm card body using SIMCom Figure 4 and the J1 model’s insertion stop. At the 2.45 mm standoff shoulder, the card contacts H701 without solid overlap. The modeled socket spring contacts engage the card. The socket and standoff locating features clear their board holes.
+
+| Nominal clearance at J702 | Distance |
+|---|---:|
+| Installed modem PCB to closed SIM holder, nearest surfaces | 1.35 mm |
+| Installed modem PCB to closed SIM holder, in plan view | 0.77 mm |
+| Installed modem PCB to SIM-holder courtyard, in plan view | 0.13 mm |
+| Existing traced modem drawing to SIM-holder courtyard, in plan view | 0.084 mm |
+| J1 socket body to closed SIM holder, nearest surfaces | 2.21 mm |
+
+These measurements cover the nominal closed assembly. Confirm module insertion, lid travel and antenna leads on the first article. Ask PCBWay to confirm the finished Ø2.60 ±0.03 mm H701 bore and the USB stackup at quotation.
 
 Before ordering, check the 1:1 mechanical drawing against the display with its cables installed. Verify actual standoff thread depth, connector tails, modem retainer and enclosure depth. On the prototype, check key-off current, both supply rails under combined load, USB power transitions, thermal rise and modem rail droop under transmit. Vehicle transient protection and cold-crank recovery require hardware tests.
 

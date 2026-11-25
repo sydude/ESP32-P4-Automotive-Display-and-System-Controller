@@ -21925,16 +21925,16 @@
 	)
 	(pad "" np_thru_hole circle
 		(at -10 0)
-		(size 1.15 1.15)
-		(drill 1.15)
+		(size 1.1 1.1)
+		(drill 1.1)
 		(layers "*.Cu" "*.Mask")
 		(uuid "92519e5f-9f40-41eb-9d23-bea65a3377dd")
 	)
 
 	(pad "" np_thru_hole circle
 		(at 10 0)
-		(size 1.65 1.65)
-		(drill 1.65)
+		(size 1.6 1.6)
+		(drill 1.6)
 		(layers "*.Cu" "*.Mask")
 		(uuid "5537de46-accc-4b5b-abf0-5fcce24548fb")
 	)

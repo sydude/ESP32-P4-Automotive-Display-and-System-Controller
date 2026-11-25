@@ -5325,7 +5325,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "64108363-fc6b-5a70-a04a-b50d0a9d1c87")
 		(property "Reference" "TP701"
